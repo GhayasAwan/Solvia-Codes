@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { company, navLinks, socialLinks } from '../data/siteData.js';
 
 export default function Footer() {
@@ -14,9 +13,9 @@ export default function Footer() {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand">Quick Links</p>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               {navLinks.map((link) => (
-                <NavLink key={link.to} to={link.to} className="text-slate-300 transition hover:text-white">
+                <a key={link.to} href={link.to} className="text-slate-300 transition hover:text-white">
                   {link.label}
-                </NavLink>
+                </a>
               ))}
             </div>
           </div>

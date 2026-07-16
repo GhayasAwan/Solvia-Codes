@@ -13,24 +13,24 @@ export default function Contact() {
       />
       <AnimatedSection className="section-pad">
         <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <form className="rounded-lg border border-line bg-white p-6 shadow-sm sm:p-8">
+          <form className="rounded-lg border border-line bg-white p-6 shadow-soft sm:p-8">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">
                 <span className="text-sm font-bold text-slate-700">Name</span>
-                <input className="focus-ring mt-2 w-full rounded-md border border-line px-4 py-3" placeholder="Your name" />
+                <input className="focus-ring mt-2 w-full rounded-md border border-line bg-cloud px-4 py-3 transition focus:bg-white" placeholder="Your name" />
               </label>
               <label className="block">
                 <span className="text-sm font-bold text-slate-700">Email</span>
                 <input
                   type="email"
-                  className="focus-ring mt-2 w-full rounded-md border border-line px-4 py-3"
+                  className="focus-ring mt-2 w-full rounded-md border border-line bg-cloud px-4 py-3 transition focus:bg-white"
                   placeholder="you@example.com"
                 />
               </label>
             </div>
             <label className="mt-5 block">
               <span className="text-sm font-bold text-slate-700">Service</span>
-              <select className="focus-ring mt-2 w-full rounded-md border border-line px-4 py-3">
+              <select className="focus-ring mt-2 w-full rounded-md border border-line bg-cloud px-4 py-3 transition focus:bg-white">
                 <option>Select a service</option>
                 {services.map((service) => (
                   <option key={service.title}>{service.title}</option>
@@ -40,32 +40,32 @@ export default function Contact() {
             <label className="mt-5 block">
               <span className="text-sm font-bold text-slate-700">Message</span>
               <textarea
-                className="focus-ring mt-2 min-h-40 w-full rounded-md border border-line px-4 py-3"
+                className="focus-ring mt-2 min-h-40 w-full rounded-md border border-line bg-cloud px-4 py-3 transition focus:bg-white"
                 placeholder="Share your goals, timeline, and what support you need."
               />
             </label>
             <button
               type="button"
-              className="focus-ring mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-3 text-sm font-bold text-white transition hover:bg-teal-600"
+              className="focus-ring mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-ink px-6 py-4 text-sm font-extrabold text-white transition hover:bg-slate-800 sm:w-auto"
             >
               Send Message <Send size={17} />
             </button>
           </form>
 
           <aside className="space-y-8">
-            <div>
-              <h2 className="font-display text-2xl font-bold">Contact Info</h2>
+            <div className="rounded-lg bg-ink p-7 text-white shadow-lift">
+              <h2 className="font-display text-2xl font-extrabold">Contact Info</h2>
               <div className="mt-5 space-y-4">
                 {contactDetails.map(({ label, icon: Icon }) => (
-                  <div key={label} className="flex gap-3 rounded-lg border border-line bg-white p-4">
+                  <div key={label} className="flex gap-3 rounded-md border border-white/10 bg-white/5 p-4">
                     <Icon className="mt-1 flex-none text-brand" size={20} />
-                    <span className="text-sm leading-6 text-slate-600">{label}</span>
+                    <span className="text-sm leading-6 text-slate-200">{label}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div>
-              <h2 className="font-display text-2xl font-bold">Social</h2>
+            <div className="rounded-lg border border-line bg-white p-7 shadow-sm">
+              <h2 className="font-display text-2xl font-extrabold">Social</h2>
               <div className="mt-5 flex flex-wrap gap-3">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <a

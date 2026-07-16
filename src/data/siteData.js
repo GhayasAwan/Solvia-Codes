@@ -22,13 +22,13 @@ export const company = {
 };
 
 export const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Work', to: '/work' },
-  { label: 'Process', to: '/process' },
-  { label: 'Testimonials', to: '/testimonials' },
-  { label: 'Contact', to: '/contact' }
+  { label: 'Home', to: '#home' },
+  { label: 'About', to: '#about' },
+  { label: 'Services', to: '#services' },
+  { label: 'Work', to: '#work' },
+  { label: 'Process', to: '#process' },
+  { label: 'Testimonials', to: '#testimonials' },
+  { label: 'Contact', to: '#contact' }
 ];
 
 export const services = [
@@ -131,6 +131,33 @@ export const testimonials = [
       'Their marketing support gave our brand a cleaner voice online and helped us plan content with more consistency.',
     name: 'Bilal Ahmed',
     role: 'Marketing Lead, Local Business'
+  }
+];
+
+export const teamMembers = [
+  {
+    name: 'Team Member Name',
+    role: 'Founder / Lead Developer',
+    focus: 'Web apps, technical planning, frontend systems',
+    bio: 'Add this person\'s short intro here. Mention experience, main skills, and what they handle at Solvia Codes.'
+  },
+  {
+    name: 'Team Member Name',
+    role: 'UI/UX Designer',
+    focus: 'User flows, prototypes, visual design',
+    bio: 'Add this person\'s short intro here. Mention design strengths, tools, and the kind of product experiences they create.'
+  },
+  {
+    name: 'Team Member Name',
+    role: 'Marketing Strategist',
+    focus: 'Social media, content planning, campaigns',
+    bio: 'Add this person\'s short intro here. Mention marketing approach, platforms, and how they help brands grow online.'
+  },
+  {
+    name: 'Team Member Name',
+    role: 'Project / Client Manager',
+    focus: 'Communication, delivery, quality control',
+    bio: 'Add this person\'s short intro here. Mention how they keep projects clear, organized, and delivered on time.'
   }
 ];
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function AnimatedSection({ children, className = '', delay = 0 }) {
+export default function AnimatedSection({ children, className = '', delay = 0, ...props }) {
   return (
     <motion.section
       className={className}
@@ -8,6 +8,7 @@ export default function AnimatedSection({ children, className = '', delay = 0 })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.65, ease: 'easeOut', delay }}
+      {...props}
     >
       {children}
     </motion.section>
