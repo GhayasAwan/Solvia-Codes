@@ -4,15 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#07111F',
-        cloud: '#F5F7FA',
-        line: '#DDE5EE',
-        brand: '#0EA5A3',
-        coral: '#D97706'
+        ink: '#A7EBF2',
+        cloud: '#011C40',
+        line: '#023859',
+        brand: '#54ACBF',
+        coral: '#26658C',
+        dark: '#011C40',
+        darkCard: '#023859',
+        darkBorder: '#26658C'
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Manrope', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        display: ['Outfit', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
       },
       boxShadow: {
         soft: '0 20px 70px rgba(7, 17, 31, 0.12)',

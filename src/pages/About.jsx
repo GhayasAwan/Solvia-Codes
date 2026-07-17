@@ -1,6 +1,7 @@
 import AnimatedSection from '../components/AnimatedSection.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import { company, teamMembers } from '../data/siteData.js';
+import TeamCarousel from '../components/TeamCarousel';
 
 export default function About() {
   return (
@@ -46,32 +47,8 @@ export default function About() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {teamMembers.map((member, index) => (
-              <article
-                key={`${member.role}-${index}`}
-                className="group overflow-hidden rounded-lg border border-line bg-cloud shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft"
-              >
-                <div className="flex aspect-[4/3] items-center justify-center bg-ink text-white">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-md border border-white/15 bg-white/10 font-display text-3xl font-extrabold">
-                    {member.name
-                      .split(' ')
-                      .map((part) => part[0])
-                      .join('')
-                      .slice(0, 2)}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand">Member 0{index + 1}</p>
-                  <h3 className="mt-3 font-display text-2xl font-extrabold text-ink">{member.name}</h3>
-                  <p className="mt-2 text-sm font-bold text-slate-700">{member.role}</p>
-                  <p className="mt-4 rounded-md bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {member.focus}
-                  </p>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">{member.bio}</p>
-                </div>
-              </article>
-            ))}
+          <div className="mt-12">
+            <TeamCarousel />
           </div>
         </div>
       </AnimatedSection>
