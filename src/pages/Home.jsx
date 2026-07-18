@@ -1,443 +1,465 @@
-import { ArrowRight, CheckCircle2, ChevronDown, Send, Play, Sparkles } from 'lucide-react';
-import AnimatedSection from '../components/AnimatedSection.jsx';
-import ProjectCard from '../components/ProjectCard.jsx';
-import ServiceCard from '../components/ServiceCard.jsx';
-import TeamCarousel from '../components/TeamCarousel.jsx';
-import heroTeamImg from '../import/hero-team.png';
-import {
-  company,
-  contactDetails,
-  processSteps,
-  projects,
-  services,
-  socialLinks,
-  testimonials
-} from '../data/siteData.js';
-import TestimonialsCarousel from './TestimonialsCarousel.jsx';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
+import { 
+  ArrowRight, Sparkles, Send, Mail, MapPin, Phone, 
+  Code2, Smartphone, Palette, ShieldCheck, ArrowDown
+} from 'lucide-react';
+import { company } from '../data/siteData.js';
+import SolarSystemOrbit from '../components/SolarSystemOrbit.jsx';
+import CylinderCarousel from '../components/CylinderCarousel.jsx';
+import TestimonialBook from '../components/TestimonialBook.jsx';
+import MorphWord from '../components/MorphWord.jsx';
+import heroVideo from '../import/hero section video.mp4';
 
-export default function Home() {
+// Custom SVG Brand Icons
+const GithubIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const InstagramIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const LinkedinIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const WhatsappIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
+// Inline component for the Scroll Highlight text inside About stage card
+function ScrollHighlightText({ text, scrollY, range }) {
+  const words = text.split(" ");
+  const [start, end] = range;
+
   return (
-    <>
-      {/* ===== HERO SECTION ===== */}
-      <section id="home" className="relative isolate scroll-mt-20 overflow-hidden min-h-screen">
+    <p className="flex flex-wrap justify-center text-lg sm:text-2xl md:text-3xl text-navy/30 font-medium leading-relaxed max-w-4xl mx-auto">
+      {words.map((word, i) => {
+        const wordStart = start + (i / words.length) * (end - start);
+        const wordEnd = start + ((i + 1) / words.length) * (end - start);
         
-        {/* Full background image */}
-        <img
-          src={heroTeamImg}
-          alt="Solvia Codes team"
-          className="absolute inset-0 h-full w-full object-cover z-0"
-        />
+        // Transform opacity and blur based on dynamic scroll range
+        const opacity = useTransform(scrollY, [wordStart, wordEnd], [0.2, 1]);
+        const scale = useTransform(scrollY, [wordStart, wordEnd], [0.98, 1]);
+        const blurVal = useTransform(scrollY, [wordStart, wordEnd], [3, 0]);
+        const blur = useTransform(blurVal, (v) => `blur(${v}px)`);
 
-        {/* Liquid gradient overlay for text readability on left side */}
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background: 'linear-gradient(90deg, rgba(1,28,64,0.95) 0%, rgba(1,28,64,0.8) 40%, rgba(2,56,89,0.3) 80%, transparent 100%)'
-          }}
-        />
+        return (
+          <motion.span 
+            key={i} 
+            style={{ opacity, scale, filter: blur }}
+            className="inline-block mr-2 mb-2 transition-all duration-75 text-navy font-bold"
+          >
+            {word}
+          </motion.span>
+        );
+      })}
+    </p>
+  );
+}
 
-        {/* Content - Left Mid */}
-        <div className="relative z-20 flex min-h-screen items-center px-6 sm:px-10 lg:px-16 xl:px-20">
-          <div className="w-full max-w-3xl pt-24 pb-12">
-            
-            {/* Eyebrow */}
-            <AnimatedSection>
-              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2">
-                <span className="h-2 w-2 rounded-full bg-[#54ACBF] animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#A7EBF2]">
-                  Premium IT Agency
-                </span>
-              </div>
-            </AnimatedSection>
+// macOS Dock Component
+function GlassDock() {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+  const dockItems = [
+    { label: 'GitHub', icon: GithubIcon, href: 'https://github.com', color: 'hover:text-navy hover:bg-navy/10' },
+    { label: 'Instagram', icon: InstagramIcon, href: 'https://instagram.com', color: 'hover:text-pink-500 hover:bg-pink-500/10' },
+    { label: 'WhatsApp', icon: WhatsappIcon, href: 'https://wa.me/1234567890', color: 'hover:text-green-500 hover:bg-green-500/10' },
+    { label: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com', color: 'hover:text-blue-500 hover:bg-blue-500/10' },
+    { label: 'Email', icon: Mail, href: 'mailto:hello@solviacodes.com', color: 'hover:text-teal hover:bg-teal/10' }
+  ];
 
-            {/* Heading */}
-            <AnimatedSection delay={0.08}>
-              <h1 className="font-display text-5xl font-extrabold leading-[1.08] text-white sm:text-6xl lg:text-7xl xl:text-[80px] mb-6">
-                Get Your Business<br />
-                <span className="text-[#54ACBF]">Digital Solution</span>
-              </h1>
-              <p className="text-[#A7EBF2]/80 text-lg leading-8 max-w-xl mb-10 font-medium">
-                We design, develop, and market clean digital experiences for businesses that want to look credible, grow faster, and execute with confidence.
-              </p>
-            </AnimatedSection>
+  // Dynamic macOS-like scale math based on hovered neighbor index
+  const getScale = (idx) => {
+    if (hoveredIdx === null) return 1;
+    const distance = Math.abs(idx - hoveredIdx);
+    if (distance === 0) return 1.6; // Hovered
+    if (distance === 1) return 1.3; // Immediate neighbor
+    if (distance === 2) return 1.1; // Secondary neighbor
+    return 1;
+  };
 
-            {/* CTA Buttons */}
-            <AnimatedSection delay={0.16}>
-              <div className="flex flex-wrap gap-4 mb-14">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-extrabold text-[#011C40] transition-all hover:scale-105"
-                  style={{ background: '#A7EBF2', boxShadow: '0 0 25px rgba(167,235,242,0.4)' }}
-                >
-                  Explore More <ArrowRight size={16} />
-                </a>
-                <a
-                  href="#about"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-md px-8 py-4 text-sm font-extrabold text-white transition-all hover:bg-white/20"
-                >
-                  Contact Us <ArrowRight size={16} />
-                </a>
-              </div>
-            </AnimatedSection>
+  return (
+    <div className="relative mt-12 flex flex-col items-center">
+      <span className="text-[10px] font-black uppercase tracking-widest text-navy/40 mb-3">Quick Connect Dock</span>
+      <div 
+        className="flex items-end gap-3 px-4 py-3 rounded-3xl bg-skyblue/30 border border-skyblue/40 backdrop-blur-2xl shadow-soft h-18 transition-colors duration-500"
+        onMouseLeave={() => setHoveredIdx(null)}
+      >
+        {dockItems.map((item, idx) => {
+          const scale = getScale(idx);
+          const Icon = item.icon;
+          return (
+            <motion.a
+              key={idx}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setHoveredIdx(idx)}
+              animate={{ 
+                scale: scale,
+                y: hoveredIdx === idx ? -10 : 0
+              }}
+              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+              className={`relative flex items-center justify-center w-12 h-12 rounded-2xl border border-skyblue/40 bg-white transition-all duration-300 text-navy/50 shadow-card ${item.color} origin-bottom`}
+            >
+              {/* Tooltip */}
+              <AnimatePresence>
+                {hoveredIdx === idx && (
+                  <motion.span 
+                    initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                    animate={{ opacity: 1, y: -45, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                    className="absolute px-2.5 py-1 text-[9px] font-black uppercase tracking-widest bg-white border border-skyblue/30 text-navy rounded-lg shadow-card pointer-events-none whitespace-nowrap"
+                  >
+                    {item.label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
 
-            {/* Stats Row */}
-            <AnimatedSection delay={0.24}>
-              <div className="flex flex-wrap gap-10 border-t border-white/20 pt-8 mt-10">
-                {[
-                  { value: '150+', label: 'Projects Done' },
-                  { value: '50+', label: 'Happy Clients' },
-                  { value: '5+', label: 'Years Experience' },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <p className="font-display text-4xl font-extrabold text-white">{stat.value}</p>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#54ACBF] mt-2">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-            
+              <Icon size={20} />
+            </motion.a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// AboutSection Standalone scroll reveal component
+function AboutSection() {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0.05, 0.25], [0.95, 1]);
+
+  return (
+    <section ref={targetRef} id="about" className="py-32 relative bg-beige transition-colors duration-500 overflow-hidden border-t border-skyblue/30">
+      {/* Decorative gradients */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
+
+      <motion.div 
+        style={{ opacity, scale }}
+        className="container-page max-w-4xl px-4 relative z-10 mx-auto"
+      >
+        <div className="w-full p-8 sm:p-14 rounded-[32px] border border-skyblue/40 bg-white/70 backdrop-blur-2xl shadow-soft relative overflow-hidden text-center transition-all duration-500">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-teal/8 to-transparent rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="mb-8 relative z-10">
+            <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
+              About Solvia Codes
+            </span>
           </div>
+
+          <ScrollHighlightText 
+            text="We are developers, creators, and structural engineers. We specialize in transforming complex problems into fluid, interactive, and visually stunning digital products. Through clean system architecture, custom WebGL algorithms, and glassmorphic designs, we make your software scale effortlessly while keeping users highly engaged."
+            scrollY={scrollYProgress}
+            range={[0.12, 0.62]}
+          />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// TeamSection Component
+function TeamSection() {
+  const teamMembers = [
+    {
+      name: "Ghayas Awan",
+      role: "CEO & Solutions Architect",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+      bio: "Spearheading system architecture, full-stack development, and custom interactive engine implementations.",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    },
+    {
+      name: "Warda Mehmood",
+      role: "Lead UI/UX Designer",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80",
+      bio: "Crafting premium user interfaces, cohesive design systems, and stunning interactive layouts.",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
+  ];
+
+  return (
+    <section id="team" className="py-24 relative bg-beige border-t border-skyblue/30 transition-colors duration-500 overflow-hidden">
+      {/* Decorative center glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-teal/15 to-transparent rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container-page max-w-4xl px-4 relative z-10 mx-auto">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
+            Our Team
+          </span>
+          <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
+            The Minds Behind Solvia
+          </h3>
+          <p className="mt-3 text-navy/55 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+            Meet the engineers and creators building next-generation digital platforms and user experiences.
+          </p>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/50 animate-bounce">
-          <span className="text-xs tracking-widest uppercase font-bold text-white">Scroll</span>
-          <ChevronDown size={24} className="text-[#54ACBF]" />
+        {/* Grid of Team Cards */}
+        <div className="grid md:grid-cols-2 gap-8 justify-center">
+          {teamMembers.map((member, idx) => (
+            <div 
+              key={idx}
+              className="p-6 rounded-[32px] border border-skyblue/40 bg-white/80 backdrop-blur-2xl shadow-soft flex flex-col sm:flex-row items-center gap-6 group hover:border-teal/50 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+            >
+              {/* Member Portrait */}
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shrink-0 border border-skyblue/30 group-hover:border-teal/40 transition-colors duration-300">
+                <img 
+                  src={member.image} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Bio & Details */}
+              <div className="flex-1 text-center sm:text-left">
+                <span className="text-[9px] font-black uppercase tracking-widest text-teal bg-teal/10 px-2 py-0.5 rounded">
+                  {member.role}
+                </span>
+                <h4 className="text-lg font-bold text-navy mt-2 font-display">
+                  {member.name}
+                </h4>
+                <p className="text-xs text-navy/55 mt-2 leading-relaxed">
+                  {member.bio}
+                </p>
+
+                {/* Social links */}
+                <div className="flex items-center justify-center sm:justify-start gap-4 mt-4 text-navy/40">
+                  <a href={member.github} target="_blank" rel="noopener noreferrer" className="hover:text-navy transition-colors">
+                    <GithubIcon size={16} />
+                  </a>
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors">
+                    <LinkedinIcon size={16} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  const containerRef = useRef(null);
+  
+  return (
+    <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-hidden selection:bg-teal selection:text-white transition-colors duration-500">
+      
+      {/* GLOBAL BACKGROUND GLOWS */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[30%] left-0 w-[600px] h-[600px] bg-gradient-to-tr from-teal/15 to-transparent rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-0 w-[500px] h-[500px] bg-gradient-to-bl from-skyblue/20 to-transparent rounded-full blur-[130px] pointer-events-none" />
+
+      {/* ========================================== */}
+      {/* HERO SECTION (Simplified - No Pinning)     */}
+      {/* ========================================== */}
+      <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-beige transition-colors duration-500">
+        
+        {/* Ambient Video Background Loop - Pinned & Sticky */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
+          src={heroVideo}
+        />
+        
+        {/* Visual gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-beige/70 via-beige/85 to-beige z-[1]" />
+        
+        <div className="container-page relative z-10 text-center flex flex-col items-center justify-center h-full pt-16 px-4 mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-skyblue/40 shadow-card mb-6">
+            <Sparkles size={14} className="text-teal animate-pulse" />
+            <span className="text-[10px] font-black tracking-widest text-navy uppercase">Interactive 3D Portfolio</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight leading-[1.05] max-w-5xl text-navy font-display">
+            Smart Software
+            <MorphWord 
+              words={["Solutions", "Ecosystems", "Interfaces"]}
+            />
+            for Digital Leaders
+          </h1>
+
+          <p className="mt-6 text-xs sm:text-base text-navy/65 max-w-2xl leading-relaxed">
+            We shape raw concepts into high-converting interfaces, complex cloud backends, and fully custom interactive web products.
+          </p>
+
+          <div className="mt-12 flex flex-col items-center gap-2 animate-bounce opacity-60">
+            <span className="text-[9px] font-black uppercase tracking-widest text-navy/50">Scroll down to explore</span>
+            <div className="w-4 h-6 border-2 border-teal/50 rounded-full flex justify-center pt-1.5">
+              <div className="w-1 h-1 bg-teal rounded-full" />
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* ========================================== */}
+      {/* ABOUT SECTION (Standalone Scroll Reveal)   */}
+      {/* ========================================== */}
+      <AboutSection />
+      <TeamSection />
 
-      {/* ===== ABOUT SECTION (WHITE BG) ===== */}
-      <AnimatedSection id="about" className="section-pad scroll-mt-20 overflow-hidden" style={{backgroundColor:'#FFFFFF'}}>
-        <div className="container-page grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          
-          {/* LEFT SIDE: Image Collage */}
-          <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] mx-auto">
-             
-             {/* Decorative Background Shapes */}
-             <div className="absolute top-0 left-0 w-40 h-40 bg-[#54ACBF] rounded-tl-[3rem] -translate-x-6 -translate-y-6 -z-10" />
-             <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#011C40] rounded-br-[3rem] translate-x-6 translate-y-6 -z-10" />
-             
-             {/* Sparkles bottom left */}
-             <div className="absolute -bottom-8 -left-8 z-20 flex gap-1 text-[#54ACBF]">
-               <Sparkles size={48} className="fill-[#54ACBF]" />
-               <Sparkles size={24} className="mt-4 fill-[#54ACBF]" />
-             </div>
-
-             {/* 3-Image Grid Layout */}
-             <div className="grid grid-cols-[1.2fr_0.8fr] gap-4 h-full relative z-10">
-               {/* Left Column */}
-               <div className="grid grid-rows-[1.2fr_0.8fr] gap-4">
-                 <div className="overflow-hidden rounded-tl-[3rem] rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-md">
-                   <img src={heroTeamImg} className="w-full h-full object-cover object-left-top" alt="About Infotek" />
-                 </div>
-                 <div className="overflow-hidden rounded-2xl shadow-md">
-                   <img src={heroTeamImg} className="w-full h-full object-cover object-bottom" alt="About Infotek" />
-                 </div>
-               </div>
-               
-               {/* Right Column (Tall) */}
-               <div className="grid grid-rows-1">
-                 <div className="overflow-hidden rounded-2xl shadow-md">
-                   <img src={heroTeamImg} className="w-full h-full object-cover object-right" alt="About Infotek" />
-                 </div>
-               </div>
-             </div>
-             
-             {/* Center Badge HIRE US */}
-             <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-[120px] h-[120px] bg-white rounded-full p-2 shadow-xl border border-slate-100">
-                <div className="w-full h-full bg-[#54ACBF] rounded-full flex flex-col items-center justify-center relative">
-                   <div className="absolute inset-2 border border-dashed border-white/50 rounded-full animate-[spin_10s_linear_infinite]" />
-                   <div className="absolute w-full h-full animate-[spin_10s_linear_infinite] pointer-events-none">
-                     <svg viewBox="0 0 100 100" className="w-full h-full">
-                       <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
-                       <text className="text-[10px] font-bold fill-white tracking-[0.2em] uppercase">
-                         <textPath href="#circlePath" startOffset="0%">Hire Us • Hire Us •</textPath>
-                       </text>
-                     </svg>
-                   </div>
-                   <div className="w-10 h-10 bg-[#011C40] rounded-full flex items-center justify-center shadow-lg relative z-10 hover:scale-110 transition-transform cursor-pointer">
-                     <ArrowRight size={18} className="text-white" />
-                   </div>
-                </div>
-             </div>
-          </div>
-
-          {/* RIGHT SIDE: Text Content */}
-          <div className="lg:pl-6 relative">
-            {/* Background Watermark */}
-            <div className="absolute -top-12 -left-4 text-[60px] sm:text-[90px] font-display font-extrabold text-slate-50 pointer-events-none tracking-widest whitespace-nowrap select-none -z-10 leading-none">
-              ABOUT US
-            </div>
-
-            <p className="font-bold tracking-widest uppercase text-sm flex items-center gap-2" style={{ color: '#011C40' }}>
-              <span className="text-[#54ACBF] font-mono text-lg">//</span> About Us
-            </p>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight sm:text-5xl" style={{ color: '#011C40' }}>
-              Transforming <span className="text-[#54ACBF]">Ideas</span><br/>into <span className="text-[#54ACBF]">Digital Reality</span>
-            </h2>
-            <p className="mt-6 text-slate-500 text-lg leading-8 font-medium">
-              We design, develop, and market clean digital experiences for businesses that want to look credible, grow faster, and execute with confidence. Every project is crafted with precision to support real business goals.
-            </p>
-            
-            {/* Stats */}
-            <div className="mt-10 pt-8 border-t border-slate-200 grid grid-cols-3 gap-4">
-              <div>
-                <p className="text-3xl sm:text-4xl font-display font-extrabold text-[#54ACBF]">150+</p>
-                <p className="text-xs font-semibold text-slate-400 mt-2">Team Members</p>
-              </div>
-              <div className="border-l border-slate-200 pl-4 sm:pl-6">
-                <p className="text-3xl sm:text-4xl font-display font-extrabold text-[#54ACBF]">2000+</p>
-                <p className="text-xs font-semibold text-slate-400 mt-2">Happy Clients</p>
-              </div>
-              <div className="border-l border-slate-200 pl-4 sm:pl-6">
-                <p className="text-3xl sm:text-4xl font-display font-extrabold text-[#54ACBF]">99%</p>
-                <p className="text-xs font-semibold text-slate-400 mt-2">Client Satisfaction</p>
-              </div>
-            </div>
-
-            {/* Signature */}
-            <div className="mt-12">
-              <p className="text-4xl text-[#011C40] italic" style={{ fontFamily: 'Georgia, serif' }}>Jenny Alexander</p>
-              <p className="text-sm font-semibold text-slate-500 mt-2">Jenny Alexander <span className="text-[#54ACBF] px-1">•</span> CEO</p>
-            </div>
-          </div>
-          
+      {/* ========================================== */}
+      {/* SERVICES SECTION (Solar System Orbit)      */}
+      {/* ========================================== */}
+      <section id="services" className="py-32 relative bg-beige border-t border-skyblue/30 transition-colors duration-500">
+        <div className="container-page mx-auto px-4">
+          <SolarSystemOrbit />
         </div>
-      </AnimatedSection>
+      </section>
 
-
-      {/* ===== TEAM SECTION (DARK BG) ===== */}
-      <AnimatedSection className="section-pad relative isolate overflow-hidden" style={{backgroundColor:'#011C40'}}>
-        {/* Background decorative blob */}
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-20 pointer-events-none">
-          <div className="w-[600px] h-[600px] rounded-full bg-[#54ACBF] blur-[120px]" />
-        </div>
-        
-        <div className="container-page relative z-10">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end text-center md:text-left">
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#A7EBF2]">Our Experts</p>
-              <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight sm:text-5xl text-white">
-                The people behind Solvia Codes.
-              </h2>
-            </div>
-            <p className="max-w-md text-sm leading-7 text-[#A7EBF2]/70">
-              Meet the talented individuals who turn ideas into reality. A team of designers, engineers, and strategists.
-            </p>
-          </div>
-
-          <div className="mt-16">
-            <TeamCarousel />
-          </div>
-        </div>
-      </AnimatedSection>
-
-
-      {/* ===== SERVICES SECTION (WHITE BG) ===== */}
-      <AnimatedSection id="services" className="section-pad scroll-mt-20" style={{backgroundColor:'#FFFFFF'}}>
-        <div className="container-page text-center md:text-left">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#54ACBF]">Our Services</p>
-              <h2 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl" style={{ color: '#011C40' }}>
-                Build, design, and grow.
-              </h2>
-            </div>
-            <p className="max-w-md text-sm leading-7 text-slate-500">
-              A focused digital team for businesses that want fewer handoffs and better execution across product,
-              brand, and marketing.
-            </p>
-          </div>
-          
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {services.map((service) => (
-              <article
-                key={service.title}
-                className="group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 bg-white hover:bg-[#011C40] shadow-[0_10px_40px_rgba(1,28,64,0.08)] hover:shadow-[0_20px_50px_rgba(84,172,191,0.3)] cursor-pointer border-2 border-transparent hover:border-[#54ACBF]"
-              >
-                {/* Accent glow on hover - keeping it transparent since border is used */}
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#54ACBF] to-[#26658C] opacity-0 transition-opacity duration-300" />
-
-                <div
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#54ACBF] transition-all duration-300 group-hover:scale-110 group-hover:text-white group-hover:shadow-lg"
-                  style={{ background: 'rgba(84,172,191,0.1)' }}
-                >
-                  <service.icon size={28} />
-                </div>
-
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                  {String(service.order || '01').padStart(2, '0')}
-                </p>
-
-                <h3 className="mt-2 font-display text-2xl font-bold transition-colors duration-300 text-[#011C40] group-hover:text-white">
-                  {service.title}
-                </h3>
-
-                <p className="mt-4 text-base leading-relaxed transition-colors duration-300 text-slate-600 group-hover:text-[#A7EBF2]/80">
-                  {service.description}
-                </p>
-
-                <div className="mt-8 flex items-center gap-2 text-sm font-bold text-[#54ACBF] transition-all duration-300 group-hover:gap-3">
-                  <span>Learn More</span>
-                  <ArrowRight size={16} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-
-      {/* ===== PORTFOLIO SECTION (DARK BG) ===== */}
-      <AnimatedSection id="work" className="section-pad scroll-mt-20" style={{backgroundColor:'#011C40'}}>
-        <div className="container-page">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end text-center md:text-left">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#A7EBF2]">Portfolio</p>
-              <h2 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl text-white">Selected concept work.</h2>
-            </div>
-            <a href="#work" className="text-[#54ACBF] font-bold inline-flex items-center gap-2 hover:underline">
-              View All Projects <ArrowRight size={16} />
-            </a>
-          </div>
-          
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-
-      {/* ===== PROCESS SECTION (WHITE BG) ===== */}
-      <AnimatedSection id="process" className="section-pad scroll-mt-20" style={{backgroundColor:'#FFFFFF'}}>
-        <div className="container-page text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#54ACBF]">Process</p>
-          <h2 className="mt-4 max-w-3xl mx-auto font-display text-4xl font-extrabold sm:text-5xl" style={{ color: '#011C40' }}>
-            A clear path from brief to launch.
-          </h2>
-          
-          <div className="mt-20 grid gap-8 md:grid-cols-4 relative z-10">
-            {/* Connecting dashed line behind cards */}
-            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-[2px] border-t-2 border-dashed border-slate-200 -z-10" />
-
-            {processSteps.map((step, index) => (
-              <div 
-                key={step.title} 
-                className="group relative bg-white rounded-3xl p-8 border border-slate-100 shadow-[0_10px_30px_rgba(1,28,64,0.06)] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(84,172,191,0.25)] hover:bg-[#011C40] hover:border-[#26658C] text-left cursor-default"
-              >
-                {/* Step Number Badge */}
-                <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-3xl font-display font-extrabold text-[#54ACBF] group-hover:bg-[#54ACBF] group-hover:border-[#54ACBF] group-hover:text-white transition-all duration-300 shadow-sm mb-8 group-hover:scale-110">
-                  {index + 1}
-                </div>
-                
-                <h3 className="font-display text-2xl font-bold text-[#011C40] group-hover:text-white transition-colors duration-300">
-                  {step.title}
-                </h3>
-                
-                <p className="mt-4 text-base leading-relaxed text-slate-500 group-hover:text-[#A7EBF2]/80 transition-colors duration-300">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ===== TESTIMONIALS SECTION (DARK BG) ===== */}
-      <div id="testimonials" className="scroll-mt-20" style={{backgroundColor:'#011C40'}}>
-        <TestimonialsCarousel testimonials={testimonials} />
+      {/* ========================================== */}
+      {/* PROJECTS SECTION (Stacked Cards)           */}
+      {/* ========================================== */}
+      <div id="work">
+        <CylinderCarousel />
       </div>
 
+      {/* ========================================== */}
+      {/* TESTIMONIALS SECTION (Interactive Book)   */}
+      {/* ========================================== */}
+      <section id="testimonials" className="py-32 relative bg-beige border-t border-skyblue/30 transition-colors duration-500">
+        <div className="container-page mx-auto px-4">
+          <TestimonialBook />
+        </div>
+      </section>
 
-      {/* ===== CONTACT SECTION (WHITE BG) ===== */}
-      <AnimatedSection id="contact" className="section-pad scroll-mt-20" style={{backgroundColor:'#FFFFFF'}}>
-        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#54ACBF]">Contact</p>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl font-extrabold leading-tight sm:text-5xl" style={{ color: '#011C40' }}>
-              Tell Solvia Codes what you are building next.
-            </h2>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
-              Use this form for website, app, design, marketing, social media, or long-term digital support inquiries.
+      {/* ========================================== */}
+      {/* CONTACT SECTION (Form & Glass Dock)        */}
+      {/* ========================================== */}
+      <section id="contact" className="py-32 relative bg-beige border-t border-skyblue/30 transition-colors duration-500">
+        <div className="container-page max-w-4xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <p className="text-xs font-black tracking-[0.25em] text-teal uppercase mb-4">Start a Project</p>
+            <h3 className="text-3xl sm:text-5xl font-black text-navy">Let's Build Together</h3>
+            <p className="mt-3 text-navy/55 text-sm max-w-md mx-auto leading-relaxed">
+              Have a product idea or system that needs premium 3D engineering? Shoot us a message!
             </p>
-            
-            <div className="mt-12 space-y-6">
-              <h3 className="font-display text-2xl font-extrabold" style={{ color: '#023859' }}>Contact Info</h3>
-              <div className="space-y-4">
-                {contactDetails.map(({ label, icon: Icon }) => (
-                  <div key={label} className="flex gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 items-center">
-                    <div className="w-12 h-12 rounded-full bg-[#54ACBF]/10 flex items-center justify-center text-[#54ACBF]">
-                      <Icon size={20} />
-                    </div>
-                    <span className="text-base font-semibold text-slate-600">{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="mt-10">
-              <h3 className="font-display text-2xl font-extrabold mb-4" style={{ color: '#023859' }}>Follow Us</h3>
-              <div className="flex flex-wrap gap-3">
-                {socialLinks.map(({ label, href, icon: Icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 border border-slate-200 text-slate-500 transition-all hover:border-[#54ACBF] hover:text-[#54ACBF] hover:bg-[#54ACBF]/5"
-                  >
-                    <Icon size={20} />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <form className="rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-2xl shadow-slate-200/50 bg-white">
-            <h3 className="text-2xl font-display font-extrabold mb-8" style={{ color: '#011C40' }}>Send us a message</h3>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-bold text-slate-600 mb-2 block">Name</span>
-                <input className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition outline-none focus:border-[#54ACBF] focus:bg-white focus:ring-4 focus:ring-[#54ACBF]/10 text-[#011C40] font-medium" placeholder="John Doe" />
-              </label>
-              <label className="block">
-                <span className="text-sm font-bold text-slate-600 mb-2 block">Email</span>
-                <input
-                  type="email"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition outline-none focus:border-[#54ACBF] focus:bg-white focus:ring-4 focus:ring-[#54ACBF]/10 text-[#011C40] font-medium"
-                  placeholder="john@example.com"
-                />
-              </label>
+          {/* Form & Info Split */}
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            
+            {/* Contact Details Card */}
+            <div className="p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
+              
+              <div>
+                <h4 className="text-xl font-bold text-navy mb-6">Contact Information</h4>
+                
+                <div className="flex flex-col gap-6 text-sm font-medium text-navy/70">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                      <Mail size={18} />
+                    </div>
+                    <div>
+                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Email Address</span>
+                      <a href="mailto:hello@solviacodes.com" className="hover:text-teal transition-colors">hello@solviacodes.com</a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                      <Phone size={18} />
+                    </div>
+                    <div>
+                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Phone Number</span>
+                      <a href="tel:+923001234567" className="hover:text-teal transition-colors">+92 300 1234567</a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                      <MapPin size={18} />
+                    </div>
+                    <div>
+                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">HQ Location</span>
+                      <span className="text-navy">Lahore, Pakistan</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integrates the requested Glass Dock for social links inside the contact card! */}
+              <GlassDock />
             </div>
-            <label className="mt-6 block">
-              <span className="text-sm font-bold text-slate-600 mb-2 block">Service Required</span>
-              <select className="w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition outline-none focus:border-[#54ACBF] focus:bg-white focus:ring-4 focus:ring-[#54ACBF]/10 text-[#011C40] font-medium appearance-none">
-                <option>Select a service</option>
-                {services.map((service) => (
-                  <option key={service.title}>{service.title}</option>
-                ))}
-              </select>
-            </label>
-            <label className="mt-6 block">
-              <span className="text-sm font-bold text-slate-600 mb-2 block">Message</span>
-              <textarea
-                className="min-h-[160px] w-full rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 transition outline-none focus:border-[#54ACBF] focus:bg-white focus:ring-4 focus:ring-[#54ACBF]/10 text-[#011C40] font-medium resize-none"
-                placeholder="Share your goals, timeline, and what support you need..."
-              />
-            </label>
-            <button
-              type="button"
-              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-extrabold text-[#011C40] transition hover:scale-[1.02]"
-              style={{ background: '#A7EBF2', boxShadow: '0 10px 30px rgba(167,235,242,0.4)' }}
+
+            {/* Simple Form card */}
+            <form 
+              onSubmit={(e) => e.preventDefault()}
+              className="p-8 rounded-3xl border border-skyblue/40 bg-white/50 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-5 transition-colors duration-500"
             >
-              Send Message <Send size={18} />
-            </button>
-          </form>
-          
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Your Name</label>
+                <input 
+                  type="text" 
+                  placeholder="John Doe" 
+                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors placeholder:text-navy/30"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Email Address</label>
+                <input 
+                  type="email" 
+                  placeholder="john@example.com" 
+                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors placeholder:text-navy/30"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Message</label>
+                <textarea 
+                  rows={4}
+                  placeholder="Hey, let's talk about building an app..." 
+                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors resize-none placeholder:text-navy/30"
+                />
+              </div>
+
+              <button 
+                type="submit"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-navy to-teal text-white font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(86,124,141,0.3)] transition-shadow active:scale-95 duration-150"
+              >
+                <span>Send Inquiry</span>
+                <Send size={15} />
+              </button>
+            </form>
+
+          </div>
         </div>
-      </AnimatedSection>
-    </>
+      </section>
+
+    </div>
   );
 }

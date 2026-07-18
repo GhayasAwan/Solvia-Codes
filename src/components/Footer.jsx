@@ -1,53 +1,54 @@
-import { company, navLinks, socialLinks } from '../data/siteData.js';
-import { ArrowUpRight, Heart } from 'lucide-react';
+import { company, navLinks, socialLinks, services } from '../data/siteData.js';
+import { Heart, Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#011C40', borderTop: '1px solid #26658C' }}>
-      {/* Top CTA Banner */}
-      <div
-        className="py-14 text-center px-5"
-        style={{ background: 'linear-gradient(135deg, #023859 0%, #011C40 60%)' }}
-      >
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#54ACBF] mb-4">Ready to grow?</p>
-        <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mb-6">
-          Let&apos;s build something <span className="text-[#54ACBF]">exceptional</span>.
-        </h2>
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-sm font-bold text-white transition-all hover:opacity-90 hover:scale-105"
-          style={{ background: 'linear-gradient(135deg, #54ACBF, #26658C)', boxShadow: '0 0 30px rgba(84,172,191,0.3)' }}
-        >
-          Start a Project <ArrowUpRight size={16} />
-        </a>
-      </div>
+    <footer className="bg-navy border-t border-skyblue/15 relative overflow-hidden">
+      {/* Background glow bubble */}
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-teal/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-80 h-80 bg-skyblue/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Footer Grid */}
-      <div className="container-page px-5 py-12 sm:px-6 lg:px-8" style={{ borderTop: '1px solid #26658C' }}>
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-          {/* Brand */}
+      <div className="container-page py-16 relative z-10">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+          
+          {/* Col 1: Brand & Socials */}
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <span
-                className="flex h-10 w-10 items-center justify-center rounded-lg font-display text-sm font-extrabold text-white"
-                style={{ background: 'linear-gradient(135deg, #54ACBF, #26658C)' }}
-              >
-                SC
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl font-display text-sm font-extrabold text-white overflow-hidden shadow-inner">
+                <span className="absolute inset-0 bg-gradient-to-tr from-teal to-skyblue" />
+                <span className="relative z-10 font-bold">SC</span>
+              </div>
+              <span className="leading-tight">
+                <span className="block font-display text-lg font-bold text-white">{company.name}</span>
+                <span className="block text-[10px] font-bold text-skyblue uppercase tracking-widest">{company.tagline}</span>
               </span>
-              <span className="font-display text-xl font-extrabold text-white">{company.name}</span>
             </div>
-            <p className="text-sm leading-7 text-slate-400 max-w-xs">{company.tagline}</p>
+            <p className="text-sm leading-relaxed text-skyblue/70 mb-8 max-w-xs">
+              We help businesses transform concepts into premium 3D and interactive digital products.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-skyblue/15 text-skyblue/60 transition-all hover:border-teal hover:text-teal hover:bg-teal/5"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Col 2: Quick Links */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#54ACBF] mb-5">Quick Links</p>
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <h4 className="font-bold text-white mb-6 tracking-wide">Quick Links</h4>
+            <div className="flex flex-col gap-3 text-sm font-medium">
               {navLinks.map((link) => (
                 <a
                   key={link.to}
                   href={link.to}
-                  className="text-[#A7EBF2]/80 transition hover:text-[#54ACBF]"
+                  className="text-skyblue/60 transition hover:text-teal inline-flex w-fit"
                 >
                   {link.label}
                 </a>
@@ -55,33 +56,52 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Social */}
+          {/* Col 3: Services */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#54ACBF] mb-5">Follow Us</p>
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
+            <h4 className="font-bold text-white mb-6 tracking-wide">Services</h4>
+            <div className="flex flex-col gap-3 text-sm font-medium">
+              {services.map((service) => (
                 <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#A7EBF2]/80 transition-all hover:text-[#54ACBF] hover:scale-110"
-                  style={{ border: '1px solid #26658C', backgroundColor: '#023859' }}
+                  key={service.title}
+                  href="#services"
+                  className="text-skyblue/60 transition hover:text-teal inline-flex w-fit"
                 >
-                  <Icon size={17} />
+                  {service.title}
                 </a>
               ))}
             </div>
           </div>
+
+          {/* Col 4: Contact Us */}
+          <div>
+            <h4 className="font-bold text-white mb-6 tracking-wide">Contact Us</h4>
+            <div className="flex flex-col gap-4 text-sm font-medium text-skyblue/60">
+              <div className="flex items-start gap-3">
+                <Mail size={16} className="text-teal shrink-0 mt-0.5" />
+                <a href="mailto:hello@solviacodes.com" className="hover:text-teal transition">hello@solviacodes.com</a>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone size={16} className="text-teal shrink-0 mt-0.5" />
+                <a href="tel:+923001234567" className="hover:text-teal transition">+92 300 1234567</a>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin size={16} className="text-teal shrink-0 mt-0.5" />
+                <span>Lahore, Pakistan</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Clock size={16} className="text-teal shrink-0 mt-0.5" />
+                <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Bottom Bar */}
-        <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#A7EBF2]/60"
-          style={{ borderTop: '1px solid #26658C' }}
-        >
+        <div className="mt-16 pt-8 border-t border-skyblue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-skyblue/50">
           <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Built with <Heart size={12} className="text-[#54ACBF] mx-1" /> by Solvia Codes
+            Built with <Heart size={12} className="text-teal mx-1 fill-teal" /> by Solvia Codes
           </p>
         </div>
       </div>

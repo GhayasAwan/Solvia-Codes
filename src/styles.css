@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,7 +19,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #011C40;
+  background: #F5EFEB;
+  color: #2F4156;
   overflow-x: hidden;
   width: 100%;
 }
@@ -36,13 +37,124 @@ select {
 }
 
 .container-page {
-  @apply mx-auto w-full max-w-7xl;
+  @apply mx-auto w-full max-w-7xl px-6 md:px-12;
 }
 
 .eyebrow {
-  @apply text-xs font-extrabold uppercase tracking-[0.24em] text-brand;
+  @apply text-xs font-extrabold uppercase tracking-[0.24em];
+  color: #567C8D;
 }
 
 .focus-ring {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  --tw-ring-color: #567C8D;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-2deg); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 5s ease-in-out infinite;
+}
+
+/* ========================================== */
+/* 3D CORE UTILITIES                          */
+/* ========================================== */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.perspective-2000 {
+  perspective: 2000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Glassmorphism Styles — Navy/Teal palette */
+.glass-panel {
+  background: rgba(47, 65, 86, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 217, 230, 0.15);
+}
+
+.glass-dock {
+  background: rgba(200, 217, 230, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 217, 230, 0.35);
+  box-shadow: 0 10px 40px -10px rgba(47, 65, 86, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Scroll Snap Full Page Layout */
+.scroll-container-snap {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: 100vh;
+}
+.scroll-slide-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100vh;
+}
+
+/* Orbit Animations */
+@keyframes orbit-anim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-reverse-anim {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-orbit {
+  animation: orbit-anim var(--duration, 20s) linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbit-reverse-anim var(--duration, 20s) linear infinite;
+}
+
+/* Page flip transition */
+.page-flip-container {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+.page-flip-sheet {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-origin: left center;
+}
+.page-flip-sheet.flipped {
+  transform: rotateY(-180deg);
 }

@@ -1,106 +1,167 @@
-import { Menu, X, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { company, navLinks } from '../data/siteData.js';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('#home');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Simple active link tracker on scroll
+      const sections = navLinks.map(l => document.querySelector(l.to));
+      const scrollPosition = window.scrollY + 150;
+
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        if (section) {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActive(navLinks[i].to);
+          }
+        }
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-4 transition-all duration-300 ${scrolled ? 'top-4' : 'top-6'}`}
-    >
-      <nav 
-        className="flex h-16 items-center justify-between rounded-full px-6 transition-all duration-300"
-        style={{
-          background: scrolled ? 'rgba(1, 28, 64, 0.85)' : 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          border: scrolled ? '1px solid rgba(84, 172, 191, 0.2)' : '1px solid rgba(255, 255, 255, 0.2)',
-          boxShadow: scrolled ? '0 10px 40px rgba(1, 28, 64, 0.3)' : '0 8px 32px rgba(0, 0, 0, 0.15)'
-        }}
+    <header className="fixed left-0 right-0 top-0 z-50 flex justify-center p-4 transition-all duration-355">
+      <motion.nav 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`relative flex w-full max-w-5xl items-center justify-between rounded-full border px-6 py-2.5 transition-all duration-500 ${
+          scrolled 
+            ? 'border-skyblue/60 bg-white/85 shadow-[0_24px_48px_-15px_rgba(47,65,86,0.12)] backdrop-blur-xl md:scale-95' 
+            : 'border-transparent bg-white/20 backdrop-blur-md'
+        }`}
       >
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg font-display text-sm font-extrabold text-white transition group-hover:scale-105"
-            style={{ background: 'linear-gradient(135deg, #54ACBF, #26658C)' }}>
-            SC
-          </span>
-          <span className="leading-tight">
-            <span className="block font-display text-lg font-extrabold text-white">{company.name}</span>
-            <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[#54ACBF]">Digital Studio</span>
-          </span>
+        {/* Glow Accent when Scrolled */}
+        {scrolled && (
+          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-teal/8 via-skyblue/5 to-teal/8 opacity-70 blur-md transition-opacity duration-550" />
+        )}
+
+        {/* Logo / Brand */}
+        <a 
+          href="#home" 
+          className="flex items-center gap-3 group"
+          onClick={() => { setOpen(false); setActive('#home'); }}
+        >
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-extrabold text-white overflow-hidden shadow-inner">
+            <span className="absolute inset-0 bg-gradient-to-tr from-navy to-teal" />
+            <span className="relative z-10 font-bold tracking-tight">SC</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-extrabold leading-none text-navy tracking-wide group-hover:text-teal transition-colors">
+              {company.name}
+            </span>
+            <span className="text-[9px] font-bold text-teal uppercase tracking-widest mt-0.5">
+              {company.tagline}
+            </span>
+          </div>
         </a>
 
-        {/* Desktop Nav Links & CTA */}
-        <div className="hidden lg:flex flex-1 items-center justify-end gap-6">
-          <div className="flex items-center gap-2 mr-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.to}
-              href={link.to}
-              className="rounded-lg px-4 py-2 text-sm font-semibold text-[#A7EBF2]/80 transition-all hover:bg-white/5 hover:text-[#54ACBF]"
-            >
-              {link.label}
-            </a>
-          ))}
-          </div>
-
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold text-[#011C40] transition-all hover:scale-105"
-            style={{ background: '#A7EBF2', boxShadow: '0 0 20px rgba(167,235,242,0.4)' }}
-          >
-            <Zap size={15} />
-            Start Project
-          </a>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border text-white lg:hidden transition hover:border-[#54ACBF]"
-          style={{ borderColor: '#26658C', backgroundColor: '#023859' }}
-          aria-label="Toggle navigation"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu Dropdown */}
-      {open && (
-        <div className="border-t px-5 py-4 lg:hidden" style={{ backgroundColor: '#011C40', borderColor: '#26658C' }}>
-          <div className="mx-auto flex max-w-7xl flex-col gap-1">
-            {navLinks.map((link) => (
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center gap-1.5 rounded-full bg-skyblue/25 p-1 border border-skyblue/30">
+          {navLinks.map((link) => {
+            const isActive = active === link.to;
+            return (
               <a
                 key={link.to}
                 href={link.to}
-                className="rounded-lg px-4 py-3 text-sm font-semibold text-[#A7EBF2]/80 transition hover:bg-white/5 hover:text-[#54ACBF]"
-                onClick={() => setOpen(false)}
+                onClick={() => setActive(link.to)}
+                className={`relative px-4 py-1.5 text-xs font-bold tracking-wide transition-colors duration-300 rounded-full ${
+                  isActive ? 'text-white' : 'text-navy/70 hover:text-navy'
+                }`}
               >
+                {isActive && (
+                  <motion.span 
+                    layoutId="activePill"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-navy to-teal shadow-[0_4px_12px_rgba(86,124,141,0.3)]"
+                  />
+                )}
                 {link.label}
               </a>
-            ))}
-            <a
-              href="#contact"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-bold text-white"
-              style={{ background: 'linear-gradient(135deg, #54ACBF, #26658C)' }}
-              onClick={() => setOpen(false)}
-            >
-              <Zap size={15} />
-              Start a Project
-            </a>
-          </div>
+            );
+          })}
         </div>
-      )}
+
+        {/* Desktop Controls (CTA only — no theme toggle) */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-navy px-5 py-2 text-xs font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(47,65,86,0.25)]"
+          >
+            <span className="relative z-10 flex items-center gap-1.5">
+              Start Project
+              <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </a>
+        </div>
+
+        {/* Mobile Controls — no theme toggle */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-skyblue/40 text-navy transition bg-white/60 hover:bg-skyblue/20"
+            aria-label="Toggle navigation"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {open && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 top-full mt-3 w-full origin-top rounded-3xl border border-skyblue/30 bg-white/95 p-5 shadow-[0_24px_48px_-15px_rgba(47,65,86,0.15)] backdrop-blur-2xl md:hidden"
+            >
+              <div className="flex flex-col gap-2">
+                {navLinks.map((link) => {
+                  const isActive = active === link.to;
+                  return (
+                    <a
+                      key={link.to}
+                      href={link.to}
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold tracking-wide transition-all ${
+                        isActive 
+                          ? 'bg-gradient-to-r from-teal/15 to-skyblue/20 text-teal border border-teal/30' 
+                          : 'text-navy/70 hover:bg-skyblue/10 hover:text-navy border border-transparent'
+                      }`}
+                      onClick={() => { setOpen(false); setActive(link.to); }}
+                    >
+                      <span>{link.label}</span>
+                      {isActive && <div className="h-1.5 w-1.5 rounded-full bg-teal shadow-[0_0_8px_#567C8D]" />}
+                    </a>
+                  );
+                })}
+                <a
+                  href="#contact"
+                  className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-navy py-3 text-sm font-bold text-white shadow-lg transition hover:scale-[1.02]"
+                  onClick={() => setOpen(false)}
+                >
+                  Start Project
+                  <ArrowRight size={15} />
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
     </header>
   );
 }

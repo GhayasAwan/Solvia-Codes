@@ -19,7 +19,7 @@ export default function App() {
       </AnimatePresence>
       
       {!showSplash && (
-        <div className="min-h-screen bg-cloud text-ink">
+        <div className="min-h-screen bg-beige text-navy transition-colors duration-500">
           <ScrollToTop />
       <Navbar />
       <main>

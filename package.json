@@ -9,18 +9,20 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "framer-motion": "latest",
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
+    "tailwind-merge": "^3.6.0",
     "three": "latest",
     "vite": "latest"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "latest",
     "autoprefixer": "latest",
     "postcss": "latest",
-    "tailwindcss": "^3.4.17",
-    "@vitejs/plugin-react": "latest"
+    "tailwindcss": "^3.4.17"
   }
 }
