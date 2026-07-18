@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { company, navLinks } from '../data/siteData.js';
+import fibiconLogo from '../import/new_logo_circle.jpg';
+import { SpotlightNavbar } from './SpotlightNavbar.jsx';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,16 +40,13 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`relative flex w-full max-w-5xl items-center justify-between rounded-full border px-6 py-2.5 transition-all duration-500 ${
+        className={`relative flex w-full max-w-6xl mx-auto items-center justify-between rounded-full px-6 py-3 transition-all duration-500 ${
           scrolled 
-            ? 'border-skyblue/60 bg-white/85 shadow-[0_24px_48px_-15px_rgba(47,65,86,0.12)] backdrop-blur-xl md:scale-95' 
-            : 'border-transparent bg-white/20 backdrop-blur-md'
+            ? 'bg-white/90 shadow-soft backdrop-blur-xl border border-skyblue/20' 
+            : 'bg-transparent'
         }`}
       >
         {/* Glow Accent when Scrolled */}
-        {scrolled && (
-          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-teal/8 via-skyblue/5 to-teal/8 opacity-70 blur-md transition-opacity duration-550" />
-        )}
 
         {/* Logo / Brand */}
         <a 
@@ -55,64 +54,30 @@ export default function Navbar() {
           className="flex items-center gap-3 group"
           onClick={() => { setOpen(false); setActive('#home'); }}
         >
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-extrabold text-white overflow-hidden shadow-inner">
-            <span className="absolute inset-0 bg-gradient-to-tr from-navy to-teal" />
-            <span className="relative z-10 font-bold tracking-tight">SC</span>
+          <div className="relative flex h-12 w-12 items-center justify-center rounded-full overflow-hidden shadow-[0_0_15px_rgba(86,124,141,0.3)] bg-transparent">
+            <img src={fibiconLogo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-extrabold leading-none text-navy tracking-wide group-hover:text-teal transition-colors">
+          <div className="flex flex-col justify-center">
+            <span className={`text-xl font-black uppercase tracking-widest leading-none transition-colors ${scrolled ? 'text-navy group-hover:text-teal' : 'text-white group-hover:text-skyblue'}`}>
               {company.name}
-            </span>
-            <span className="text-[9px] font-bold text-teal uppercase tracking-widest mt-0.5">
-              {company.tagline}
             </span>
           </div>
         </a>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1.5 rounded-full bg-skyblue/25 p-1 border border-skyblue/30">
-          {navLinks.map((link) => {
-            const isActive = active === link.to;
-            return (
-              <a
-                key={link.to}
-                href={link.to}
-                onClick={() => setActive(link.to)}
-                className={`relative px-4 py-1.5 text-xs font-bold tracking-wide transition-colors duration-300 rounded-full ${
-                  isActive ? 'text-white' : 'text-navy/70 hover:text-navy'
-                }`}
-              >
-                {isActive && (
-                  <motion.span 
-                    layoutId="activePill"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-navy to-teal shadow-[0_4px_12px_rgba(86,124,141,0.3)]"
-                  />
-                )}
-                {link.label}
-              </a>
-            );
-          })}
+        <div className="hidden md:flex flex-1 justify-end ml-4">
+          <SpotlightNavbar items={navLinks} defaultActiveIndex={0} scrolled={scrolled} />
         </div>
 
         {/* Desktop Controls (CTA only — no theme toggle) */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-navy px-5 py-2 text-xs font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(47,65,86,0.25)]"
-          >
-            <span className="relative z-10 flex items-center gap-1.5">
-              Start Project
-              <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </a>
         </div>
 
         {/* Mobile Controls — no theme toggle */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 md:hidden ml-auto">
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-skyblue/40 text-navy transition bg-white/60 hover:bg-skyblue/20"
+            className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${scrolled ? 'border-skyblue/40 text-navy bg-white/60 hover:bg-skyblue/20' : 'border-white/30 text-white bg-white/10 hover:bg-white/20'}`}
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
           >
@@ -149,14 +114,7 @@ export default function Navbar() {
                     </a>
                   );
                 })}
-                <a
-                  href="#contact"
-                  className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-navy py-3 text-sm font-bold text-white shadow-lg transition hover:scale-[1.02]"
-                  onClick={() => setOpen(false)}
-                >
-                  Start Project
-                  <ArrowRight size={15} />
-                </a>
+
               </div>
             </motion.div>
           )}

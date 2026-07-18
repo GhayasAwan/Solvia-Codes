@@ -16,7 +16,7 @@ import {
 export const company = {
   name: 'Solvia Codes',
   tagline: 'SOLUTION THROUGH CODES',
-  email: 'hello@example.com',
+  email: 'solviacodes@gmail.com',
   phone: '+1 (555) 012-3456',
   location: 'Remote-first digital studio serving startups, creators, and growing businesses'
 };
@@ -26,8 +26,6 @@ export const navLinks = [
   { label: 'About', to: '#about' },
   { label: 'Services', to: '#services' },
   { label: 'Work', to: '#work' },
-  { label: 'Process', to: '#process' },
-  { label: 'Testimonials', to: '#testimonials' },
   { label: 'Contact', to: '#contact' }
 ];
 
@@ -162,11 +160,8 @@ export const teamMembers = [
 ];
 
 export const socialLinks = [
-  { label: 'LinkedIn', href: '#', icon: Users },
-  { label: 'Instagram', href: '#', icon: Camera },
-  { label: 'Twitter', href: '#', icon: MessageCircle },
-  { label: 'Facebook', href: '#', icon: Share2 },
-  { label: 'Dribbble', href: '#', icon: PenTool }
+  { label: 'Instagram', href: 'https://www.instagram.com/solvia_codes/?hl=en', icon: Camera },
+  { label: 'Email', href: 'mailto:solviacodes@gmail.com', icon: Mail }
 ];
 
 export const contactDetails = [

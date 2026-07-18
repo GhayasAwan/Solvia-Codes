@@ -65,13 +65,13 @@ export default function TestimonialBook() {
 
     if (pageData.type === 'cover') {
       return (
-        <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-navy to-navy-700">
+        <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-beige to-white">
           <div className="mt-8 flex flex-col items-center">
             <div className="w-16 h-16 rounded-3xl bg-teal/15 border border-teal/25 flex items-center justify-center text-teal mb-6">
               <BookOpen size={30} className="animate-pulse" />
             </div>
-            <h4 className="text-2xl font-black text-white tracking-tight">{pageData.title}</h4>
-            <p className="text-xs text-skyblue/70 mt-3 leading-relaxed max-w-[220px]">{pageData.subtitle}</p>
+            <h4 className="text-2xl font-black text-navy tracking-tight">{pageData.title}</h4>
+            <p className="text-xs text-navy/60 mt-3 leading-relaxed max-w-[220px]">{pageData.subtitle}</p>
           </div>
           
           <button 
@@ -87,13 +87,13 @@ export default function TestimonialBook() {
 
     if (pageData.type === 'end') {
       return (
-        <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-navy-700 to-navy">
+        <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-white to-beige">
           <div className="mt-8 flex flex-col items-center">
             <div className="w-14 h-14 rounded-full bg-skyblue/15 border border-skyblue/25 flex items-center justify-center text-skyblue mb-6">
               <Star size={24} className="fill-skyblue/20" />
             </div>
-            <h4 className="text-xl font-bold text-white tracking-tight">{pageData.title}</h4>
-            <p className="text-xs text-skyblue/70 mt-3 leading-relaxed max-w-[200px]">{pageData.subtitle}</p>
+            <h4 className="text-xl font-bold text-navy tracking-tight">{pageData.title}</h4>
+            <p className="text-xs text-navy/60 mt-3 leading-relaxed max-w-[200px]">{pageData.subtitle}</p>
           </div>
           
           <a
@@ -108,7 +108,7 @@ export default function TestimonialBook() {
 
     // Testimonial details
     return (
-      <div className="h-full flex flex-col justify-between p-6 sm:p-8 bg-navy/80 backdrop-blur-md">
+      <div className="h-full flex flex-col justify-between p-6 sm:p-8 bg-white/80 backdrop-blur-md">
         <div>
           {/* Rating stars & Quote Icon */}
           <div className="flex justify-between items-center mb-4">
@@ -121,7 +121,7 @@ export default function TestimonialBook() {
           </div>
 
           {/* Quote Text */}
-          <p className="text-xs sm:text-sm text-skyblue italic leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-navy/80 italic leading-relaxed font-medium">
             "{pageData.quote}"
           </p>
         </div>
@@ -132,8 +132,8 @@ export default function TestimonialBook() {
             {pageData.initials}
           </div>
           <div>
-            <h5 className="text-xs sm:text-sm font-bold text-white leading-none">{pageData.name}</h5>
-            <p className="text-[10px] text-skyblue/60 mt-1">{pageData.role}</p>
+            <h5 className="text-xs sm:text-sm font-bold text-navy leading-none">{pageData.name}</h5>
+            <p className="text-[10px] text-navy/60 mt-1">{pageData.role}</p>
             <span className="inline-block text-[9px] font-black uppercase text-teal tracking-wider mt-1 bg-teal/10 px-2 py-0.5 rounded border border-teal/15">
               {pageData.project}
             </span>
@@ -163,21 +163,21 @@ export default function TestimonialBook() {
       </div>
 
       {/* 3D Book Container */}
-      <div className="relative w-full max-w-2xl aspect-[1.5/1] min-h-[360px] md:min-h-[420px] rounded-[2rem] bg-navy p-2 sm:p-4 shadow-[0_30px_60px_-15px_rgba(47,65,86,0.5)] border border-skyblue/10 perspective-2000 preserve-3d">
-        <div className="relative w-full h-full flex preserve-3d rounded-2xl overflow-hidden border border-skyblue/15">
+      <div className="relative w-full max-w-2xl aspect-[1.5/1] min-h-[360px] md:min-h-[420px] rounded-[2rem] bg-white p-2 sm:p-4 shadow-soft border border-skyblue/30 perspective-2000 preserve-3d">
+        <div className="relative w-full h-full flex preserve-3d rounded-2xl overflow-hidden border border-skyblue/20">
           
           {/* STATIC LEFT PAGE */}
-          <div className="w-1/2 h-full bg-navy-600 border-r border-navy-800/50 flex flex-col overflow-hidden">
+          <div className="w-1/2 h-full bg-beige border-r border-skyblue/20 flex flex-col overflow-hidden">
             {renderPageContent(bookPages[leftPageIndex])}
           </div>
 
           {/* STATIC RIGHT PAGE */}
-          <div className="w-1/2 h-full bg-navy-600 flex flex-col overflow-hidden">
+          <div className="w-1/2 h-full bg-beige flex flex-col overflow-hidden">
             {renderPageContent(bookPages[rightPageIndex])}
           </div>
 
           {/* BOOK SPINE GLOW EFFECT */}
-          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-4 bg-gradient-to-r from-navy-800 via-navy-700 to-navy-800 shadow-inner z-30 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-4 bg-gradient-to-r from-skyblue/10 via-white to-skyblue/10 shadow-inner z-30 pointer-events-none" />
 
           {/* ANIMATED FLIPPING SHEET */}
           <AnimatePresence initial={false}>
@@ -199,7 +199,7 @@ export default function TestimonialBook() {
                   WebkitBackfaceVisibility: 'hidden',
                   transformStyle: 'preserve-3d'
                 }}
-                className="bg-navy-600 border-r border-navy-800/20 overflow-hidden shadow-2xl"
+                className="bg-beige border-r border-skyblue/20 overflow-hidden shadow-2xl"
               >
                 {/* Depending on rotation angle, show front or back page */}
                 {flipDirection === 'next' ? (

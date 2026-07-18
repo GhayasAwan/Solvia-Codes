@@ -5,6 +5,7 @@ import {
   ArrowRight, Sparkles
 } from 'lucide-react';
 import { SolarSystem } from './SolarSystem.jsx';
+import fibiconLogo from '../import/new_logo_circle.jpg';
 
 // Service details matching SolarSystem item IDs
 const techDetails = {
@@ -76,14 +77,14 @@ export default function SolarSystemOrbit() {
           <span className="text-[10px] font-extrabold tracking-widest text-teal uppercase">3D Tech Ecosystem</span>
         </div>
 
-        <h3 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight leading-tight font-display">
+        <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight font-display">
           Explore Our Interactive <br />
-          <span className="bg-gradient-to-r from-navy via-teal to-skyblue bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-teal via-skyblue to-white bg-clip-text text-transparent">
             Service Orbit
           </span>
         </h3>
 
-        <p className="mt-4 text-navy/60 text-sm sm:text-base max-w-lg leading-relaxed">
+        <p className="mt-4 text-white/60 text-sm sm:text-base max-w-lg leading-relaxed">
           Hover over any orbiting tech sphere on the right to examine our core domains, toolkits, and how we build your product.
         </p>
 
@@ -127,7 +128,7 @@ export default function SolarSystemOrbit() {
 
       {/* Right Solar System Animation */}
       <div className="relative flex items-center justify-center w-full overflow-visible py-10">
-        <SolarSystem onHoverChange={handleHoverChange} />
+        <SolarSystem onHoverChange={handleHoverChange} centerLogo={fibiconLogo} />
       </div>
     </div>
   );

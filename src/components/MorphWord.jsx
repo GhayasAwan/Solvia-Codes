@@ -47,7 +47,7 @@ export default function MorphWord({ words, scrollYProgress, range }) {
           exit={{ opacity: 0, y: -12, rotateX: 60, filter: 'blur(8px)' }}
           transition={{ duration: 0.35, ease: "easeOut" }}
           style={{ display: 'inline-block' }}
-          className="absolute left-0 top-0 bg-gradient-to-r from-teal via-navy to-skyblue bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(86,124,141,0.25)] font-black"
+          className="absolute left-0 top-0 bg-gradient-to-r from-skyblue via-white to-teal bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(86,124,141,0.25)] font-black"
         >
           {activeWord}
         </motion.span>

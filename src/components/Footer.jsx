@@ -1,5 +1,6 @@
 import { company, navLinks, socialLinks, services } from '../data/siteData.js';
 import { Heart, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import fibiconLogo from '../import/new_logo_circle.jpg';
 
 export default function Footer() {
   return (
@@ -14,9 +15,8 @@ export default function Footer() {
           {/* Col 1: Brand & Socials */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl font-display text-sm font-extrabold text-white overflow-hidden shadow-inner">
-                <span className="absolute inset-0 bg-gradient-to-tr from-teal to-skyblue" />
-                <span className="relative z-10 font-bold">SC</span>
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-full overflow-hidden shadow-[0_0_15px_rgba(86,124,141,0.3)] bg-transparent">
+                <img src={fibiconLogo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
               </div>
               <span className="leading-tight">
                 <span className="block font-display text-lg font-bold text-white">{company.name}</span>

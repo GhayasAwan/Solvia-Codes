@@ -83,9 +83,9 @@ export const SolarSystem = React.forwardRef(
       >
         <style dangerouslySetInnerHTML={{ __html: `
           :root {
-            --radius-inner: 175px;
-            --radius-mid: 285px;
-            --radius-outer: 395px;
+            --radius-inner: 130px;
+            --radius-mid: 220px;
+            --radius-outer: 310px;
           }
           @media (max-width: 768px) {
             :root {
@@ -144,8 +144,8 @@ export const SolarSystem = React.forwardRef(
             top: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 0.45rem 0.95rem;
+            gap: 6px;
+            padding: 0.35rem 0.8rem;
             background: rgba(47, 65, 86, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -158,7 +158,7 @@ export const SolarSystem = React.forwardRef(
             cursor: pointer;
             pointer-events: auto;
             transition: border-color 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s, scale 0.3s;
-            box-shadow: 0 4px 20px rgba(47, 65, 86, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(47, 65, 86, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
           }
         `}} />
 
@@ -180,13 +180,13 @@ export const SolarSystem = React.forwardRef(
             
             {centerLogo ? (
               typeof centerLogo === "string" ? (
-                <img
-                  className="w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-teal/40 shadow-[0_0_30px_rgba(86,124,141,0.3)] z-20 bg-navy p-2 md:p-3 relative"
-                  src={centerLogo}
-                  alt={centerLogoAlt}
-                  width={80}
-                  height={80}
-                />
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-teal/40 shadow-[0_0_30px_rgba(86,124,141,0.3)] z-20 flex items-center justify-center overflow-hidden relative bg-transparent">
+                  <img
+                    className="w-full h-full object-cover scale-[1.07] origin-center"
+                    src={centerLogo}
+                    alt={centerLogoAlt}
+                  />
+                </div>
               ) : (
                 <div className="w-14 h-14 md:w-20 md:h-20 rounded-full border-2 border-teal/40 shadow-[0_0_30px_rgba(86,124,141,0.3)] z-20 bg-navy flex items-center justify-center p-2 relative">
                   {centerLogo}
@@ -223,11 +223,11 @@ export const SolarSystem = React.forwardRef(
             return (
               <React.Fragment key={orbit.id}>
                 <div
-                  className="absolute rounded-full border border-dashed border-navy/20 pointer-events-none"
+                  className="absolute rounded-full border-[2px] border-dashed border-white/30 pointer-events-none"
                   style={{
                     width: `calc(2 * ${orbit.radiusClass})`,
                     height: `calc(2 * ${orbit.radiusClass})`,
-                    boxShadow: "inset 0 0 25px rgba(47, 65, 86, 0.03), 0 0 25px rgba(47, 65, 86, 0.03)",
+                    boxShadow: "inset 0 0 25px rgba(255, 255, 255, 0.03), 0 0 25px rgba(255, 255, 255, 0.03)",
                     ["--orbit-radius"]: orbit.radiusClass,
                   }}
                 />
@@ -293,9 +293,9 @@ export const SolarSystem = React.forwardRef(
                             color: item.color,
                           }}
                         >
-                          {item.icon && <item.icon className="w-5 h-5" />}
+                          {item.icon && <item.icon className="w-4 h-4" />}
                         </div>
-                        <span className="text-[11px] md:text-[13px] tracking-tight">{item.label}</span>
+                        <span className="text-[10px] md:text-[11px] tracking-tight">{item.label}</span>
                       </div>
                     </div>
                   );
