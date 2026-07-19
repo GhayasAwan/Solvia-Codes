@@ -9,11 +9,19 @@ export function SpotlightNavbar({
     className,
     onItemClick,
     defaultActiveIndex = 0,
+    activeIndex: externalActiveIndex,
     scrolled = false
 }) {
     const navRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
     const [hoverX, setHoverX] = useState(null);
+
+    // Sync internal activeIndex when parent scroll tracking updates it
+    useEffect(() => {
+        if (externalActiveIndex !== undefined) {
+            setActiveIndex(externalActiveIndex);
+        }
+    }, [externalActiveIndex]);
 
     const spotlightX = useRef(0);
     const ambienceX = useRef(0);

@@ -69,7 +69,12 @@ export default function Navbar() {
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex flex-1 justify-end ml-4">
-          <SpotlightNavbar items={navLinks} defaultActiveIndex={0} scrolled={scrolled} />
+          <SpotlightNavbar
+            items={navLinks}
+            defaultActiveIndex={0}
+            activeIndex={Math.max(0, navLinks.findIndex(l => l.to === active))}
+            scrolled={scrolled}
+          />
         </div>
 
         {/* Desktop Controls (CTA only — no theme toggle) */}
