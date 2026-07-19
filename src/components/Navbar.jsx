@@ -61,6 +61,9 @@ export default function Navbar() {
             <span className={`text-xl font-black uppercase tracking-widest leading-none transition-colors ${scrolled ? 'text-navy group-hover:text-teal' : 'text-white group-hover:text-skyblue'}`}>
               {company.name}
             </span>
+            <span className={`text-[9px] font-semibold uppercase tracking-[0.18em] leading-none mt-0.5 transition-colors ${scrolled ? 'text-teal/70' : 'text-skyblue/70'}`}>
+              {company.tagline}
+            </span>
           </div>
         </a>
 
