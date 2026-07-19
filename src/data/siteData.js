@@ -16,9 +16,9 @@ import {
 export const company = {
   name: 'Solvia Codes',
   tagline: 'SOLUTION THROUGH CODES',
-  email: 'solviacodes@gmail.com',
-  phone: '+1 (555) 012-3456',
-  location: 'Remote-first digital studio serving startups, creators, and growing businesses'
+  email: 'Contact@solvia.codes',
+  phone: '+92310-9950325',
+  location: 'Peshawar, Pakistan'
 };
 
 export const navLinks = [
@@ -161,7 +161,7 @@ export const teamMembers = [
 
 export const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/solvia_codes/?hl=en', icon: Camera },
-  { label: 'Email', href: 'mailto:solviacodes@gmail.com', icon: Mail }
+  { label: 'Email', href: 'mailto:Contact@solvia.codes', icon: Mail }
 ];
 
 export const contactDetails = [
