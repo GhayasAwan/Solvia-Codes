@@ -24,9 +24,9 @@ export const company = {
 export const navLinks = [
   { label: 'Home', to: '#home' },
   { label: 'About', to: '#about' },
+  { label: 'Team', to: '#team' },
   { label: 'Services', to: '#services' },
   { label: 'Work', to: '#work' },
-  { label: 'Team', to: '#team' },
   { label: 'Contact', to: '#contact' }
 ];
 
