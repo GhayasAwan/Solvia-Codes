@@ -78,15 +78,15 @@ export default function Footer() {
             <div className="flex flex-col gap-4 text-sm font-medium text-skyblue/60">
               <div className="flex items-start gap-3">
                 <Mail size={16} className="text-teal shrink-0 mt-0.5" />
-                <a href="mailto:hello@solviacodes.com" className="hover:text-teal transition">hello@solviacodes.com</a>
+                <a href={`mailto:${company.email}`} className="hover:text-teal transition">{company.email}</a>
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={16} className="text-teal shrink-0 mt-0.5" />
-                <a href="tel:+923001234567" className="hover:text-teal transition">+92 300 1234567</a>
+                <a href={`tel:${company.phone}`} className="hover:text-teal transition">{company.phone}</a>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="text-teal shrink-0 mt-0.5" />
-                <span>Lahore, Pakistan</span>
+                <span>{company.location}</span>
               </div>
               <div className="flex items-start gap-3">
                 <Clock size={16} className="text-teal shrink-0 mt-0.5" />
@@ -100,9 +100,6 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-skyblue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-skyblue/50">
           <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Built with <Heart size={12} className="text-teal mx-1 fill-teal" /> by Solvia Codes
-          </p>
         </div>
       </div>
     </footer>
