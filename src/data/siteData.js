@@ -116,7 +116,7 @@ export const testimonials = [
   {
     quote:
       'Solvia Codes helped us turn a rough idea into a professional digital presence with clear design and strong execution.',
-    name: 'Hamza Ali',
+    name: 'Muhammad Hamza',
     role: 'Founder, Startup Client'
   },
   {

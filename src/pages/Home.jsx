@@ -11,7 +11,7 @@ import heroVideo from '../import/hero section video.mp4';
 import SocialFlipButton from '../components/SocialFlipButton.jsx';
 import TeamCard from '../components/TeamCard.jsx';
 import wardaImg from '../import/warda.png';
-import hamzaImg from '../import/hamza.png';
+import MuhammadhamzaImg from '../import/hamza.png';
 import ghayasImg from '../import/ghayas.png';
 import faizanImg from '../import/faizan.jpg';
 
@@ -129,7 +129,7 @@ function TeamSection() {
   const teamMembers = [
     {
       name: "Ghayas Awan",
-      role: "Founder & COO",
+      role: "Founder",
       image: ghayasImg,
       bio: "Spearheading system architecture, full-stack development, and custom interactive engine implementations.",
       github: "https://github.com/GhayasAwan/3d-product-project.git",
@@ -138,7 +138,7 @@ function TeamSection() {
     {
       name: "Muhammad Hamza",
       role: "Co-Founder & CEO",
-      image: hamzaImg,
+      image: MuhammadhamzaImg,
       bio: "Leading development teams, driving technical strategy, and engineering robust, scalable software architectures.",
       github: "https://github.com/muhammad-hamzadev",
       linkedin: "https://www.linkedin.com/in/muhammad-hamza-deve",
@@ -146,7 +146,7 @@ function TeamSection() {
     },
     {
       name: "Warda Mehmood",
-      role: "UI/UX Designer & Frontend Dev",
+      role: "Sr. UI/UX & Frontend Dev",
       image: wardaImg,
       bio: "Crafting premium user interfaces, cohesive design systems, and stunning interactive frontend experiences.",
       github: "https://github.com/WardaMehmood",
@@ -154,7 +154,7 @@ function TeamSection() {
     },
     {
       name: "Muhammad Faizan",
-      role: "Senior Backend & PWA Dev",
+      role: "Sr. Backend & PWA Dev",
       image: faizanImg,
       bio: "Architecting powerful backend infrastructures, APIs, and progressive web applications with seamless performance.",
       github: "https://github.com/Faizan-ux-dot",
