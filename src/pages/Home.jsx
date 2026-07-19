@@ -389,7 +389,7 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Email Address</span>
-                      <a href="mailto:hello@solviacodes.com" className="hover:text-teal transition-colors">hello@solviacodes.com</a>
+                      <a href={`mailto:${company.email}`} className="hover:text-teal transition-colors">{company.email}</a>
                     </div>
                   </div>
 
@@ -399,7 +399,7 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Phone Number</span>
-                      <a href="tel:+923001234567" className="hover:text-teal transition-colors">+92 300 1234567</a>
+                      <a href={`tel:${company.phone}`} className="hover:text-teal transition-colors">{company.phone}</a>
                     </div>
                   </div>
 
@@ -409,7 +409,7 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">HQ Location</span>
-                      <span className="text-navy">Lahore, Pakistan</span>
+                      <span className="text-navy">{company.location}</span>
                     </div>
                   </div>
                 </div>
