@@ -5,7 +5,7 @@ import {
   ArrowRight, Sparkles
 } from 'lucide-react';
 import { SolarSystem } from './SolarSystem.jsx';
-import fibiconLogo from '../import/new_logo_circle.jpg';
+import logo from '../import/logo.jpg';
 
 // Service details matching SolarSystem item IDs
 const techDetails = {
@@ -128,7 +128,7 @@ export default function SolarSystemOrbit() {
 
       {/* Right Solar System Animation */}
       <div className="relative flex items-center justify-center w-full overflow-visible py-10">
-        <SolarSystem onHoverChange={handleHoverChange} centerLogo={fibiconLogo} />
+        <SolarSystem onHoverChange={handleHoverChange} centerLogo={logo} />
       </div>
     </div>
   );

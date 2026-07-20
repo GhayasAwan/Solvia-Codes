@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { company, navLinks } from '../data/siteData.js';
-import fibiconLogo from '../import/new_logo_circle.jpg';
+import logo from '../import/logo.jpg';
 import { SpotlightNavbar } from './SpotlightNavbar.jsx';
 
 export default function Navbar() {
@@ -55,7 +55,7 @@ export default function Navbar() {
           onClick={() => { setOpen(false); setActive('#home'); }}
         >
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full overflow-hidden shadow-[0_0_15px_rgba(86,124,141,0.3)] bg-transparent">
-            <img src={fibiconLogo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
+            <img src={logo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
           </div>
           <div className="flex flex-col justify-center">
             <span className={`text-xl font-black uppercase tracking-widest leading-none transition-colors ${scrolled ? 'text-navy group-hover:text-teal' : 'text-white group-hover:text-skyblue'}`}>

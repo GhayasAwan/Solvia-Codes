@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import fibiconLogo from '../import/new_logo_circle.jpg';
+import logo from '../import/logo.jpg';
 
 export default function SplashScreen({ onComplete }) {
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function SplashScreen({ onComplete }) {
           />
           
           <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10 bg-transparent">
-            <img src={fibiconLogo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
+            <img src={logo} alt="Logo" className="w-full h-full object-cover scale-[1.07] origin-center" />
           </div>
         </motion.div>
 
