@@ -158,7 +158,8 @@ function TeamSection() {
       image: faizanImg,
       bio: "Architecting powerful backend infrastructures, APIs, and progressive web applications with seamless performance.",
       github: "https://github.com/Faizan-ux-dot",
-      linkedin: "https://www.linkedin.com/in/muhammad-faizan-a9ab85281"
+      linkedin: "https://www.linkedin.com/in/muhammad-faizan-a9ab85281",
+      portfolio: "https://muhammadfaizan.me"
     }
   ];
 
