@@ -170,22 +170,10 @@ function TeamSection() {
       {/* Decorative center glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-teal/15 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
-      <motion.div 
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="container-page max-w-6xl px-4 relative z-10 mx-auto"
-      >
+      <div className="container-page max-w-6xl px-4 relative z-10 mx-auto">
 
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
             Our Team
           </span>
@@ -195,36 +183,16 @@ function TeamSection() {
           <p className="mt-3 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
             Meet the engineers and creators building next-generation digital platforms and user experiences.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Grid of Team Cards with staggered entrance */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.12, delayChildren: 0.2 }
-            }
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center"
-        >
+        {/* Grid of Team Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
           {teamMembers.map((member, idx) => (
-            <motion.div
-              key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
-              }}
-            >
-              <TeamCard member={member} />
-            </motion.div>
+            <TeamCard key={idx} member={member} />
           ))}
-        </motion.div>
+        </div>
 
-      </motion.div>
+      </div>
     </section>
   );
 }
