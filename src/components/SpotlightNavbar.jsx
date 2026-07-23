@@ -14,7 +14,7 @@ export function SpotlightNavbar({
 }) {
     const navRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
-    const [hoverX, setHoverX] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);
 
     // Sync internal activeIndex when parent scroll tracking updates it
     useEffect(() => {
@@ -29,17 +29,30 @@ export function SpotlightNavbar({
     useEffect(() => {
         if (!navRef.current) return;
         const nav = navRef.current;
+        let rafId = null;
 
         const handleMouseMove = (e) => {
-            const rect = nav.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            setHoverX(x);
-            spotlightX.current = x;
-            nav.style.setProperty("--spotlight-x", `${x}px`);
+            setIsHovered(true);
+            const clientX = e.clientX;
+            if (!rafId) {
+                rafId = requestAnimationFrame(() => {
+                    if (navRef.current) {
+                        const rect = navRef.current.getBoundingClientRect();
+                        const x = clientX - rect.left;
+                        spotlightX.current = x;
+                        navRef.current.style.setProperty("--spotlight-x", `${x}px`);
+                    }
+                    rafId = null;
+                });
+            }
         };
 
         const handleMouseLeave = () => {
-            setHoverX(null);
+            setIsHovered(false);
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
             const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
             if (activeItem) {
                 const navRect = nav.getBoundingClientRect();
@@ -58,10 +71,11 @@ export function SpotlightNavbar({
             }
         };
 
-        nav.addEventListener("mousemove", handleMouseMove);
+        nav.addEventListener("mousemove", handleMouseMove, { passive: true });
         nav.addEventListener("mouseleave", handleMouseLeave);
 
         return () => {
+            if (rafId) cancelAnimationFrame(rafId);
             nav.removeEventListener("mousemove", handleMouseMove);
             nav.removeEventListener("mouseleave", handleMouseLeave);
         };
@@ -129,7 +143,7 @@ export function SpotlightNavbar({
                 <div
                     className="pointer-events-none absolute bottom-0 left-0 w-full h-full z-[1] opacity-0 transition-opacity duration-300"
                     style={{
-                        opacity: hoverX !== null ? 1 : 0,
+                        opacity: isHovered ? 1 : 0,
                         background: `
               radial-gradient(
                 120px circle at var(--spotlight-x) 100%, 

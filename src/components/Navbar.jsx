@@ -11,26 +11,34 @@ export default function Navbar() {
   const [active, setActive] = useState('#home');
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 50;
+          setScrolled(prev => (prev !== isScrolled ? isScrolled : prev));
 
-      // Simple active link tracker on scroll
-      const sections = navLinks.map(l => document.querySelector(l.to));
-      const scrollPosition = window.scrollY + 150;
-
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        if (section) {
-          const top = section.offsetTop;
-          const height = section.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActive(navLinks[i].to);
+          const scrollPosition = window.scrollY + 150;
+          for (let i = 0; i < navLinks.length; i++) {
+            const section = document.querySelector(navLinks[i].to);
+            if (section) {
+              const top = section.offsetTop;
+              const height = section.offsetHeight;
+              if (scrollPosition >= top && scrollPosition < top + height) {
+                const newActive = navLinks[i].to;
+                setActive(prev => (prev !== newActive ? newActive : prev));
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
