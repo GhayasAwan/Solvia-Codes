@@ -6,11 +6,14 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // Custom domain solvia.codes — root path
   build: {
-    modulePreload: false, // Disables auto-injecting modulepreload headers for non-critical JS chunks
+    modulePreload: false, // Prevents Vite from auto-injecting modulepreload links for unused chunks
     cssCodeSplit: true,
-    target: 'es2020',
+    cssMinify: true,
+    target: 'es2022',
+    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
+        // Keep heavy 3D engine isolated so main paint is never delayed
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('three')) return 'vendor-three';

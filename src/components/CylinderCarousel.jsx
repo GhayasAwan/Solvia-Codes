@@ -76,6 +76,8 @@ export default function CylinderCarousel({
                 <img
                   src={project.image}
                   alt={`${project.title} - ${project.category} project by Solvia Codes Software House Peshawar`}
+                  width="340"
+                  height="160"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"

@@ -1,5 +1,28 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaGlobe } from "react-icons/fa";
+
+// Lightweight Inline SVG Icons for 0kB Icon Library Overhead
+const GithubIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedinIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const GlobeIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+);
 
 export default function TeamCard({ member }) {
   return (
@@ -31,52 +54,36 @@ export default function TeamCard({ member }) {
           -webkit-backface-visibility: hidden;
           border-radius: 20px;
           overflow: hidden;
-          will-change: transform;
         }
 
         .team-front {
-          background-color: #ffffff;
-          transform: rotateY(0deg); 
+          background-color: #0F172A;
         }
 
         .team-back {
-          background-color: #0F172A;
+          background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
           transform: rotateY(180deg);
+          border: 1px solid rgba(86, 124, 141, 0.3);
+          padding: 24px;
           display: flex;
-          justify-content: center;
-          align-items: center;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         .team-back::before {
+          content: '';
           position: absolute;
-          content: ' ';
-          display: block;
-          width: 160px;
-          height: 160%;
-          background: linear-gradient(90deg, transparent, #567C8D, #C8D9E6, #567C8D, transparent);
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-
-        .group:hover .team-back::before {
-          opacity: 1;
-          animation: rotation_481 4000ms infinite linear;
+          inset: 0;
+          background: radial-gradient(circle at 50% 0%, rgba(86, 124, 141, 0.25), transparent 70%);
+          pointer-events: none;
         }
 
         .team-back-content {
-          position: absolute;
-          width: calc(100% - 6px);
-          height: calc(100% - 6px);
-          background-color: #0F172A;
-          border-radius: 18px;
-          color: white;
+          position: relative;
+          z-index: 10;
+          height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          padding: 24px;
-          text-align: center;
-          z-index: 10;
         }
 
         @keyframes rotation_481 {
@@ -88,7 +95,15 @@ export default function TeamCard({ member }) {
       <div className="team-card-content">
         {/* FRONT */}
         <div className="team-front">
-          <img src={member.image} alt={`${member.name} - ${member.role} at Solvia Codes Software House Peshawar`} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+          <img
+            src={member.image}
+            alt={`${member.name} - ${member.role} at Solvia Codes Software House Peshawar`}
+            width="400"
+            height="500"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute bottom-0 w-full p-5 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent flex flex-col justify-end h-1/2">
             <span className="text-[10px] font-black uppercase tracking-widest text-white bg-teal/80 backdrop-blur-md w-fit px-2 py-0.5 rounded shadow-sm mb-1">
               {member.role}
@@ -115,7 +130,7 @@ export default function TeamCard({ member }) {
                   aria-label={`${member.name}'s GitHub Profile`}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
                 >
-                  <FaGithub size={16} aria-hidden="true" />
+                  <GithubIcon aria-hidden="true" />
                   <span className="sr-only">{member.name}'s GitHub Profile</span>
                 </a>
               )}
@@ -127,7 +142,7 @@ export default function TeamCard({ member }) {
                   aria-label={`${member.name}'s LinkedIn Profile`}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
                 >
-                  <FaLinkedin size={16} aria-hidden="true" />
+                  <LinkedinIcon aria-hidden="true" />
                   <span className="sr-only">{member.name}'s LinkedIn Profile</span>
                 </a>
               )}
@@ -137,10 +152,9 @@ export default function TeamCard({ member }) {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={`${member.name}'s Portfolio`}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10" 
-                  title="Portfolio"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
                 >
-                  <FaGlobe size={16} aria-hidden="true" />
+                  <GlobeIcon aria-hidden="true" />
                   <span className="sr-only">{member.name}'s Portfolio</span>
                 </a>
               )}

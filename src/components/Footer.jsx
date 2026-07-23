@@ -16,7 +16,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="relative flex h-12 w-12 items-center justify-center rounded-full overflow-hidden shadow-[0_0_15px_rgba(86,124,141,0.3)] bg-transparent">
-                <img src={logo} alt="Solvia Codes Logo - IT Solutions, Software House & Ads Agency Peshawar Pakistan" className="w-full h-full object-cover scale-[1.07] origin-center" />
+                <img src={logo} alt="Solvia Codes Logo - IT Solutions, Software House & Ads Agency Peshawar Pakistan" width="48" height="48" loading="lazy" decoding="async" className="w-full h-full object-cover scale-[1.07] origin-center" />
               </div>
               <span className="leading-tight">
                 <span className="block font-display text-lg font-bold text-white">{company.name}</span>
