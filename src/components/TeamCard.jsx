@@ -78,7 +78,7 @@ export default function TeamCard({ member }) {
       <div className="team-card-content">
         {/* FRONT */}
         <div className="team-front">
-          <img src={member.image} alt={member.name} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={member.image} alt={member.name} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute bottom-0 w-full p-5 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent flex flex-col justify-end h-1/2">
             <span className="text-[10px] font-black uppercase tracking-widest text-white bg-teal/80 backdrop-blur-md w-fit px-2 py-0.5 rounded shadow-sm mb-1">
               {member.role}

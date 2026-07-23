@@ -10,10 +10,10 @@ import MorphWord from '../components/MorphWord.jsx';
 import heroVideo from '../import/hero section video.mp4';
 import SocialFlipButton from '../components/SocialFlipButton.jsx';
 import TeamCard from '../components/TeamCard.jsx';
-import wardaImg from '../import/warda.png';
-import MuhammadhamzaImg from '../import/hamza.png';
-import ghayasImg from '../import/ghayas.png';
-import faizanImg from '../import/faizan.jpg';
+import wardaImg from '../import/warda.webp';
+import MuhammadhamzaImg from '../import/hamza.webp';
+import ghayasImg from '../import/ghayas.webp';
+import faizanImg from '../import/faizan.webp';
 
 // Custom SVG Brand Icons
 const GithubIcon = (props) => (

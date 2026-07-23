@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import logo from '../import/logo.jpg';
+import logo from '../import/logo.webp';
 
 export default function SplashScreen({ onComplete }) {
   useEffect(() => {

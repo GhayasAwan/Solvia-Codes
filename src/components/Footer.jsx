@@ -1,6 +1,6 @@
 import { company, navLinks, socialLinks, services } from '../data/siteData.js';
 import { Heart, Mail, Phone, MapPin, Clock } from 'lucide-react';
-import logo from '../import/logo.jpg';
+import logo from '../import/logo.webp';
 
 export default function Footer() {
   return (

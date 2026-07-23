@@ -5,7 +5,7 @@ import {
   ArrowRight, Sparkles
 } from 'lucide-react';
 import { SolarSystem } from './SolarSystem.jsx';
-import logo from '../import/logo.jpg';
+import logo from '../import/logo.webp';
 
 // Service details matching SolarSystem item IDs
 const techDetails = {
