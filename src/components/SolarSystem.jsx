@@ -164,10 +164,9 @@ export const SolarSystem = React.forwardRef(
         <div 
           className="absolute w-[360px] h-[360px] md:w-[940px] md:h-[940px] flex items-center justify-center"
           style={{
-            transform: "rotateX(65deg) rotateY(-10deg) translateZ(0)",
+            transform: "rotateX(65deg) rotateY(-10deg)",
             transformStyle: "preserve-3d",
-            willChange: "transform",
-            contain: "layout style paint"
+            willChange: "transform"
           }}
         >
           <div 
