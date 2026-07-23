@@ -475,24 +475,33 @@ export default function Home() {
               className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-4 sm:gap-5 transition-colors duration-500"
             >
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
+                <label htmlFor="contact_name" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
                 <input
+                  id="contact_name"
+                  name="name"
+                  aria-label="Your Name"
                   type="text"
                   className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Email Address</label>
+                <label htmlFor="contact_email" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Email Address</label>
                 <input
+                  id="contact_email"
+                  name="email"
+                  aria-label="Email Address"
                   type="email"
                   className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Message</label>
+                <label htmlFor="contact_message" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Message</label>
                 <textarea
+                  id="contact_message"
+                  name="message"
+                  aria-label="Message"
                   rows={4}
                   className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors resize-none font-medium"
                 />
