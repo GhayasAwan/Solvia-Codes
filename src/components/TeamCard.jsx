@@ -15,6 +15,8 @@ export default function TeamCard({ member }) {
           box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
           border-radius: 20px;
           will-change: transform;
+          transform: translateZ(0);
+          contain: layout style paint;
         }
 
         .group:hover .team-card-content {

@@ -48,15 +48,17 @@ export default function CylinderCarousel({
         <div
           className="flex gap-6 animate-marquee-flow hover:[animation-play-state:paused] cursor-pointer py-4"
           style={{
-            width: "max-content"
+            width: "max-content",
+            willChange: "transform",
+            transform: "translateZ(0)"
           }}
         >
           {/* Keyframes Style injection */}
           <style>
             {`
               @keyframes marquee-flow {
-                0% { transform: translateX(-33.3333%); }
-                100% { transform: translateX(0%); }
+                0% { transform: translate3d(-33.3333%, 0, 0); }
+                100% { transform: translate3d(0%, 0, 0); }
               }
               .animate-marquee-flow {
                 animation: marquee-flow 45s linear infinite;
@@ -67,7 +69,7 @@ export default function CylinderCarousel({
           {doubledItems.map((project, idx) => (
             <div
               key={`${project.title}-${idx}`}
-              className="w-[290px] sm:w-[340px] shrink-0 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl p-4 sm:p-5 flex flex-col justify-between h-[360px] shadow-card transition-all duration-300 hover:border-teal/50 hover:-translate-y-1.5 hover:shadow-glow"
+              className="w-[290px] sm:w-[340px] shrink-0 rounded-3xl border border-skyblue/40 bg-white/95 p-4 sm:p-5 flex flex-col justify-between h-[360px] shadow-card transition-all duration-300 hover:border-teal/50 hover:-translate-y-1.5 hover:shadow-glow"
             >
               {/* Project Image */}
               <div className="relative w-full h-[160px] rounded-2xl overflow-hidden mb-4 group/img">
