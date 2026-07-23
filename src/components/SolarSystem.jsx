@@ -146,10 +146,8 @@ export const SolarSystem = React.forwardRef(
             align-items: center;
             gap: 6px;
             padding: 0.35rem 0.8rem;
-            background: rgba(47, 65, 86, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(200, 217, 230, 0.2);
+            background: rgba(47, 65, 86, 0.92);
+            border: 1px solid rgba(200, 217, 230, 0.3);
             border-radius: 100px;
             font-weight: 600;
             color: #ffffff;
@@ -157,8 +155,9 @@ export const SolarSystem = React.forwardRef(
             user-select: none;
             cursor: pointer;
             pointer-events: auto;
+            will-change: transform;
             transition: border-color 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s, scale 0.3s;
-            box-shadow: 0 4px 15px rgba(47, 65, 86, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(47, 65, 86, 0.25);
           }
         `}} />
 

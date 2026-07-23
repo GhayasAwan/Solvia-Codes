@@ -14,6 +14,7 @@ export default function TeamCard({ member }) {
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
           border-radius: 20px;
+          will-change: transform;
         }
 
         .group:hover .team-card-content {
@@ -28,6 +29,7 @@ export default function TeamCard({ member }) {
           -webkit-backface-visibility: hidden;
           border-radius: 20px;
           overflow: hidden;
+          will-change: transform;
         }
 
         .team-front {
@@ -50,6 +52,12 @@ export default function TeamCard({ member }) {
           width: 160px;
           height: 160%;
           background: linear-gradient(90deg, transparent, #567C8D, #C8D9E6, #567C8D, transparent);
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .group:hover .team-back::before {
+          opacity: 1;
           animation: rotation_481 4000ms infinite linear;
         }
 
