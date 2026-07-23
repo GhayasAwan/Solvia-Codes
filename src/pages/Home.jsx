@@ -1,20 +1,42 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import {
-  ArrowRight, Sparkles, Send, Mail, MapPin, Phone,
-  Code2, Smartphone, Palette, ShieldCheck, ArrowDown, ChevronDown
+  Sparkles, Send, Mail, MapPin, Phone, Code2, ChevronDown
 } from 'lucide-react';
 import { company, faqs } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
-import wardaImg from '../import/warda.webp';
-import MuhammadhamzaImg from '../import/hamza.webp';
-import ghayasImg from '../import/ghayas.webp';
-import faizanImg from '../import/faizan.webp';
 
 // Lazy load 3D and heavy interactive components for 100% performance score
 const SolarSystemOrbit = lazy(() => import('../components/SolarSystemOrbit.jsx'));
 const SocialFlipButton = lazy(() => import('../components/SocialFlipButton.jsx'));
+
+// Viewport Intersection Observer wrapper: Breaks initial network dependency chain by deferring JS chunk fetch until near-viewport
+function ViewportLazy({ children, fallback = null, rootMargin = '300px' }) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (inView) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [inView, rootMargin]);
+
+  return (
+    <div ref={ref} className="w-full">
+      {inView ? <Suspense fallback={fallback}>{children}</Suspense> : fallback}
+    </div>
+  );
+}
 
 // Custom SVG Brand Icons
 const GithubIcon = (props) => (
@@ -417,9 +439,12 @@ export default function Home() {
       {/* ========================================== */}
       <section id="services" className="py-32 relative bg-navy text-white border-t border-skyblue/30 transition-colors duration-500">
         <div className="container-page mx-auto px-4">
-          <Suspense fallback={<div className="min-h-[500px] flex items-center justify-center text-skyblue font-bold">Loading 3D Orbit...</div>}>
+          <ViewportLazy
+            rootMargin="300px"
+            fallback={<div className="min-h-[500px] flex items-center justify-center text-skyblue font-bold">Loading 3D Orbit...</div>}
+          >
             <SolarSystemOrbit />
-          </Suspense>
+          </ViewportLazy>
         </div>
       </section>
 
@@ -512,9 +537,9 @@ export default function Home() {
               </div>
 
               {/* Integrates the requested Social Flip Button for social links inside the contact card! */}
-              <Suspense fallback={<div className="h-10" />}>
+              <ViewportLazy rootMargin="200px" fallback={<div className="h-10" />}>
                 <SocialFlipButton />
-              </Suspense>
+              </ViewportLazy>
             </div>
 
             {/* Simple Form card */}

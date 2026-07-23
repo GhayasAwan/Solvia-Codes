@@ -2,16 +2,11 @@ import {
   BarChart3,
   Camera,
   Code2,
-  Layers,
   Mail,
   MapPin,
   Megaphone,
-  MessageCircle,
   Palette,
-  PenTool,
-  Phone,
-  Share2,
-  Users
+  Phone
 } from 'lucide-react';
 
 export const company = {

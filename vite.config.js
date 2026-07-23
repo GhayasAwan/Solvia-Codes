@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // Vite performance plugin for Render-Blocking CSS removal & Parallel Font Preloading
 function optimizeHtmlPlugin() {
@@ -26,8 +27,8 @@ function optimizeHtmlPlugin() {
 
         if (fontPreloads) {
           transformedHtml = transformedHtml.replace(
-            '<!-- Icons & Fonts Preconnect -->',
-            `<!-- Critical Font Preloads (Parallel Network Chain Fix) -->\n    ${fontPreloads}\n\n    <!-- Icons & Fonts Preconnect -->`
+            '<!-- Favicons -->',
+            `<!-- Critical Font Preloads (Parallel Network Chain Fix) -->\n    ${fontPreloads}\n\n    <!-- Favicons -->`
           );
         }
       }
@@ -39,7 +40,11 @@ function optimizeHtmlPlugin() {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), optimizeHtmlPlugin()],
+  plugins: [
+    react(),
+    optimizeHtmlPlugin(),
+    visualizer({ filename: 'stats.html', open: false, gzipSize: true, brotliSize: true })
+  ],
   base: '/', // Custom domain solvia.codes — root path
   build: {
     modulePreload: false, // Disables auto-injecting modulepreload headers for non-critical JS chunks
