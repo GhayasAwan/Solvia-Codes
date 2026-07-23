@@ -217,6 +217,8 @@ export default function Home() {
           loop 
           muted 
           playsInline 
+          preload="metadata"
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
           src={heroVideo}
         />

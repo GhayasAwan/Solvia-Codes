@@ -222,6 +222,7 @@ export default function TestimonialBook() {
         <button
           onClick={handlePrev}
           disabled={currentPage === 0 || isFlipping}
+          aria-label="Previous page"
           className={`w-10 h-10 rounded-full border border-skyblue/30 flex items-center justify-center text-navy/50 hover:text-navy hover:bg-skyblue/15 active:scale-95 transition-all shadow-md ${
             currentPage === 0 ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'
           }`}
@@ -236,6 +237,7 @@ export default function TestimonialBook() {
         <button
           onClick={handleNext}
           disabled={currentPage >= totalPages - 2 || isFlipping}
+          aria-label="Next page"
           className={`w-10 h-10 rounded-full border border-skyblue/30 flex items-center justify-center text-navy/50 hover:text-navy hover:bg-skyblue/15 active:scale-95 transition-all shadow-md ${
             currentPage >= totalPages - 2 ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'
           }`}
