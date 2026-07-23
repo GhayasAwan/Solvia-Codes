@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import {
   ArrowRight, Sparkles, Send, Mail, MapPin, Phone,
-  Code2, Smartphone, Palette, ShieldCheck, ArrowDown
+  Code2, Smartphone, Palette, ShieldCheck, ArrowDown, ChevronDown
 } from 'lucide-react';
-import { company } from '../data/siteData.js';
+import { company, faqs } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
 import wardaImg from '../import/warda.webp';
@@ -192,6 +192,68 @@ function TeamSection() {
           ))}
         </div>
 
+      </div>
+    </section>
+  );
+}
+
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <section id="faq" className="py-24 relative bg-white transition-colors duration-500 overflow-hidden border-t border-skyblue/20">
+      <div className="container-page max-w-4xl px-4 relative z-10 mx-auto">
+        <div className="text-center mb-14">
+          <span className="text-xs font-black uppercase tracking-widest text-teal bg-teal/10 px-3 py-1 rounded-full">
+            Frequently Asked Questions
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-navy mt-4 tracking-tight">
+            Got Questions? We Have Answers.
+          </h2>
+          <p className="text-navy-600 font-medium text-sm sm:text-base mt-3 max-w-2xl mx-auto">
+            Learn more about our services as the best IT company, software house, SaaS product builder, graphic designing agency, and ads running company in Peshawar Pakistan.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="rounded-2xl border border-skyblue/40 bg-beige/60 overflow-hidden transition-all duration-300 shadow-sm"
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-navy text-base sm:text-lg hover:text-teal transition-colors"
+                  aria-expanded={isOpen}
+                >
+                  <span>{faq.question}</span>
+                  <ChevronDown
+                    size={20}
+                    className={`shrink-0 text-teal transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-6 sm:px-6 pt-0 text-navy/80 text-sm sm:text-base leading-relaxed border-t border-skyblue/20 mt-2 pt-4 font-medium">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -387,6 +449,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ========================================== */}
+      {/* FAQ SECTION (Interactive Accordion & SEO)  */}
+      {/* ========================================== */}
+      <FaqSection />
 
       {/* ========================================== */}
       {/* CONTACT SECTION (Form & Glass Dock)        */}

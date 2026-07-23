@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.solvia.codes/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.solvia.codes/favicon.png</image:loc>
+      <image:title>Solvia Codes - Best IT Company and Software House in Peshawar Pakistan</image:title>
+      <image:caption>Solvia Codes Software House, SaaS Product Builder, Graphic Designing Agency, Ads Running Company in Peshawar</image:caption>
+    </image:image>
   </url>
 </urlset>

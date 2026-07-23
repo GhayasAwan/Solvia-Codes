@@ -184,7 +184,7 @@ export const SolarSystem = React.forwardRef(
                   <img
                     className="w-full h-full object-cover scale-[1.07] origin-center"
                     src={centerLogo}
-                    alt={centerLogoAlt}
+                    alt={centerLogoAlt || "Solvia Codes Software House & IT Solutions Peshawar"}
                     width="80"
                     height="80"
                     decoding="async"

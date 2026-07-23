@@ -75,7 +75,9 @@ export default function CylinderCarousel({
               <div className="relative w-full h-[160px] rounded-2xl overflow-hidden mb-4 group/img">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - ${project.category} project by Solvia Codes Software House Peshawar`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/20 to-transparent opacity-85" />

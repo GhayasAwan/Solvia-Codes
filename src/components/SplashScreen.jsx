@@ -46,7 +46,7 @@ export default function SplashScreen({ onComplete }) {
           />
           
           <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10 bg-transparent">
-            <img src={logo} alt="Logo" width="144" height="144" decoding="async" className="w-full h-full object-cover scale-[1.07] origin-center" />
+            <img src={logo} alt="Solvia Codes Software House & Graphic Designing Agency Peshawar" width="144" height="144" decoding="async" className="w-full h-full object-cover scale-[1.07] origin-center" />
           </div>
         </motion.div>
 

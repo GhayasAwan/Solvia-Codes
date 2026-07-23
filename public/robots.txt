@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap URL
+# Sitemap Index
 Sitemap: https://www.solvia.codes/sitemap.xml
+
+# LLM & AI Crawler Context
+# Reference: https://www.solvia.codes/llms.txt
