@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // Custom domain solvia.codes — root path
   build: {
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
         manualChunks(id) {
