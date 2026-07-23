@@ -24,7 +24,7 @@ export default function CylinderCarousel({
       
       {/* Title / Description */}
       <div className="text-center mb-16 relative z-10 px-4">
-        <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/25 px-3 py-1 rounded-full">
+        <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
           Featured Work
         </span>
         <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
@@ -33,7 +33,7 @@ export default function CylinderCarousel({
             Horizontal Project Flow
           </span>
         </h3>
-        <p className="mt-3 text-navy/60 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+        <p className="mt-3 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
           Explore our system designs and interactive applications. Hover over the cards to pause the flow.
         </p>
       </div>

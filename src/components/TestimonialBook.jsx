@@ -67,16 +67,16 @@ export default function TestimonialBook() {
       return (
         <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-beige to-white">
           <div className="mt-8 flex flex-col items-center">
-            <div className="w-16 h-16 rounded-3xl bg-teal/15 border border-teal/25 flex items-center justify-center text-teal mb-6">
+            <div className="w-16 h-16 rounded-3xl bg-teal/20 border border-teal/30 flex items-center justify-center text-navy-700 mb-6">
               <BookOpen size={30} className="animate-pulse" />
             </div>
             <h4 className="text-2xl font-black text-navy tracking-tight">{pageData.title}</h4>
-            <p className="text-xs text-navy/60 mt-3 leading-relaxed max-w-[220px]">{pageData.subtitle}</p>
+            <p className="text-xs text-navy-800 font-medium mt-3 leading-relaxed max-w-[220px]">{pageData.subtitle}</p>
           </div>
           
           <button 
             onClick={handleNext}
-            className="mb-6 px-5 py-2.5 rounded-full bg-teal text-white font-bold text-xs flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
+            className="mb-6 px-5 py-2.5 rounded-full bg-navy text-white font-bold text-xs flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
           >
             <span>{pageData.actionText}</span>
             <ChevronRight size={14} />
@@ -89,11 +89,11 @@ export default function TestimonialBook() {
       return (
         <div className="h-full flex flex-col justify-between items-center text-center p-6 sm:p-8 bg-gradient-to-br from-white to-beige">
           <div className="mt-8 flex flex-col items-center">
-            <div className="w-14 h-14 rounded-full bg-skyblue/15 border border-skyblue/25 flex items-center justify-center text-skyblue mb-6">
-              <Star size={24} className="fill-skyblue/20" />
+            <div className="w-14 h-14 rounded-full bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-navy-700 mb-6">
+              <Star size={24} className="fill-skyblue/30" />
             </div>
             <h4 className="text-xl font-bold text-navy tracking-tight">{pageData.title}</h4>
-            <p className="text-xs text-navy/60 mt-3 leading-relaxed max-w-[200px]">{pageData.subtitle}</p>
+            <p className="text-xs text-navy-800 font-medium mt-3 leading-relaxed max-w-[200px]">{pageData.subtitle}</p>
           </div>
           
           <a
