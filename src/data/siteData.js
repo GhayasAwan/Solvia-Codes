@@ -124,28 +124,28 @@ export const processSteps = [
 
 export const faqs = [
   {
-    question: 'Why is Solvia Codes considered the best IT company and software house in Peshawar Pakistan?',
-    answer: 'Solvia Codes is recognized as the best IT company and software house in Peshawar Pakistan because we deliver end-to-end digital solutions under one roof. From custom SaaS product building and custom web & mobile app development to professional graphic designing and Meta & Google ads running, we ensure top quality code, fast speed, and real business results.'
+    question: 'What services does Solvia Codes offer?',
+    answer: 'Solvia Codes offers web & mobile app development, custom SaaS product building, UI/UX design, graphic designing, brand identity systems, and performance marketing including Meta Ads and Google Ads management — all from Peshawar, Pakistan.'
   },
   {
-    question: 'How does Solvia Codes function as a custom SaaS product builder and web app development studio?',
-    answer: 'As a custom SaaS product builder and web app development studio, we design, architect, develop, and launch full-stack software products. We specialize in React, Node, Python, and cloud infrastructure to create scalable web apps, multi-tenant SaaS tools, and custom software tailored for global startups and local businesses.'
+    question: 'Do you build SaaS products?',
+    answer: 'Yes. We design, develop, and launch full-stack SaaS products — including multi-tenant architectures, dashboards, user auth systems, and cloud-hosted backends using React, Node.js, Python, and modern infrastructure.'
   },
   {
-    question: 'What professional graphic designing and branding services in Peshawar do you offer?',
-    answer: 'Our graphic designing agency offers custom logo design, complete visual identity systems, modern UI/UX design, marketing collaterals, social media graphic design, and brand design guidelines to make your business look world-class.'
+    question: 'Which technologies do you use?',
+    answer: 'We primarily work with React, Next.js, Node.js, Python, and modern cloud services. For design, we use Figma and Adobe tools. For ads, we manage Meta Business Suite and Google Ads Manager.'
   },
   {
-    question: 'How does your Meta and Google ads running agency for lead generation Pakistan help my business grow?',
-    answer: 'Our ads running company manages complete digital marketing and social media ad management in Peshawar. We set up targeted Meta Ads (Facebook & Instagram) and Google PPC campaigns, optimize funnel conversion rates, create high-converting ad copy/design, and drive qualified leads.'
+    question: 'How can I request a quote or start a project?',
+    answer: 'You can reach us by emailing contact@solvia.codes or calling +92 310 9950325. You can also fill out the contact form on our website and we will get back to you within 24 hours.'
   },
   {
-    question: 'What is the contact number and location of Solvia Codes software house in Peshawar KPK?',
-    answer: 'You can contact Solvia Codes IT solutions software house in Peshawar by phone or WhatsApp at +92 310 9950325, or email us at Contact@solvia.codes. We are located in Peshawar, Khyber Pakhtunkhwa, Pakistan.'
+    question: 'Where is Solvia Codes located?',
+    answer: 'Solvia Codes is based in Peshawar, Khyber Pakhtunkhwa, Pakistan. We serve clients locally in Pakistan as well as internationally.'
   },
   {
-    question: 'Can Solvia Codes handle both small startup projects and enterprise software solutions?',
-    answer: 'Yes! We provide affordable full stack software development solutions in Pakistan for early-stage startups as well as enterprise web app and ads management for established brands.'
+    question: 'Do you run Meta and Google Ads for businesses?',
+    answer: 'Yes. We manage complete performance marketing campaigns on Meta (Facebook & Instagram) and Google Ads — including audience targeting, creatives, budget optimization, and ROAS reporting to drive measurable business growth.'
   }
 ];
 
