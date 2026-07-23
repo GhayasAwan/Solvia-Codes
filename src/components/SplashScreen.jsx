@@ -4,7 +4,7 @@ import logo from '../import/logo.webp';
 
 export default function SplashScreen({ onComplete }) {
   useEffect(() => {
-    const timer = setTimeout(onComplete, 2200);
+    const timer = setTimeout(onComplete, 1200);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -75,7 +75,7 @@ export default function SplashScreen({ onComplete }) {
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
-            transition={{ duration: 1.8, ease: "easeInOut" }}
+            transition={{ duration: 1.0, ease: "easeInOut" }}
             className="h-full bg-gradient-to-r from-teal to-skyblue"
           />
         </div>

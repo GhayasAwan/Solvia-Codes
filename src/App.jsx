@@ -18,19 +18,17 @@ export default function App() {
         )}
       </AnimatePresence>
       
-      {!showSplash && (
-        <div className="min-h-screen bg-beige text-navy transition-colors duration-500">
-          <ScrollToTop />
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </main>
-          <Footer />
-        </div>
-      )}
+      <div className="min-h-screen bg-beige text-navy transition-colors duration-500">
+        <ScrollToTop />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
