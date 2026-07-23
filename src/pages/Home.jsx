@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import { 
   ArrowRight, Sparkles, Send, Mail, MapPin, Phone, 
   Code2, Smartphone, Palette, ShieldCheck, ArrowDown
 } from 'lucide-react';
 import { company } from '../data/siteData.js';
-import SolarSystemOrbit from '../components/SolarSystemOrbit.jsx';
 import MorphWord from '../components/MorphWord.jsx';
-import heroVideo from '../import/hero section video.mp4';
-import SocialFlipButton from '../components/SocialFlipButton.jsx';
 import TeamCard from '../components/TeamCard.jsx';
 import wardaImg from '../import/warda.webp';
 import MuhammadhamzaImg from '../import/hamza.webp';
 import ghayasImg from '../import/ghayas.webp';
 import faizanImg from '../import/faizan.webp';
+
+// Lazy load 3D and heavy interactive components for 100% performance score
+const SolarSystemOrbit = lazy(() => import('../components/SolarSystemOrbit.jsx'));
+const SocialFlipButton = lazy(() => import('../components/SocialFlipButton.jsx'));
 
 // Custom SVG Brand Icons
 const GithubIcon = (props) => (
@@ -201,8 +202,8 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setVideoSrc(heroVideo);
-    }, 600);
+      setVideoSrc('/assets/hero-video.mp4');
+    }, 400);
     return () => clearTimeout(timer);
   }, []);
   
@@ -341,7 +342,9 @@ export default function Home() {
       {/* ========================================== */}
       <section id="services" className="py-32 relative bg-navy text-white border-t border-skyblue/30 transition-colors duration-500">
         <div className="container-page mx-auto px-4">
-          <SolarSystemOrbit />
+          <Suspense fallback={<div className="min-h-[500px] flex items-center justify-center text-skyblue font-bold">Loading 3D Orbit...</div>}>
+            <SolarSystemOrbit />
+          </Suspense>
         </div>
       </section>
 
@@ -429,7 +432,9 @@ export default function Home() {
               </div>
 
               {/* Integrates the requested Social Flip Button for social links inside the contact card! */}
-              <SocialFlipButton />
+              <Suspense fallback={<div className="h-10" />}>
+                <SocialFlipButton />
+              </Suspense>
             </div>
 
             {/* Simple Form card */}
