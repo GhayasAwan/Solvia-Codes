@@ -197,6 +197,14 @@ function TeamSection() {
 
 export default function Home() {
   const containerRef = useRef(null);
+  const [videoSrc, setVideoSrc] = useState(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVideoSrc(heroVideo);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
   
   return (
     <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-hidden selection:bg-teal selection:text-white transition-colors duration-500">
@@ -211,17 +219,19 @@ export default function Home() {
       {/* ========================================== */}
       <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-navy transition-colors duration-500">
         
-        {/* Ambient Video Background Loop - More Visible */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          preload="metadata"
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
-          src={heroVideo}
-        />
+        {/* Ambient Video Background Loop - Deferred load for performance */}
+        {videoSrc && (
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="metadata"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
+            src={videoSrc}
+          />
+        )}
         
         {/* Visual gradient overlays - significantly lighter so video is very visible */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy/10 via-navy/30 to-navy/80 z-[1] pointer-events-none" />
