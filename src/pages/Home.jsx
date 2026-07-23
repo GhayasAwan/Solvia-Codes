@@ -233,10 +233,17 @@ export default function Home() {
   const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const loadVideo = () => {
       setVideoSrc('/assets/hero-video.mp4');
-    }, 400);
-    return () => clearTimeout(timer);
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(loadVideo, { timeout: 3000 });
+      return () => window.cancelIdleCallback(idleId);
+    } else {
+      const timer = setTimeout(loadVideo, 2500);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
