@@ -230,13 +230,13 @@ function FaqSection() {
     <section id="faq" className="py-20 relative bg-white transition-colors duration-500 overflow-hidden border-t border-skyblue/20">
       <div className="container-page max-w-3xl px-4 relative z-10 mx-auto">
         <div className="text-center mb-10">
-          <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
+          <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-3 py-1 rounded-full">
             Frequently Asked Questions
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-navy mt-3 tracking-tight">
             Got Questions? We Have Answers.
           </h2>
-          <p className="text-navy/70 font-medium text-xs sm:text-sm mt-2 max-w-xl mx-auto leading-relaxed">
+          <p className="text-navy font-semibold text-xs sm:text-sm mt-2 max-w-xl mx-auto leading-relaxed">
             Everything you need to know about our web development, SaaS product building, UI/UX design, and performance marketing services.
           </p>
         </div>
@@ -270,7 +270,7 @@ function FaqSection() {
                       transition={{ duration: 0.25 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-5 sm:px-5 pt-0 text-navy/75 text-xs sm:text-sm leading-relaxed border-t border-skyblue/20 pt-3 font-medium">
+                      <div className="px-4 pb-5 sm:px-5 pt-0 text-navy text-xs sm:text-sm leading-relaxed border-t border-skyblue/20 pt-3 font-medium">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -290,20 +290,15 @@ export default function Home() {
   const [videoSrc, setVideoSrc] = useState(null);
 
   useEffect(() => {
-    // Skip 2.5MB video payload on mobile screens (<768px) to achieve 100/100 score and preserve mobile data
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      return;
-    }
-
     const loadVideo = () => {
       setVideoSrc('/assets/hero-video.mp4');
     };
 
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      const idleId = window.requestIdleCallback(loadVideo, { timeout: 4000 });
+      const idleId = window.requestIdleCallback(loadVideo, { timeout: 1500 });
       return () => window.cancelIdleCallback(idleId);
     } else {
-      const timer = setTimeout(loadVideo, 3500);
+      const timer = setTimeout(loadVideo, 800);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -328,7 +323,8 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="metadata"
+            webkit-playsinline="true"
+            preload="auto"
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
             src={videoSrc}
