@@ -41,7 +41,7 @@ const SocialFlipNode = ({
     return (
         <Wrapper
             {...wrapperProps}
-            className={cn("relative h-8 w-8 sm:h-10 sm:w-10 cursor-pointer text-xs sm:text-base shrink-0", itemClassName)}
+            className={cn("relative h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 cursor-pointer text-[10px] xs:text-xs sm:text-base shrink-0", itemClassName)}
             style={{ perspective: "1000px" }}
             onMouseEnter={() => setTooltipIndex(index)}
             onMouseLeave={() => setTooltipIndex(null)}
@@ -128,9 +128,9 @@ export default function SocialFlipButton({
     }, []);
 
     return (
-        <div className={cn("flex items-center justify-center w-full py-2 px-1 sm:p-4", className)}>
+        <div className={cn("flex items-center justify-center w-full py-2 px-0 sm:p-4", className)}>
             <div
-                className="group relative flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl bg-white/50 border border-skyblue/30 backdrop-blur-xl p-2.5 sm:p-4 shadow-soft max-w-full overflow-x-auto"
+                className="group relative flex items-center justify-center gap-1 xs:gap-1.5 sm:gap-2 rounded-2xl bg-white/50 border border-skyblue/30 backdrop-blur-xl p-2 xs:p-2.5 sm:p-4 shadow-soft max-w-full overflow-hidden"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => {
                     setIsHovered(false);
