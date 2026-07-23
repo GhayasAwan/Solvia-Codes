@@ -30,15 +30,20 @@ export function SpotlightNavbar({
         if (!navRef.current) return;
         const nav = navRef.current;
         let rafId = null;
+        let cachedRect = null;
+
+        const handleMouseEnter = () => {
+            setIsHovered(true);
+            cachedRect = nav.getBoundingClientRect();
+        };
 
         const handleMouseMove = (e) => {
-            setIsHovered(true);
+            if (!cachedRect) cachedRect = nav.getBoundingClientRect();
             const clientX = e.clientX;
             if (!rafId) {
                 rafId = requestAnimationFrame(() => {
-                    if (navRef.current) {
-                        const rect = navRef.current.getBoundingClientRect();
-                        const x = clientX - rect.left;
+                    if (navRef.current && cachedRect) {
+                        const x = clientX - cachedRect.left;
                         spotlightX.current = x;
                         navRef.current.style.setProperty("--spotlight-x", `${x}px`);
                     }
@@ -49,12 +54,13 @@ export function SpotlightNavbar({
 
         const handleMouseLeave = () => {
             setIsHovered(false);
+            cachedRect = null;
             if (rafId) {
                 cancelAnimationFrame(rafId);
                 rafId = null;
             }
             const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
-            if (activeItem) {
+            if (activeItem && navRef.current) {
                 const navRect = nav.getBoundingClientRect();
                 const itemRect = activeItem.getBoundingClientRect();
                 const targetX = itemRect.left - navRect.left + itemRect.width / 2;
@@ -71,11 +77,13 @@ export function SpotlightNavbar({
             }
         };
 
+        nav.addEventListener("mouseenter", handleMouseEnter, { passive: true });
         nav.addEventListener("mousemove", handleMouseMove, { passive: true });
         nav.addEventListener("mouseleave", handleMouseLeave);
 
         return () => {
             if (rafId) cancelAnimationFrame(rafId);
+            nav.removeEventListener("mouseenter", handleMouseEnter);
             nav.removeEventListener("mousemove", handleMouseMove);
             nav.removeEventListener("mouseleave", handleMouseLeave);
         };
