@@ -2,133 +2,174 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Code2, Smartphone, Palette, Cpu, Cloud, Headphones, 
-  ArrowRight, Sparkles
+  Sparkles, CheckCircle2
 } from 'lucide-react';
-import { SolarSystem } from './SolarSystem.jsx';
-import logo from '../import/logo.webp';
 
-// Service details matching SolarSystem item IDs
-const techDetails = {
-  web: {
+const services = [
+  {
+    id: 'web',
     title: 'Web Development',
-    description: 'Immersive Web Architectures',
-    details: 'Building highly interactive, performance-optimized, and SEO-friendly web platforms. We specialize in Next.js, custom WebGL implementations, and micro-frontends.',
+    subtitle: 'Immersive Web Architectures',
+    description: 'Building highly interactive, performance-optimized, and SEO-friendly web platforms. We specialize in Next.js, React, WebGL, and micro-frontends.',
     icon: Code2,
+    badge: 'Core Domain',
     color: 'from-teal to-skyblue',
-    glow: 'rgba(86, 124, 141, 0.4)',
   },
-  mobile: {
+  {
+    id: 'mobile',
     title: 'Mobile Applications',
-    description: 'Cross-Platform Native Apps',
-    details: 'Crafting stunning iOS and Android applications with native-level performance. Using Flutter and React Native to build fluid layouts, canvas rendering, and offline-first capabilities.',
+    subtitle: 'Cross-Platform Native Apps',
+    description: 'Crafting stunning iOS and Android applications with native-level performance using Flutter and React Native.',
     icon: Smartphone,
+    badge: 'Mobile First',
     color: 'from-amber-400 to-orange-400',
-    glow: 'rgba(245, 158, 11, 0.4)',
   },
-  uiux: {
+  {
+    id: 'uiux',
     title: 'UI/UX Design',
-    description: 'Premium Glassmorphic Interfaces',
-    details: 'Creating user journeys that wow at first glance. We use custom design tokens, rich typography, glassmorphism, and micro-animations to drive massive user engagement.',
+    subtitle: 'Premium Glassmorphic Interfaces',
+    description: 'Creating user journeys that wow at first glance using custom design tokens, modern typography, and dynamic micro-animations.',
     icon: Palette,
+    badge: 'Design System',
     color: 'from-pink-400 to-rose-400',
-    glow: 'rgba(236, 72, 153, 0.4)',
   },
-  ai: {
+  {
+    id: 'ai',
     title: 'AI & Machine Learning',
-    description: 'Custom Intelligence Integrations',
-    details: 'Powering systems with specialized Large Language Model (LLM) endpoints, vector databases, analytics automation pipelines, and advanced semantic searches.',
+    subtitle: 'Custom Intelligence Integrations',
+    description: 'Powering platforms with specialized LLM endpoints, vector databases, automation pipelines, and semantic search.',
     icon: Cpu,
-    color: 'from-navy to-teal',
-    glow: 'rgba(47, 65, 86, 0.4)',
+    badge: 'AI Engine',
+    color: 'from-purple-400 to-indigo-400',
   },
-  cloud: {
+  {
+    id: 'cloud',
     title: 'Cloud Systems',
-    description: 'Serverless Edge Architecture',
-    details: 'Designing robust, auto-scaling backend microservices. Multi-region redundancy, serverless routing, gRPC APIs, and zero-downtime CI/CD containerization.',
+    subtitle: 'Serverless Edge Architecture',
+    description: 'Designing robust backend microservices with multi-region redundancy, serverless routing, and zero-downtime CI/CD containerization.',
     icon: Cloud,
+    badge: 'DevOps & Edge',
     color: 'from-skyblue to-teal',
-    glow: 'rgba(200, 217, 230, 0.4)',
   },
-  support: {
+  {
+    id: 'support',
     title: 'Support & Ops',
-    description: 'Continuous Integration & Telemetry',
-    details: 'Ensuring your platforms run at 100% uptime with advanced telemetry reporting, active logs tracing, security audits, and ongoing dependency updates.',
+    subtitle: 'Continuous Integration & Telemetry',
+    description: 'Ensuring 100% uptime with advanced telemetry reporting, active log tracing, security audits, and continuous updates.',
     icon: Headphones,
-    color: 'from-purple-400 to-violet-400',
-    glow: 'rgba(139, 92, 246, 0.4)',
+    badge: '24/7 Monitoring',
+    color: 'from-emerald-400 to-teal-500',
   }
-};
+];
 
 export default function SolarSystemOrbit() {
-  const [selectedTech, setSelectedTech] = useState(techDetails.web);
-
-  const handleHoverChange = (id) => {
-    if (id && techDetails[id]) {
-      setSelectedTech(techDetails[id]);
-    }
-  };
+  const [selectedService, setSelectedService] = useState(services[0]);
 
   return (
-    <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-12 items-center min-h-[600px] relative z-10 w-full">
-      {/* Left Details Panel */}
-      <div className="flex flex-col justify-center h-full">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm w-fit mb-6">
+    <div className="w-full relative z-10 py-4">
+      {/* Header */}
+      <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm mb-4">
           <Sparkles size={14} className="text-skyblue" />
           <span className="text-[10px] font-extrabold tracking-widest text-skyblue uppercase">3D Tech Ecosystem</span>
         </div>
 
-        <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight font-display">
-          Explore Our Interactive <br />
+        <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight font-display mb-4">
+          Explore Our Core <br />
           <span className="bg-gradient-to-r from-skyblue via-teal-200 to-white bg-clip-text text-transparent">
-            Service Orbit
+            Service Capabilities
           </span>
         </h3>
 
-        <p className="mt-4 text-skyblue/90 text-sm sm:text-base max-w-lg leading-relaxed">
-          Hover over any orbiting tech sphere on the right to examine our core domains, toolkits, and how we build your product.
+        <p className="text-skyblue/90 text-sm sm:text-base leading-relaxed font-medium">
+          Select any domain below to examine our toolkits, architectural patterns, and engineering capabilities.
         </p>
-
-        {/* Selected Service Card Display with Smooth Slide/Fade transition */}
-        <div className="mt-8 relative min-h-[220px]">
-          <AnimatePresence mode="wait">
-            {selectedTech && (
-              <motion.div
-                key={selectedTech.title}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.3 }}
-                className="p-6 rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl relative overflow-hidden shadow-card"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-teal/10 to-transparent rounded-full blur-2xl pointer-events-none" />
-                
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${selectedTech.color} flex items-center justify-center text-white shadow-lg`}>
-                    <selectedTech.icon size={22} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold text-navy leading-tight font-display">{selectedTech.title}</h4>
-                    <p className="text-xs font-bold text-navy-700 mt-0.5">{selectedTech.description}</p>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-navy-800 text-sm leading-relaxed">
-                  {selectedTech.details}
-                </p>
-
-                <div className="mt-5 flex items-center gap-2 text-xs font-bold text-navy hover:text-teal transition-colors cursor-pointer w-fit">
-                  <span>Get Started with this Service</span>
-                  <ArrowRight size={14} className="text-teal" />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
 
-      {/* Right Solar System Animation */}
-      <div className="relative flex items-center justify-center w-full overflow-visible py-10">
-        <SolarSystem onHoverChange={handleHoverChange} centerLogo={logo} />
+      {/* Grid Layout */}
+      <div className="grid lg:grid-cols-12 gap-8 items-start">
+        {/* Left Interactive Service Selector Grid */}
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {services.map((service) => {
+            const isSelected = selectedService.id === service.id;
+            const Icon = service.icon;
+
+            return (
+              <button
+                key={service.id}
+                type="button"
+                onClick={() => setSelectedService(service)}
+                onMouseEnter={() => setSelectedService(service)}
+                className={`p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group flex flex-col justify-between min-h-[140px] ${
+                  isSelected 
+                    ? 'bg-white/15 border-skyblue text-white shadow-[0_10px_30px_rgba(200,217,230,0.15)] scale-[1.02]' 
+                    : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:border-skyblue/40 hover:text-white'
+                }`}
+              >
+                <div className="flex items-center justify-between w-full mb-3">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${service.color} flex items-center justify-center text-white shadow-md`}>
+                    <Icon size={20} />
+                  </div>
+                  {isSelected && (
+                    <motion.div layoutId="activeCheck" transition={{ duration: 0.2 }}>
+                      <CheckCircle2 size={18} className="text-skyblue" />
+                    </motion.div>
+                  )}
+                </div>
+
+                <div>
+                  <h4 className="text-base font-bold font-display text-white group-hover:text-skyblue transition-colors">
+                    {service.title}
+                  </h4>
+                  <p className="text-xs text-skyblue/80 font-medium mt-0.5">
+                    {service.subtitle}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Right Active Service Showcase Display Card */}
+        <div className="lg:col-span-5 relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedService.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="p-8 rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl relative overflow-hidden shadow-2xl"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+              <div className="inline-block px-3 py-1 rounded-full bg-skyblue/30 text-navy-700 text-[10px] font-extrabold uppercase tracking-wider mb-4">
+                {selectedService.badge}
+              </div>
+
+              <div className="flex items-center gap-4 mb-4">
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${selectedService.color} flex items-center justify-center text-white shadow-lg`}>
+                  <selectedService.icon size={24} />
+                </div>
+                <div>
+                  <h4 className="text-2xl font-extrabold text-navy font-display leading-tight">{selectedService.title}</h4>
+                  <p className="text-xs font-bold text-navy-700 mt-0.5">{selectedService.subtitle}</p>
+                </div>
+              </div>
+
+              <p className="text-navy-800 text-sm leading-relaxed font-medium mt-4 pt-4 border-t border-skyblue/20">
+                {selectedService.description}
+              </p>
+
+              <a 
+                href="#contact" 
+                className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-teal transition-colors shadow-md"
+              >
+                <span>Get Started with {selectedService.title}</span>
+              </a>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
