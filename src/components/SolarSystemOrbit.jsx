@@ -72,19 +72,19 @@ export default function SolarSystemOrbit() {
     <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-12 items-center min-h-[600px] relative z-10 w-full">
       {/* Left Details Panel */}
       <div className="flex flex-col justify-center h-full">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal/10 border border-teal/25 shadow-sm w-fit mb-6">
-          <Sparkles size={14} className="text-teal" />
-          <span className="text-[10px] font-extrabold tracking-widest text-teal uppercase">3D Tech Ecosystem</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm w-fit mb-6">
+          <Sparkles size={14} className="text-skyblue" />
+          <span className="text-[10px] font-extrabold tracking-widest text-skyblue uppercase">3D Tech Ecosystem</span>
         </div>
 
         <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight font-display">
           Explore Our Interactive <br />
-          <span className="bg-gradient-to-r from-teal via-skyblue to-white bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-skyblue via-teal-200 to-white bg-clip-text text-transparent">
             Service Orbit
           </span>
         </h3>
 
-        <p className="mt-4 text-white/60 text-sm sm:text-base max-w-lg leading-relaxed">
+        <p className="mt-4 text-skyblue/90 text-sm sm:text-base max-w-lg leading-relaxed">
           Hover over any orbiting tech sphere on the right to examine our core domains, toolkits, and how we build your product.
         </p>
 
@@ -98,7 +98,7 @@ export default function SolarSystemOrbit() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.3 }}
-                className="p-6 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl relative overflow-hidden shadow-card"
+                className="p-6 rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl relative overflow-hidden shadow-card"
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-teal/10 to-transparent rounded-full blur-2xl pointer-events-none" />
                 
@@ -108,11 +108,11 @@ export default function SolarSystemOrbit() {
                   </div>
                   <div>
                     <h4 className="text-xl font-bold text-navy leading-tight font-display">{selectedTech.title}</h4>
-                    <p className="text-xs font-semibold text-teal mt-0.5">{selectedTech.description}</p>
+                    <p className="text-xs font-bold text-navy-700 mt-0.5">{selectedTech.description}</p>
                   </div>
                 </div>
 
-                <p className="mt-4 text-navy/60 text-sm leading-relaxed">
+                <p className="mt-4 text-navy-800 text-sm leading-relaxed">
                   {selectedTech.details}
                 </p>
 

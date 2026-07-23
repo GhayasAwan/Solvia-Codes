@@ -23,7 +23,7 @@ export default function Footer() {
                 <span className="block text-[10px] font-bold text-skyblue uppercase tracking-widest">{company.tagline}</span>
               </span>
             </div>
-            <p className="text-sm leading-relaxed text-skyblue/70 mb-8 max-w-xs">
+            <p className="text-sm leading-relaxed text-skyblue mb-8 max-w-xs">
               We help businesses transform concepts into premium 3D and interactive digital products.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -32,7 +32,7 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-skyblue/15 text-skyblue/60 transition-all hover:border-teal hover:text-teal hover:bg-teal/5"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-skyblue/30 text-skyblue transition-all hover:border-skyblue hover:text-white hover:bg-white/10"
                 >
                   <Icon size={16} />
                 </a>
@@ -48,7 +48,7 @@ export default function Footer() {
                 <a
                   key={link.to}
                   href={link.to}
-                  className="text-skyblue/60 transition hover:text-teal inline-flex w-fit"
+                  className="text-skyblue transition hover:text-white inline-flex w-fit"
                 >
                   {link.label}
                 </a>
@@ -64,7 +64,7 @@ export default function Footer() {
                 <a
                   key={service.title}
                   href="#services"
-                  className="text-skyblue/60 transition hover:text-teal inline-flex w-fit"
+                  className="text-skyblue transition hover:text-white inline-flex w-fit"
                 >
                   {service.title}
                 </a>
@@ -75,21 +75,21 @@ export default function Footer() {
           {/* Col 4: Contact Us */}
           <div>
             <h4 className="font-bold text-white mb-6 tracking-wide">Contact Us</h4>
-            <div className="flex flex-col gap-4 text-sm font-medium text-skyblue/60">
+            <div className="flex flex-col gap-4 text-sm font-medium text-skyblue">
               <div className="flex items-start gap-3">
-                <Mail size={16} className="text-teal shrink-0 mt-0.5" />
-                <a href={`mailto:${company.email}`} className="hover:text-teal transition">{company.email}</a>
+                <Mail size={16} className="text-skyblue shrink-0 mt-0.5" />
+                <a href={`mailto:${company.email}`} className="hover:text-white transition">{company.email}</a>
               </div>
               <div className="flex items-start gap-3">
-                <Phone size={16} className="text-teal shrink-0 mt-0.5" />
-                <a href={`tel:${company.phone}`} className="hover:text-teal transition">{company.phone}</a>
+                <Phone size={16} className="text-skyblue shrink-0 mt-0.5" />
+                <a href={`tel:${company.phone}`} className="hover:text-white transition">{company.phone}</a>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin size={16} className="text-teal shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-skyblue shrink-0 mt-0.5" />
                 <span>{company.location}</span>
               </div>
               <div className="flex items-start gap-3">
-                <Clock size={16} className="text-teal shrink-0 mt-0.5" />
+                <Clock size={16} className="text-skyblue shrink-0 mt-0.5" />
                 <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-skyblue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-skyblue/50">
+        <div className="mt-16 pt-8 border-t border-skyblue/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-skyblue/80">
           <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
         </div>
       </div>

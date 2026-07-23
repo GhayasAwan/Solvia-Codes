@@ -172,13 +172,13 @@ function TeamSection() {
         
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
+          <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
             Our Team
           </span>
           <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
             The Minds Behind Solvia
           </h3>
-          <p className="mt-3 text-navy/55 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+          <p className="mt-3 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
             Meet the engineers and creators building next-generation digital platforms and user experiences.
           </p>
         </div>
@@ -351,7 +351,7 @@ export default function Home() {
       <section id="work" className="py-32 relative bg-beige text-navy border-t border-skyblue/30 transition-colors duration-500">
         <div className="container-page mx-auto px-4 flex flex-col items-center">
           <div className="text-center mb-10">
-            <span className="text-[10px] font-black uppercase tracking-widest text-teal bg-teal/10 border border-teal/20 px-3 py-1 rounded-full">
+            <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
               Our Work
             </span>
             <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
@@ -359,13 +359,13 @@ export default function Home() {
             </h3>
           </div>
           
-          <div className="w-full max-w-2xl p-10 rounded-[32px] border border-skyblue/40 bg-white/80 backdrop-blur-2xl shadow-soft flex flex-col items-center justify-center text-center relative overflow-hidden group">
+          <div className="w-full max-w-2xl p-10 rounded-[32px] border border-skyblue/40 bg-white/90 backdrop-blur-2xl shadow-soft flex flex-col items-center justify-center text-center relative overflow-hidden group">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-tr from-teal/10 to-skyblue/10 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-             <Code2 size={48} className="text-teal mb-6 opacity-80" />
+             <Code2 size={48} className="text-navy-700 mb-6 opacity-90" />
              <h4 className="text-2xl sm:text-3xl font-black text-navy font-display mb-3 relative z-10">
                Coming Soon
              </h4>
-             <p className="text-navy/60 max-w-md text-sm sm:text-base leading-relaxed relative z-10">
+             <p className="text-navy-800 max-w-md text-sm sm:text-base leading-relaxed relative z-10 font-medium">
                We are currently curating our best interactive projects and case studies. Check back shortly to explore our custom software and digital experiences.
              </p>
           </div>
@@ -378,9 +378,9 @@ export default function Home() {
       <section id="contact" className="py-32 relative bg-beige border-t border-skyblue/30 transition-colors duration-500">
         <div className="container-page max-w-4xl mx-auto px-4">
           <div className="text-center mb-16">
-            <p className="text-xs font-black tracking-[0.25em] text-teal uppercase mb-4">Start a Project</p>
+            <p className="text-xs font-black tracking-[0.25em] text-navy-700 uppercase mb-4">Start a Project</p>
             <h3 className="text-3xl sm:text-5xl font-black text-navy">Let's Build Together</h3>
-            <p className="mt-3 text-navy/55 text-sm max-w-md mx-auto leading-relaxed">
+            <p className="mt-3 text-navy-800 text-sm max-w-md mx-auto leading-relaxed font-medium">
               Have a product idea or system that needs premium 3D engineering? Shoot us a message!
             </p>
           </div>
@@ -389,39 +389,39 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 items-stretch">
             
             {/* Contact Details Card */}
-            <div className="p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500">
+            <div className="p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
               
               <div>
                 <h4 className="text-xl font-bold text-navy mb-6">Contact Information</h4>
                 
-                <div className="flex flex-col gap-6 text-sm font-medium text-navy/70">
+                <div className="flex flex-col gap-6 text-sm font-semibold text-navy">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
                       <Mail size={18} />
                     </div>
                     <div>
-                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Email Address</span>
-                      <a href={`mailto:${company.email}`} className="hover:text-teal transition-colors">{company.email}</a>
+                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Email Address</span>
+                      <a href={`mailto:${company.email}`} className="hover:text-teal-700 transition-colors text-navy">{company.email}</a>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
                       <Phone size={18} />
                     </div>
                     <div>
-                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">Phone Number</span>
-                      <a href={`tel:${company.phone}`} className="hover:text-teal transition-colors">{company.phone}</a>
+                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Phone Number</span>
+                      <a href={`tel:${company.phone}`} className="hover:text-teal-700 transition-colors text-navy">{company.phone}</a>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/20 border border-skyblue/30 flex items-center justify-center text-teal">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
                       <MapPin size={18} />
                     </div>
                     <div>
-                      <span className="block text-[10px] text-navy/40 uppercase tracking-wider font-bold">HQ Location</span>
+                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">HQ Location</span>
                       <span className="text-navy">{company.location}</span>
                     </div>
                   </div>
@@ -435,32 +435,32 @@ export default function Home() {
             {/* Simple Form card */}
             <form 
               onSubmit={(e) => e.preventDefault()}
-              className="p-8 rounded-3xl border border-skyblue/40 bg-white/50 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-5 transition-colors duration-500"
+              className="p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-5 transition-colors duration-500"
             >
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Your Name</label>
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
                 <input 
                   type="text" 
                   placeholder="John Doe" 
-                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors placeholder:text-navy/30"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors placeholder:text-navy-400 font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Email Address</label>
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Email Address</label>
                 <input 
                   type="email" 
                   placeholder="john@example.com" 
-                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors placeholder:text-navy/30"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors placeholder:text-navy-400 font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-navy/50 mb-2">Message</label>
+                <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Message</label>
                 <textarea 
                   rows={4}
                   placeholder="Hey, let's talk about building an app..." 
-                  className="w-full bg-white border border-skyblue/40 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal text-navy transition-colors resize-none placeholder:text-navy/30"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors resize-none placeholder:text-navy-400 font-medium"
                 />
               </div>
 
