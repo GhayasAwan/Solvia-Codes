@@ -186,6 +186,9 @@ export const SolarSystem = React.forwardRef(
                     className="w-full h-full object-cover scale-[1.07] origin-center"
                     src={centerLogo}
                     alt={centerLogoAlt}
+                    width="80"
+                    height="80"
+                    decoding="async"
                   />
                 </div>
               ) : (
