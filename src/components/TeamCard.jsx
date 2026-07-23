@@ -98,17 +98,36 @@ export default function TeamCard({ member }) {
             
             <div className="mt-auto flex items-center gap-3">
               {member.github && (
-                <a href={member.github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10">
+                <a 
+                  href={member.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={`${member.name}'s GitHub Profile`}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
+                >
                   <FaGithub size={16} />
                 </a>
               )}
               {member.linkedin && (
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10">
+                <a 
+                  href={member.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={`${member.name}'s LinkedIn Profile`}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
+                >
                   <FaLinkedin size={16} />
                 </a>
               )}
               {member.portfolio && (
-                <a href={member.portfolio} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10" title="Portfolio">
+                <a 
+                  href={member.portfolio} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={`${member.name}'s Portfolio`}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10" 
+                  title="Portfolio"
+                >
                   <FaGlobe size={16} />
                 </a>
               )}
