@@ -130,7 +130,7 @@ function TeamSection() {
   const teamMembers = [
     {
       name: "Ghayas Awan",
-      role: "Founder",
+      role: "Founder & COO",
       image: ghayasImg,
       bio: "Spearheading system architecture, full-stack development, and custom interactive engine implementations.",
       github: "https://github.com/GhayasAwan/3d-product-project.git",
