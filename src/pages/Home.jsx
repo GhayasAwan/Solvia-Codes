@@ -389,41 +389,41 @@ export default function Home() {
           </div>
 
           {/* Form & Info Split */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
 
             {/* Contact Details Card */}
-            <div className="p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500">
+            <div className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500 gap-6">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
 
               <div>
                 <h4 className="text-xl font-bold text-navy mb-6">Contact Information</h4>
 
                 <div className="flex flex-col gap-6 text-sm font-semibold text-navy">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
                       <Mail size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Email Address</span>
-                      <a href={`mailto:${company.email}`} className="hover:text-teal-700 transition-colors text-navy">{company.email}</a>
+                      <a href={`mailto:${company.email}`} className="hover:text-teal-700 transition-colors text-navy break-all">{company.email}</a>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
                       <Phone size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Phone Number</span>
-                      <a href={`tel:${company.phone}`} className="hover:text-teal-700 transition-colors text-navy">{company.phone}</a>
+                      <a href={`tel:${company.phone}`} className="hover:text-teal-700 transition-colors text-navy break-all">{company.phone}</a>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
                       <MapPin size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">HQ Location</span>
                       <span className="text-navy">{company.location}</span>
                     </div>
@@ -440,7 +440,7 @@ export default function Home() {
             {/* Simple Form card */}
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-5 transition-colors duration-500"
+              className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-4 sm:gap-5 transition-colors duration-500"
             >
               <div>
                 <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
