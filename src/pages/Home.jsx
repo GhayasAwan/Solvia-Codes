@@ -6,6 +6,10 @@ import {
 import { company, faqs } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
+import wardaImg from '../import/warda.webp';
+import MuhammadhamzaImg from '../import/hamza.webp';
+import ghayasImg from '../import/ghayas.webp';
+import faizanImg from '../import/faizan.webp';
 
 // Lazy load 3D and heavy interactive components for 100% performance score
 const SolarSystemOrbit = lazy(() => import('../components/SolarSystemOrbit.jsx'));
