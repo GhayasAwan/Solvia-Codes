@@ -105,7 +105,8 @@ export default function TeamCard({ member }) {
                   aria-label={`${member.name}'s GitHub Profile`}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
                 >
-                  <FaGithub size={16} />
+                  <FaGithub size={16} aria-hidden="true" />
+                  <span className="sr-only">{member.name}'s GitHub Profile</span>
                 </a>
               )}
               {member.linkedin && (
@@ -116,7 +117,8 @@ export default function TeamCard({ member }) {
                   aria-label={`${member.name}'s LinkedIn Profile`}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10"
                 >
-                  <FaLinkedin size={16} />
+                  <FaLinkedin size={16} aria-hidden="true" />
+                  <span className="sr-only">{member.name}'s LinkedIn Profile</span>
                 </a>
               )}
               {member.portfolio && (
@@ -128,7 +130,8 @@ export default function TeamCard({ member }) {
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-teal hover:text-white transition-colors flex items-center justify-center text-skyblue border border-white/10" 
                   title="Portfolio"
                 >
-                  <FaGlobe size={16} />
+                  <FaGlobe size={16} aria-hidden="true" />
+                  <span className="sr-only">{member.name}'s Portfolio</span>
                 </a>
               )}
             </div>

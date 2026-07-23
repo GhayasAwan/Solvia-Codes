@@ -101,6 +101,7 @@ const SocialFlipNode = ({
                     {item.icon}
                 </div>
             </motion.div>
+            <span className="sr-only">{item.label}</span>
         </Wrapper>
     );
 };
