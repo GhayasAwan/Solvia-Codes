@@ -446,8 +446,7 @@ export default function Home() {
                 <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
                 <input
                   type="text"
-                  placeholder="John Doe"
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors placeholder:text-navy-400 font-medium"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
                 />
               </div>
 
@@ -455,8 +454,7 @@ export default function Home() {
                 <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Email Address</label>
                 <input
                   type="email"
-                  placeholder="john@example.com"
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors placeholder:text-navy-400 font-medium"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
                 />
               </div>
 
@@ -464,8 +462,7 @@ export default function Home() {
                 <label className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Message</label>
                 <textarea
                   rows={4}
-                  placeholder="Hey, let's talk about building an app..."
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors resize-none placeholder:text-navy-400 font-medium"
+                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors resize-none font-medium"
                 />
               </div>
 
