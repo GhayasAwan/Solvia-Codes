@@ -93,7 +93,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2 md:hidden ml-auto">
           <button
             type="button"
-            className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${scrolled ? 'border-skyblue/40 text-navy bg-white/60 hover:bg-skyblue/20' : 'border-white/30 text-white bg-white/10 hover:bg-white/20'}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-full border transition ${scrolled ? 'border-skyblue/40 text-navy bg-white/60 hover:bg-skyblue/20' : 'border-white/30 text-white bg-white/10 hover:bg-white/20'}`}
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
           >
@@ -120,8 +120,8 @@ export default function Navbar() {
                       href={link.to}
                       className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold tracking-wide transition-all ${
                         isActive 
-                          ? 'bg-gradient-to-r from-teal/15 to-skyblue/20 text-teal border border-teal/30' 
-                          : 'text-navy/70 hover:bg-skyblue/10 hover:text-navy border border-transparent'
+                          ? 'bg-gradient-to-r from-teal/20 to-skyblue/30 text-navy font-black border border-teal/40' 
+                          : 'text-navy-800 hover:bg-skyblue/10 hover:text-navy border border-transparent'
                       }`}
                       onClick={() => { setOpen(false); setActive(link.to); }}
                     >
