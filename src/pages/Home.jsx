@@ -134,7 +134,8 @@ function TeamSection() {
       image: ghayasImg,
       bio: "Spearheading system architecture, full-stack development, and custom interactive engine implementations.",
       github: "https://github.com/GhayasAwan/3d-product-project.git",
-      linkedin: "https://www.linkedin.com/in/ghayas-awan-a056333a1"
+      linkedin: "https://www.linkedin.com/in/ghayas-awan-a056333a1",
+      portfolio: "https://ghayas.dev/"
     },
     {
       name: "Muhammad Hamza",
