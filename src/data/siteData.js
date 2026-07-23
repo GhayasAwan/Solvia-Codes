@@ -13,7 +13,7 @@ export const company = {
   name: 'Solvia Codes',
   tagline: 'SOLUTION THROUGH CODES',
   email: 'Contact@solvia.codes',
-  phone: '+92310-9950325',
+  phone: '+92 349 9088820',
   location: 'Peshawar, Khyber Pakhtunkhwa, Pakistan',
   address: 'Peshawar, KPK, Pakistan',
   geo: {
@@ -132,7 +132,7 @@ export const faqs = [
   },
   {
     question: 'How can I request a quote or start a project?',
-    answer: 'You can reach us by emailing contact@solvia.codes or calling +92 310 9950325. You can also fill out the contact form on our website and we will get back to you within 24 hours.'
+    answer: 'You can reach us by emailing contact@solvia.codes or calling +92 349 9088820. You can also fill out the contact form on our website and we will get back to you within 24 hours.'
   },
   {
     question: 'Where is Solvia Codes located?',
