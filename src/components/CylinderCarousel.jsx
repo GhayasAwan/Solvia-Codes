@@ -14,7 +14,7 @@ export default function CylinderCarousel({
   return (
     <div
       className={cn(
-        "w-full overflow-hidden py-24 relative z-10 bg-beige border-t border-skyblue/30 transition-colors duration-500",
+        "w-full overflow-hidden py-24 relative z-10 bg-beige border-t border-skyblue/30",
         className
       )}
       {...props}
@@ -41,8 +41,8 @@ export default function CylinderCarousel({
       {/* Infinite Scroll Container */}
       <div className="w-full relative flex overflow-x-hidden z-10">
         {/* Left/Right blur shadows for edge fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-48 bg-gradient-to-r from-beige to-transparent z-10 pointer-events-none transition-colors duration-500" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-48 bg-gradient-to-l from-beige to-transparent z-10 pointer-events-none transition-colors duration-500" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-48 bg-gradient-to-r from-beige to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-48 bg-gradient-to-l from-beige to-transparent z-10 pointer-events-none" />
 
         {/* Marquee Track */}
         <div

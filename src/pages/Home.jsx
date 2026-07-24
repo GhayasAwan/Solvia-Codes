@@ -117,7 +117,7 @@ function AboutSection() {
   const scale = useTransform(scrollYProgress, [0.05, 0.25], [0.95, 1]);
 
   return (
-    <section ref={targetRef} id="about" className="py-32 relative bg-beige transition-colors duration-500 overflow-hidden border-t border-skyblue/30">
+    <section ref={targetRef} id="about" className="py-32 relative bg-beige overflow-hidden border-t border-skyblue/30">
       {/* Decorative gradients */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
 
@@ -192,7 +192,7 @@ function TeamSection() {
   ];
 
   return (
-    <section id="team" className="py-24 relative bg-beige border-t border-skyblue/30 transition-colors duration-500 overflow-hidden">
+    <section id="team" className="py-24 relative bg-beige border-t border-skyblue/30 overflow-hidden">
       {/* Decorative center glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-teal/15 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
@@ -227,7 +227,7 @@ function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="py-20 relative bg-white transition-colors duration-500 overflow-hidden border-t border-skyblue/20">
+    <section id="faq" className="py-20 relative bg-white overflow-hidden border-t border-skyblue/20">
       <div className="container-page max-w-3xl px-4 relative z-10 mx-auto">
         <div className="text-center mb-10">
           <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-3 py-1 rounded-full">
@@ -304,7 +304,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-hidden selection:bg-teal selection:text-white transition-colors duration-500">
+    <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-hidden selection:bg-teal selection:text-white">
 
       {/* GLOBAL BACKGROUND GLOWS */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
@@ -314,7 +314,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* HERO SECTION (Simplified - No Pinning)     */}
       {/* ========================================== */}
-      <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-navy transition-colors duration-500">
+      <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-navy">
 
         {/* Ambient Video Background Loop - Deferred load for performance */}
         {videoSrc && (
@@ -437,7 +437,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* SERVICES SECTION (Solar System Orbit)      */}
       {/* ========================================== */}
-      <section id="services" className="py-32 relative bg-navy text-white border-t border-skyblue/30 transition-colors duration-500">
+      <section id="services" className="py-32 relative bg-navy text-white border-t border-skyblue/30">
         <div className="container-page mx-auto px-4">
           <ViewportLazy
             rootMargin="300px"
@@ -451,7 +451,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* PROJECTS SECTION (Coming Soon)             */}
       {/* ========================================== */}
-      <section id="work" className="py-32 relative bg-beige text-navy border-t border-skyblue/30 transition-colors duration-500">
+      <section id="work" className="py-32 relative bg-beige text-navy border-t border-skyblue/30">
         <div className="container-page mx-auto px-4 flex flex-col items-center">
           <div className="text-center mb-10">
             <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
@@ -483,7 +483,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* CONTACT SECTION (Form & Glass Dock)        */}
       {/* ========================================== */}
-      <section id="contact" className="py-32 relative bg-beige border-t border-skyblue/30 transition-colors duration-500">
+      <section id="contact" className="py-32 relative bg-beige border-t border-skyblue/30">
         <div className="container-page max-w-4xl mx-auto px-4">
           <div className="text-center mb-16">
             <p className="text-xs font-black tracking-[0.25em] text-navy-700 uppercase mb-4">Start a Project</p>
@@ -497,7 +497,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
 
             {/* Contact Details Card */}
-            <div className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden transition-colors duration-500 gap-6">
+            <div className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden gap-6">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
 
               <div>
@@ -545,7 +545,7 @@ export default function Home() {
             {/* Simple Form card */}
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-4 sm:gap-5 transition-colors duration-500"
+              className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-4 sm:gap-5"
             >
               <div>
                 <label htmlFor="contact_name" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>

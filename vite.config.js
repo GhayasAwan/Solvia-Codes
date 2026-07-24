@@ -27,8 +27,8 @@ function optimizeHtmlPlugin() {
 
         if (fontPreloads) {
           transformedHtml = transformedHtml.replace(
-            '<!-- Favicons -->',
-            `<!-- Critical Font Preloads (Parallel Network Chain Fix) -->\n    ${fontPreloads}\n\n    <!-- Favicons -->`
+            '<!-- Font Preloads injected by vite plugin below -->',
+            `<!-- Critical Font Preloads (Parallel Network Chain Fix) -->\n    ${fontPreloads}`
           );
         }
       }

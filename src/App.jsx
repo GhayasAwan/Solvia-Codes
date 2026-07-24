@@ -18,7 +18,7 @@ export default function App() {
         )}
       </AnimatePresence>
       
-      <div className="min-h-screen bg-beige text-navy transition-colors duration-500">
+      <div className="min-h-screen bg-beige text-navy">
         <ScrollToTop />
         <Navbar />
         <main>

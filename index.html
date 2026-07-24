@@ -52,13 +52,18 @@
     <meta name="theme-color" content="#0F172A" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Critical Above-the-Fold Inline CSS (Eliminates Render-Blocking CSS Delay) -->
+    <!-- Critical Above-the-Fold Inline CSS (Eliminates Render-Blocking CSS Delay + CLS Prevention) -->
     <style>
       :root{color-scheme:light;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
       html{scroll-behavior:smooth}
       body{margin:0;min-width:320px;background:#0F172A;color:#F5EFEB;overflow-x:hidden;width:100%;font-family:Inter,system-ui,-apple-system,sans-serif}
-      #root{min-height:100vh}
+      /* CLS Fix: Pre-declare #root background as navy (hero section color) so no shift when CSS loads */
+      #root{min-height:100vh;background:#0F172A}
+      /* CLS Fix: Reserve space for Navbar height to prevent layout jump on hydration */
+      nav{min-height:64px}
     </style>
+
+    <!-- Font Preloads injected by vite plugin below -->
 
     <!-- Favicons & Google Search Icon -->
     <link rel="icon" type="image/png" sizes="192x192" href="https://www.solvia.codes/favicon.png" />
