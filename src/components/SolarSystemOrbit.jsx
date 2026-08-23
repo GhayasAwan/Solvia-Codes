@@ -69,7 +69,7 @@ export default function SolarSystemOrbit() {
   };
 
   return (
-    <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-12 items-center min-h-[600px] relative z-10 w-full">
+    <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-12 items-center min-h-[600px] relative z-10 w-full overflow-hidden">
       {/* Left Details Panel */}
       <div className="flex flex-col justify-center h-full">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm w-fit mb-6">
@@ -127,7 +127,7 @@ export default function SolarSystemOrbit() {
       </div>
 
       {/* Right Solar System Animation */}
-      <div className="relative flex items-center justify-center w-full overflow-visible py-10">
+      <div className="relative flex items-center justify-center w-full overflow-hidden py-10">
         <SolarSystem onHoverChange={handleHoverChange} centerLogo={logo} />
       </div>
     </div>

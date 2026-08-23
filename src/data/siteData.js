@@ -28,6 +28,7 @@ export const navLinks = [
   { label: 'Team', to: '#team' },
   { label: 'Services', to: '#services' },
   { label: 'Work', to: '#work' },
+  { label: 'Blog', to: '#blog' },
   { label: 'FAQ', to: '#faq' },
   { label: 'Contact', to: '#contact' }
 ];
@@ -61,42 +62,96 @@ export const services = [
 
 export const projects = [
   {
-    title: 'Business Analytics SaaS Platform',
-    category: 'Development',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-    summary: 'A custom SaaS product builder dashboard for tracking real-time customers, metrics, and cloud analytics.'
+    title: 'EHub AI Verse - Student Portal & LMS',
+    category: 'SaaS Development',
+    tags: ['React', 'REST API', 'PWA', 'Tailwind CSS'],
+    image: '/assets/ehub-aiverse.svg',
+    summary: 'Full-stack cloud LMS & student dashboard featuring secure authentication, 2-step OTP password recovery, test preparation analytics, and PWA capabilities.',
+    link: 'https://aiverse.ehubinstitute.com',
+    featured: true
   },
   {
-    title: 'Lifestyle Mobile App UI UX',
-    category: 'Design',
-    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80',
-    summary: 'UI UX design and visual identity prototype created by graphic designing experts for modern mobile startups.'
-  },
-  {
-    title: 'Retail Brand Ads Running Campaign',
-    category: 'Marketing',
-    image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=1200&q=80',
-    summary: 'Meta and Google ads running campaign focused on target audience engagement, sales growth, and lead generation in Pakistan.'
-  },
-  {
-    title: 'SaaS Landing & Product Website',
-    category: 'Development',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
-    summary: 'Affordable full stack software development solutions in Pakistan for enterprise web app conversion.'
-  },
-  {
-    title: 'Startup Visual Identity & Graphic Design',
-    category: 'Design',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80',
-    summary: 'Professional graphic designing and branding system crafted for a fast-growing IT tech startup.'
-  },
-  {
-    title: 'Performance Marketing Ads Sprint',
-    category: 'Marketing',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
-    summary: 'Digital marketing and social media ad management in Peshawar yielding high ROI and customer leads.'
+    title: 'E-Hub Institute - Official Web Platform',
+    category: 'Web & UI/UX Design',
+    tags: ['React', 'Vite', 'UI/UX Design', 'Performance SEO'],
+    image: '/assets/ehub-institute.svg',
+    summary: 'Modern, high-converting educational institute web platform with course catalog showcases, interactive achievements, and lightning-fast page speeds.',
+    link: 'https://www.ehubinstitute.com',
+    featured: true
   }
 ];
+
+export const blogs = [
+  {
+    id: 'ehub-aiverse-case-study',
+    title: 'Inside EHub AI Verse: Engineering a Full-Stack LMS & PWA',
+    category: 'SaaS & Cloud Architecture',
+    readTime: '5 min read',
+    date: 'Aug 23, 2026',
+    image: '/assets/ehub-aiverse.svg',
+    summary: 'How we built the EHub AI Verse student portal with secure 2-step OTP recovery, interactive IELTS practice tasks, analytics dashboards, and offline-capable PWA technology.',
+    link: 'https://aiverse.ehubinstitute.com',
+    tags: ['EHub AI Verse', 'LMS', 'PWA', 'React', 'REST API'],
+    sections: [
+      {
+        heading: 'Project Overview & Objectives',
+        content: 'EHub AI Verse was conceived as an intelligent, high-speed learning management ecosystem tailored specifically for students preparing for IELTS and English language certifications. The primary goal was to eliminate traditional learning friction by providing a unified digital portal equipped with automated progress analytics, practice tasks, and instant device installability.'
+      },
+      {
+        heading: 'Key Architectural Modules Built',
+        bullets: [
+          '2-Step OTP Authentication & Security: Implemented secure email-based OTP password recovery and encrypted session management ensuring zero account compromises.',
+          'Comprehensive IELTS Practice Modules: Dedicated interactive engines for Reading (with passage timers), Listening, Writing (timed submissions), Speaking, and 1000+ Vocabulary flashcards.',
+          'Student Analytics & Progress Streaks: Real-time visual dashboards tracking daily study streaks, module completion percentages, and personalized weakness analytics.',
+          'Progressive Web App (PWA) Integration: Engineered complete service worker caching and web manifests allowing students to install the app natively on Android, iOS, and Desktop with offline resiliency.'
+        ]
+      },
+      {
+        heading: 'Technical Stack & Engineering Decisions',
+        content: 'We utilized React 18 for component modularity, Tailwind CSS for high-performance visual design, and structured REST API bridges for real-time authentication and dashboard data fetching. By optimizing initial bundle sizes and implementing lazy routing, the portal achieves near-instant interaction speeds.'
+      },
+      {
+        heading: 'Outcome & Measurable Impact',
+        content: 'Following the launch, EHub AI Verse successfully onboarded over 1,000+ active students in its initial cycle, drastically reducing manual administration overhead and boosting daily student test practice by over 60%.'
+      }
+    ]
+  },
+  {
+    id: 'ehub-institute-web-design',
+    title: 'Designing for Education: The UI/UX Behind E-Hub Institute',
+    category: 'UI/UX & Web Design',
+    readTime: '4 min read',
+    date: 'Aug 19, 2026',
+    image: '/assets/ehub-institute.svg',
+    summary: 'Crafting a high-converting web platform for Peshawar\'s premier English training institute — featuring royal maroon branding, dynamic course catalogs, and interactive student success showcases.',
+    link: 'https://www.ehubinstitute.com',
+    tags: ['E-Hub Institute', 'UI/UX Design', 'Branding', 'Design System', 'SEO'],
+    sections: [
+      {
+        heading: 'The Vision & Brand Strategy',
+        content: 'As the leading English language and IELTS training institute in Peshawar, E-Hub Institute required a digital flagship that conveyed academic prestige, trust, and modern accessibility. We developed a distinct visual identity anchored in deep royal maroon (#660033) and elegant gold accents (#C5A059), paired with editorial typography.'
+      },
+      {
+        heading: 'Key Platform Highlights',
+        bullets: [
+          'High-Conversion Course Catalog: Clean, filterable course pathways for IELTS Academic & General, Spoken English, and international TEFL/TESOL teacher certifications.',
+          'Student Wall of Fame & Social Proof: Highlighting real student test scores, university admissions, and verified video testimonials to build immediate applicant trust.',
+          'Sub-Second Core Web Vitals: Engineered critical inline CSS and parallel font preloading to achieve an initial paint time of under 0.4 seconds on mobile networks.',
+          'Interactive Campus & Event Showcases: Fluid multimedia galleries documenting British Council partnership meets, student graduations, and masterclasses.'
+        ]
+      },
+      {
+        heading: 'Local SEO & Discoverability',
+        content: 'Integrated comprehensive Schema.org JSON-LD structured data (Organization, LocalBusiness, Service ItemLists, and FAQPage schemas) with localized geo-coordinates (Peshawar, PK-KP) to secure top-tier organic search rankings.'
+      },
+      {
+        heading: 'Business Results',
+        content: 'The new digital platform resulted in a 45% increase in online student enrollment inquiries within the first month and delivered a seamless gateway into the EHub AI Verse student portal.'
+      }
+    ]
+  }
+];
+
 
 export const processSteps = [
   {

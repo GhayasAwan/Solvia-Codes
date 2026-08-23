@@ -101,10 +101,22 @@ export default function CylinderCarousel({
                 </div>
 
                 {/* External Action */}
-                <div className="flex items-center gap-1.5 text-xs font-bold text-teal mt-3 hover:text-navy transition-colors w-fit">
-                  <span>Explore Case Study</span>
-                  <ArrowRight size={12} />
-                </div>
+                {project.link && project.link !== '#' ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs font-bold text-teal mt-3 hover:text-navy transition-colors w-fit"
+                  >
+                    <span>Visit Live Website</span>
+                    <ArrowRight size={12} />
+                  </a>
+                ) : (
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-teal/70 mt-3 w-fit">
+                    <span>Explore Case Study</span>
+                    <ArrowRight size={12} />
+                  </div>
+                )}
               </div>
             </div>
           ))}

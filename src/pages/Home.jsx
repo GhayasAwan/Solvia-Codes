@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import {
-  Sparkles, Send, Mail, MapPin, Phone, Code2, ChevronDown
+  Sparkles, Send, Mail, MapPin, Phone, Code2, ChevronDown, ExternalLink, ArrowUpRight, Globe,
+  Clock, Calendar, BookOpen, ArrowRight, X
 } from 'lucide-react';
-import { company, faqs } from '../data/siteData.js';
+import { company, faqs, projects, blogs } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
 import wardaImg from '../import/warda.webp';
@@ -288,6 +289,24 @@ function FaqSection() {
 export default function Home() {
   const containerRef = useRef(null);
   const [videoSrc, setVideoSrc] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+
+  // Lock body scroll when reading an article
+  useEffect(() => {
+    if (selectedArticle) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedArticle(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedArticle]);
 
   useEffect(() => {
     const loadVideo = () => {
@@ -437,8 +456,8 @@ export default function Home() {
       {/* ========================================== */}
       {/* SERVICES SECTION (Solar System Orbit)      */}
       {/* ========================================== */}
-      <section id="services" className="py-32 relative bg-navy text-white border-t border-skyblue/30">
-        <div className="container-page mx-auto px-4">
+      <section id="services" className="py-28 sm:py-32 relative bg-navy text-white border-t border-skyblue/30 overflow-hidden w-full">
+        <div className="container-page mx-auto px-4 sm:px-6">
           <ViewportLazy
             rootMargin="300px"
             fallback={<div className="min-h-[500px] flex items-center justify-center text-skyblue font-bold">Loading 3D Orbit...</div>}
@@ -449,28 +468,181 @@ export default function Home() {
       </section>
 
       {/* ========================================== */}
-      {/* PROJECTS SECTION (Coming Soon)             */}
+      {/* PROJECTS SECTION                           */}
       {/* ========================================== */}
-      <section id="work" className="py-32 relative bg-beige text-navy border-t border-skyblue/30">
-        <div className="container-page mx-auto px-4 flex flex-col items-center">
-          <div className="text-center mb-10">
-            <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
+      <section id="work" className="pt-14 pb-16 sm:pt-16 sm:pb-20 scroll-mt-20 relative bg-beige text-navy border-t border-skyblue/30 overflow-hidden w-full">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-5 sm:mb-6">
+            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-2.5 py-0.5 rounded-full">
               Our Work
             </span>
-            <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
+            <h3 className="text-2xl sm:text-4xl font-extrabold text-navy mt-1.5 font-display">
               Featured Projects
             </h3>
+            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
+              Explore our real-world client platforms, full-stack SaaS portals, and high-performance web systems.
+            </p>
           </div>
 
-          <div className="w-full max-w-2xl p-10 rounded-[32px] border border-skyblue/40 bg-white/90 backdrop-blur-2xl shadow-soft flex flex-col items-center justify-center text-center relative overflow-hidden group">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-tr from-teal/10 to-skyblue/10 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-            <Code2 size={48} className="text-navy-700 mb-6 opacity-90" />
-            <h4 className="text-2xl sm:text-3xl font-black text-navy font-display mb-3 relative z-10">
-              Coming Soon
-            </h4>
-            <p className="text-navy-800 max-w-md text-sm sm:text-base leading-relaxed relative z-10 font-medium">
-              We are currently curating our best interactive projects and case studies. Check back shortly to explore our custom software and digital experiences.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full">
+            {projects.map((project, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-3.5 sm:p-4.5 shadow-soft hover:shadow-lift transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 overflow-hidden"
+              >
+                <div>
+                  {/* Top Badges Row */}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[9px] font-black uppercase tracking-wider bg-navy text-white px-2.5 py-0.5 rounded-full shadow-sm">
+                      {project.category}
+                    </span>
+                    {project.featured && (
+                      <span className="text-[9px] font-black uppercase tracking-wider bg-teal text-white px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        Live Project
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Thumbnail / Image - 100% Full Uncropped View */}
+                  <div className="relative w-full rounded-xl overflow-hidden mb-2.5 bg-slate-50/80 border border-skyblue/30 shadow-inner flex items-center justify-center aspect-[16/9] max-h-[175px]">
+                    <img
+                      src={project.image}
+                      alt={`${project.title} - Solvia Codes Project`}
+                      className="w-full h-full object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-500 ease-out p-1"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Tech stack tags */}
+                  {project.tags && (
+                    <div className="flex flex-wrap gap-1.5 mb-1.5">
+                      {project.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[9px] font-bold text-navy-700 bg-skyblue/30 border border-skyblue/40 px-2 py-0.5 rounded-md"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Title & Description */}
+                  <h4 className="text-base sm:text-lg font-bold text-navy font-display group-hover:text-teal transition-colors leading-snug">
+                    {project.title}
+                  </h4>
+                  <p className="mt-1 text-navy-800 text-xs leading-relaxed font-medium line-clamp-2">
+                    {project.summary}
+                  </p>
+                </div>
+
+                {/* Footer Action / Live Preview Button */}
+                <div className="pt-3 mt-3 border-t border-skyblue/20 flex items-center justify-between">
+                  {project.link && project.link !== '#' ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy text-white hover:bg-teal transition-all text-[11px] font-bold tracking-wide group/btn shadow-sm hover:shadow-md"
+                    >
+                      <Globe size={13} className="text-skyblue group-hover/btn:rotate-12 transition-transform" />
+                      <span>Visit Live Website</span>
+                      <ArrowUpRight size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </a>
+                  ) : (
+                    <span className="text-xs font-bold text-navy/50 italic">
+                      Private Client Platform
+                    </span>
+                  )}
+
+                  <span className="text-[10px] font-bold text-teal/80">
+                    Solvia Engineered
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* BLOG SECTION                               */}
+      {/* ========================================== */}
+      <section id="blog" className="pt-14 pb-16 sm:pt-16 sm:pb-20 scroll-mt-20 relative bg-white text-navy border-t border-skyblue/30 overflow-hidden w-full">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-5 sm:mb-6">
+            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-2.5 py-0.5 rounded-full">
+              Insights & Articles
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-extrabold text-navy mt-1.5 font-display">
+              Latest From Our Blog
+            </h3>
+            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
+              Technical breakdowns, UI/UX design trends, and full-stack software strategies from our engineering team.
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full">
+            {blogs.map((blog) => (
+              <article
+                key={blog.id}
+                className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-3.5 sm:p-4.5 shadow-soft hover:shadow-lift transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 overflow-hidden"
+              >
+                <div>
+                  {/* Category & Read Time Row */}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[9px] font-black uppercase tracking-wider bg-navy text-white px-2.5 py-0.5 rounded-full shadow-sm">
+                      {blog.category}
+                    </span>
+                    <span className="text-[9px] font-bold text-teal flex items-center gap-1">
+                      <Clock size={11} />
+                      {blog.readTime}
+                    </span>
+                  </div>
+
+                  {/* Thumbnail container */}
+                  <div className="relative w-full rounded-xl overflow-hidden mb-2.5 bg-slate-50 border border-skyblue/30 shadow-inner flex items-center justify-center aspect-[16/9] max-h-[175px]">
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="w-full h-full object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-500 ease-out p-1"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Date Meta */}
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-teal mb-1">
+                    <Calendar size={12} className="text-teal" />
+                    <span>{blog.date}</span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h4 className="text-base sm:text-lg font-bold text-navy font-display group-hover:text-teal transition-colors leading-snug">
+                    {blog.title}
+                  </h4>
+                  <p className="mt-1 text-navy-800 text-xs leading-relaxed font-medium line-clamp-2">
+                    {blog.summary}
+                  </p>
+                </div>
+
+                {/* Footer Action */}
+                <div className="pt-3 mt-3 border-t border-skyblue/20 flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-teal/80">
+                    Solvia Case Study
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedArticle(blog)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy text-white hover:bg-teal transition-all text-[11px] font-bold tracking-wide group/link shadow-sm cursor-pointer"
+                  >
+                    <span>Read Article</span>
+                    <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -483,115 +655,257 @@ export default function Home() {
       {/* ========================================== */}
       {/* CONTACT SECTION (Form & Glass Dock)        */}
       {/* ========================================== */}
-      <section id="contact" className="py-32 relative bg-beige border-t border-skyblue/30">
-        <div className="container-page max-w-4xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <p className="text-xs font-black tracking-[0.25em] text-navy-700 uppercase mb-4">Start a Project</p>
-            <h3 className="text-3xl sm:text-5xl font-black text-navy">Let's Build Together</h3>
-            <p className="mt-3 text-navy-800 text-sm max-w-md mx-auto leading-relaxed font-medium">
-              Have a product idea or system that needs premium 3D engineering? Shoot us a message!
+      <section id="contact" className="pt-12 pb-16 sm:pt-14 sm:pb-20 scroll-mt-16 relative bg-beige text-navy border-t border-skyblue/30 overflow-hidden w-full">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-4 sm:mb-5">
+            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-2.5 py-0.5 rounded-full">
+              Start a Project
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black text-navy mt-1.5 font-display">
+              Let's Build Together
+            </h3>
+            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
+              Have a product idea or system that needs premium full-stack engineering? Shoot us a message!
             </p>
           </div>
 
           {/* Form & Info Split */}
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+          <div className="grid md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
 
             {/* Contact Details Card */}
-            <div className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/90 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden gap-6">
+            <div className="p-4.5 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden gap-4">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
 
               <div>
-                <h4 className="text-xl font-bold text-navy mb-6">Contact Information</h4>
+                <h4 className="text-lg sm:text-xl font-black text-navy font-display mb-4">Contact Information</h4>
 
-                <div className="flex flex-col gap-6 text-sm font-semibold text-navy">
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
-                      <Mail size={18} />
+                <div className="flex flex-col gap-3.5 sm:gap-4 text-sm font-semibold text-navy">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0 shadow-xs">
+                      <Mail size={16} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Email Address</span>
-                      <a href={`mailto:${company.email}`} className="hover:text-teal-700 transition-colors text-navy break-all">{company.email}</a>
+                      <span className="block text-[9px] text-teal uppercase tracking-wider font-extrabold">Email Address</span>
+                      <a href={`mailto:${company.email}`} className="hover:text-teal transition-colors text-navy font-bold text-xs sm:text-sm break-all">{company.email}</a>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
-                      <Phone size={18} />
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0 shadow-xs">
+                      <Phone size={16} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">Phone Number</span>
-                      <a href={`tel:${company.phone}`} className="hover:text-teal-700 transition-colors text-navy break-all">{company.phone}</a>
+                      <span className="block text-[9px] text-teal uppercase tracking-wider font-extrabold">Phone Number</span>
+                      <a href={`tel:${company.phone}`} className="hover:text-teal transition-colors text-navy font-bold text-xs sm:text-sm break-all">{company.phone}</a>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0">
-                      <MapPin size={18} />
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-skyblue/30 border border-skyblue/40 flex items-center justify-center text-navy-700 shrink-0 shadow-xs">
+                      <MapPin size={16} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span className="block text-[10px] text-navy-700 uppercase tracking-wider font-extrabold">HQ Location</span>
-                      <span className="text-navy">{company.location}</span>
+                      <span className="block text-[9px] text-teal uppercase tracking-wider font-extrabold">HQ Location</span>
+                      <span className="text-navy font-bold text-xs sm:text-sm">{company.location}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Integrates the requested Social Flip Button for social links inside the contact card! */}
-              <ViewportLazy rootMargin="200px" fallback={<div className="h-10" />}>
-                <SocialFlipButton />
-              </ViewportLazy>
+              <div className="pt-3 border-t border-skyblue/20">
+                <ViewportLazy rootMargin="200px" fallback={<div className="h-10" />}>
+                  <SocialFlipButton />
+                </ViewportLazy>
+              </div>
             </div>
 
             {/* Simple Form card */}
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="p-5 sm:p-8 rounded-3xl border border-skyblue/40 bg-white/80 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-4 sm:gap-5"
+              className="p-4.5 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-3"
             >
               <div>
-                <label htmlFor="contact_name" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Your Name</label>
+                <label htmlFor="contact_name" className="block text-[11px] font-extrabold uppercase tracking-wider text-navy-700 mb-1">Your Name</label>
                 <input
                   id="contact_name"
                   name="name"
                   aria-label="Your Name"
                   type="text"
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
+                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact_email" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Email Address</label>
+                <label htmlFor="contact_email" className="block text-[11px] font-extrabold uppercase tracking-wider text-navy-700 mb-1">Email Address</label>
                 <input
                   id="contact_email"
                   name="email"
                   aria-label="Email Address"
                   type="email"
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors font-medium"
+                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact_message" className="block text-xs font-extrabold uppercase tracking-wider text-navy-700 mb-2">Message</label>
+                <label htmlFor="contact_message" className="block text-[11px] font-extrabold uppercase tracking-wider text-navy-700 mb-1">Message</label>
                 <textarea
                   id="contact_message"
                   name="message"
                   aria-label="Message"
-                  rows={4}
-                  className="w-full bg-white border border-skyblue/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-navy text-navy transition-colors resize-none font-medium"
+                  rows={3}
+                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all resize-none font-medium"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-navy to-teal text-white font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(86,124,141,0.3)] transition-shadow active:scale-95 duration-150"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-navy via-teal to-navy text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:shadow-lift transition-all active:scale-[0.99] duration-150 cursor-pointer"
               >
                 <span>Send Inquiry</span>
-                <Send size={15} />
+                <Send size={14} />
               </button>
             </form>
 
           </div>
         </div>
       </section>
+
+      {/* ========================================== */}
+      {/* ARTICLE READER MODAL                       */}
+      {/* ========================================== */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-navy/80 backdrop-blur-md overflow-y-auto"
+            onClick={() => setSelectedArticle(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="relative w-full max-w-3xl max-h-[90vh] bg-white rounded-3xl border border-skyblue/40 shadow-2xl overflow-hidden flex flex-col my-auto text-navy"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header Bar */}
+              <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white/95 backdrop-blur-md border-b border-skyblue/20">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-navy text-white px-3 py-1 rounded-full shadow-sm">
+                    {selectedArticle.category}
+                  </span>
+                  <span className="text-xs font-bold text-teal flex items-center gap-1">
+                    <Clock size={12} />
+                    {selectedArticle.readTime}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedArticle(null)}
+                  className="w-9 h-9 rounded-full bg-slate-100 hover:bg-teal hover:text-white text-navy flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close article modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Scrollable Content Body */}
+              <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
+                {/* Title & Date */}
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-teal mb-2">
+                    <Calendar size={13} />
+                    <span>{selectedArticle.date}</span>
+                    <span>•</span>
+                    <span>Solvia Codes Engineering Breakdown</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-black text-navy font-display leading-tight">
+                    {selectedArticle.title}
+                  </h2>
+                </div>
+
+                {/* Cover Image in crisp aspect container */}
+                <div className="relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-skyblue/30 shadow-inner flex items-center justify-center p-2">
+                  <img
+                    src={selectedArticle.image}
+                    alt={selectedArticle.title}
+                    className="w-full h-auto object-contain rounded-xl max-h-[320px]"
+                  />
+                </div>
+
+                {/* Summary Lead paragraph */}
+                <p className="text-sm sm:text-base font-semibold text-navy/85 leading-relaxed bg-beige/60 p-4 rounded-2xl border border-skyblue/30">
+                  {selectedArticle.summary}
+                </p>
+
+                {/* Tags */}
+                {selectedArticle.tags && (
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {selectedArticle.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-xs font-bold text-navy-700 bg-skyblue/30 border border-skyblue/40 px-3 py-1 rounded-lg"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Article Sections */}
+                {selectedArticle.sections && (
+                  <div className="space-y-6 pt-2">
+                    {selectedArticle.sections.map((section, sIdx) => (
+                      <div key={sIdx} className="space-y-2">
+                        <h3 className="text-lg sm:text-xl font-extrabold text-navy font-display">
+                          {section.heading}
+                        </h3>
+                        {section.content && (
+                          <p className="text-sm sm:text-base text-navy-800 leading-relaxed font-medium">
+                            {section.content}
+                          </p>
+                        )}
+                        {section.bullets && (
+                          <ul className="space-y-2 mt-2">
+                            {section.bullets.map((b, bIdx) => (
+                              <li key={bIdx} className="flex items-start gap-2.5 text-sm sm:text-base text-navy-800 font-medium leading-relaxed">
+                                <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0 mt-2" />
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Footer Call to Action */}
+              <div className="sticky bottom-0 z-20 flex items-center justify-between px-6 py-4 bg-slate-50 border-t border-skyblue/20">
+                <span className="text-xs font-bold text-navy/60">
+                  Engineered by Solvia Codes
+                </span>
+                {selectedArticle.link && (
+                  <a
+                    href={selectedArticle.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-navy to-teal text-white hover:opacity-90 transition-opacity text-xs font-bold shadow-md"
+                  >
+                    <Globe size={14} />
+                    <span>Visit Live Platform</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
