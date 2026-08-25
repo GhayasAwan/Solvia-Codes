@@ -111,9 +111,9 @@ export function SpotlightNavbar({
         }
     }, [activeIndex]);
 
-    const handleItemClick = (item, index) => {
+    const handleItemClick = (item, index, e) => {
         setActiveIndex(index);
-        onItemClick?.(item, index);
+        onItemClick?.(item, index, e);
     };
 
     return (
@@ -131,7 +131,7 @@ export function SpotlightNavbar({
                                 href={item.href || item.to}
                                 data-index={idx}
                                 onClick={(e) => {
-                                    handleItemClick(item, idx);
+                                    handleItemClick(item, idx, e);
                                 }}
                                 className={cn(
                                     "px-4 py-2 text-xs font-bold transition-colors duration-200 rounded-full",

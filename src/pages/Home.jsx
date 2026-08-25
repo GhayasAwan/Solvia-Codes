@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import {
-  Sparkles, Send, Mail, MapPin, Phone, Code2, ChevronDown, ExternalLink, ArrowUpRight, Globe,
-  Clock, Calendar, BookOpen, ArrowRight, X
+  Sparkles, Send, Mail, MapPin, Phone, Code2, ChevronDown, ExternalLink, ArrowUpRight, Globe
 } from 'lucide-react';
-import { company, faqs, projects, blogs } from '../data/siteData.js';
+import { company, faqs, projects } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
 import wardaImg from '../import/warda.webp';
@@ -118,7 +118,7 @@ function AboutSection() {
   const scale = useTransform(scrollYProgress, [0.05, 0.25], [0.95, 1]);
 
   return (
-    <section ref={targetRef} id="about" className="py-32 relative bg-beige overflow-hidden border-t border-skyblue/30">
+    <section ref={targetRef} id="about" className="py-16 sm:py-20 scroll-mt-20 relative bg-beige overflow-hidden border-t border-skyblue/30">
       {/* Decorative gradients */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
 
@@ -193,18 +193,18 @@ function TeamSection() {
   ];
 
   return (
-    <section id="team" className="py-24 relative bg-beige border-t border-skyblue/30 overflow-hidden">
+    <section id="team" className="py-16 sm:py-20 scroll-mt-20 relative bg-beige border-t border-skyblue/30 overflow-hidden">
       {/* Decorative center glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-teal/15 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container-page max-w-6xl px-4 relative z-10 mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12">
           <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
             Our Team
           </span>
-          <h3 className="text-3xl sm:text-5xl font-extrabold text-navy mt-4 font-display">
+          <h3 className="text-3xl sm:text-4xl font-extrabold text-navy mt-3 font-display">
             The Minds Behind Solvia
           </h3>
           <p className="mt-3 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
@@ -225,39 +225,39 @@ function TeamSection() {
 }
 
 function FaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section id="faq" className="py-20 relative bg-white overflow-hidden border-t border-skyblue/20">
-      <div className="container-page max-w-3xl px-4 relative z-10 mx-auto">
-        <div className="text-center mb-10">
-          <span className="text-[10px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-3 py-1 rounded-full">
+    <section id="faq" className="py-12 sm:py-16 relative bg-white overflow-hidden border-t border-skyblue/20 scroll-mt-20">
+      <div className="container-page max-w-2xl px-4 relative z-10 mx-auto">
+        <div className="text-center mb-6 sm:mb-8">
+          <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-3 py-0.5 rounded-full">
             Frequently Asked Questions
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-navy mt-3 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-extrabold font-display text-navy mt-2 tracking-tight">
             Got Questions? We Have Answers.
           </h2>
-          <p className="text-navy font-semibold text-xs sm:text-sm mt-2 max-w-xl mx-auto leading-relaxed">
-            Everything you need to know about our web development, SaaS product building, UI/UX design, and performance marketing services.
+          <p className="text-navy font-medium text-xs mt-1.5 max-w-md mx-auto leading-relaxed">
+            Everything you need to know about our web development, SaaS product building, UI/UX design, and marketing services.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2 sm:gap-2.5">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="rounded-xl border border-skyblue/40 bg-beige/50 overflow-hidden transition-all duration-300 shadow-sm"
+                className="rounded-xl border border-skyblue/40 bg-beige/40 overflow-hidden transition-all duration-200 shadow-xs hover:border-skyblue"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 font-bold text-navy text-sm sm:text-base hover:text-teal transition-colors"
+                  className="w-full py-3 px-4 sm:py-3.5 sm:px-5 text-left flex items-center justify-between gap-3 font-bold text-navy text-xs sm:text-sm hover:text-teal transition-colors cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span>{faq.question}</span>
                   <ChevronDown
-                    size={18}
+                    size={16}
                     className={`shrink-0 text-teal transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                   />
                 </button>
@@ -268,10 +268,10 @@ function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-5 sm:px-5 pt-0 text-navy text-xs sm:text-sm leading-relaxed border-t border-skyblue/20 pt-3 font-medium">
+                      <div className="px-4 pb-3.5 sm:px-5 text-navy text-xs leading-relaxed border-t border-skyblue/20 pt-2.5 font-medium">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -289,24 +289,21 @@ function FaqSection() {
 export default function Home() {
   const containerRef = useRef(null);
   const [videoSrc, setVideoSrc] = useState(null);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const location = useLocation();
 
-  // Lock body scroll when reading an article
   useEffect(() => {
-    if (selectedArticle) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+    if (location.hash) {
+      const targetEl = document.querySelector(location.hash);
+      if (targetEl) {
+        const timer = setTimeout(() => {
+          const navbarHeight = 85;
+          const targetY = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }, 80);
+        return () => clearTimeout(timer);
+      }
     }
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedArticle(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedArticle]);
+  }, [location.hash]);
 
   useEffect(() => {
     const loadVideo = () => {
@@ -456,7 +453,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* SERVICES SECTION (Solar System Orbit)      */}
       {/* ========================================== */}
-      <section id="services" className="py-28 sm:py-32 relative bg-navy text-white border-t border-skyblue/30 overflow-hidden w-full">
+      <section id="services" className="pt-8 pb-14 sm:pt-10 sm:pb-16 scroll-mt-20 relative bg-navy text-white border-t border-skyblue/30 overflow-hidden w-full">
         <div className="container-page mx-auto px-4 sm:px-6">
           <ViewportLazy
             rootMargin="300px"
@@ -561,87 +558,6 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================== */}
-      {/* BLOG SECTION                               */}
-      {/* ========================================== */}
-      <section id="blog" className="pt-14 pb-16 sm:pt-16 sm:pb-20 scroll-mt-20 relative bg-white text-navy border-t border-skyblue/30 overflow-hidden w-full">
-        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-5 sm:mb-6">
-            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-2.5 py-0.5 rounded-full">
-              Insights & Articles
-            </span>
-            <h3 className="text-2xl sm:text-4xl font-extrabold text-navy mt-1.5 font-display">
-              Latest From Our Blog
-            </h3>
-            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
-              Technical breakdowns, UI/UX design trends, and full-stack software strategies from our engineering team.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full">
-            {blogs.map((blog) => (
-              <article
-                key={blog.id}
-                className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-3.5 sm:p-4.5 shadow-soft hover:shadow-lift transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 overflow-hidden"
-              >
-                <div>
-                  {/* Category & Read Time Row */}
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[9px] font-black uppercase tracking-wider bg-navy text-white px-2.5 py-0.5 rounded-full shadow-sm">
-                      {blog.category}
-                    </span>
-                    <span className="text-[9px] font-bold text-teal flex items-center gap-1">
-                      <Clock size={11} />
-                      {blog.readTime}
-                    </span>
-                  </div>
-
-                  {/* Thumbnail container */}
-                  <div className="relative w-full rounded-xl overflow-hidden mb-2.5 bg-slate-50 border border-skyblue/30 shadow-inner flex items-center justify-center aspect-[16/9] max-h-[175px]">
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-full object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-500 ease-out p-1"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Date Meta */}
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-teal mb-1">
-                    <Calendar size={12} className="text-teal" />
-                    <span>{blog.date}</span>
-                  </div>
-
-                  {/* Title & Description */}
-                  <h4 className="text-base sm:text-lg font-bold text-navy font-display group-hover:text-teal transition-colors leading-snug">
-                    {blog.title}
-                  </h4>
-                  <p className="mt-1 text-navy-800 text-xs leading-relaxed font-medium line-clamp-2">
-                    {blog.summary}
-                  </p>
-                </div>
-
-                {/* Footer Action */}
-                <div className="pt-3 mt-3 border-t border-skyblue/20 flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-teal/80">
-                    Solvia Case Study
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedArticle(blog)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy text-white hover:bg-teal transition-all text-[11px] font-bold tracking-wide group/link shadow-sm cursor-pointer"
-                  >
-                    <span>Read Article</span>
-                    <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </article>
             ))}
           </div>
         </div>
@@ -770,142 +686,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ========================================== */}
-      {/* ARTICLE READER MODAL                       */}
-      {/* ========================================== */}
-      <AnimatePresence>
-        {selectedArticle && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-navy/80 backdrop-blur-md overflow-y-auto"
-            onClick={() => setSelectedArticle(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="relative w-full max-w-3xl max-h-[90vh] bg-white rounded-3xl border border-skyblue/40 shadow-2xl overflow-hidden flex flex-col my-auto text-navy"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Header Bar */}
-              <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white/95 backdrop-blur-md border-b border-skyblue/20">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-navy text-white px-3 py-1 rounded-full shadow-sm">
-                    {selectedArticle.category}
-                  </span>
-                  <span className="text-xs font-bold text-teal flex items-center gap-1">
-                    <Clock size={12} />
-                    {selectedArticle.readTime}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setSelectedArticle(null)}
-                  className="w-9 h-9 rounded-full bg-slate-100 hover:bg-teal hover:text-white text-navy flex items-center justify-center transition-colors cursor-pointer"
-                  aria-label="Close article modal"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              {/* Scrollable Content Body */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
-                {/* Title & Date */}
-                <div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-teal mb-2">
-                    <Calendar size={13} />
-                    <span>{selectedArticle.date}</span>
-                    <span>•</span>
-                    <span>Solvia Codes Engineering Breakdown</span>
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-navy font-display leading-tight">
-                    {selectedArticle.title}
-                  </h2>
-                </div>
-
-                {/* Cover Image in crisp aspect container */}
-                <div className="relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-skyblue/30 shadow-inner flex items-center justify-center p-2">
-                  <img
-                    src={selectedArticle.image}
-                    alt={selectedArticle.title}
-                    className="w-full h-auto object-contain rounded-xl max-h-[320px]"
-                  />
-                </div>
-
-                {/* Summary Lead paragraph */}
-                <p className="text-sm sm:text-base font-semibold text-navy/85 leading-relaxed bg-beige/60 p-4 rounded-2xl border border-skyblue/30">
-                  {selectedArticle.summary}
-                </p>
-
-                {/* Tags */}
-                {selectedArticle.tags && (
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {selectedArticle.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-xs font-bold text-navy-700 bg-skyblue/30 border border-skyblue/40 px-3 py-1 rounded-lg"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Article Sections */}
-                {selectedArticle.sections && (
-                  <div className="space-y-6 pt-2">
-                    {selectedArticle.sections.map((section, sIdx) => (
-                      <div key={sIdx} className="space-y-2">
-                        <h3 className="text-lg sm:text-xl font-extrabold text-navy font-display">
-                          {section.heading}
-                        </h3>
-                        {section.content && (
-                          <p className="text-sm sm:text-base text-navy-800 leading-relaxed font-medium">
-                            {section.content}
-                          </p>
-                        )}
-                        {section.bullets && (
-                          <ul className="space-y-2 mt-2">
-                            {section.bullets.map((b, bIdx) => (
-                              <li key={bIdx} className="flex items-start gap-2.5 text-sm sm:text-base text-navy-800 font-medium leading-relaxed">
-                                <span className="w-1.5 h-1.5 rounded-full bg-teal shrink-0 mt-2" />
-                                <span>{b}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Footer Call to Action */}
-              <div className="sticky bottom-0 z-20 flex items-center justify-between px-6 py-4 bg-slate-50 border-t border-skyblue/20">
-                <span className="text-xs font-bold text-navy/60">
-                  Engineered by Solvia Codes
-                </span>
-                {selectedArticle.link && (
-                  <a
-                    href={selectedArticle.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-navy to-teal text-white hover:opacity-90 transition-opacity text-xs font-bold shadow-md"
-                  >
-                    <Globe size={14} />
-                    <span>Visit Live Platform</span>
-                    <ArrowUpRight size={14} />
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

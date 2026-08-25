@@ -69,11 +69,11 @@ export default function SolarSystemOrbit() {
   };
 
   return (
-    <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-12 items-center min-h-[600px] relative z-10 w-full overflow-hidden">
+    <div className="grid lg:grid-cols-[1.1fr_1.3fr] gap-8 lg:gap-12 items-center min-h-[520px] relative z-10 w-full overflow-hidden">
       {/* Left Details Panel */}
       <div className="flex flex-col justify-center h-full">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm w-fit mb-6">
-          <Sparkles size={14} className="text-skyblue" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-skyblue/20 border border-skyblue/30 shadow-sm w-fit mb-3.5">
+          <Sparkles size={13} className="text-skyblue" />
           <span className="text-[10px] font-extrabold tracking-widest text-skyblue uppercase">3D Tech Ecosystem</span>
         </div>
 
@@ -84,12 +84,12 @@ export default function SolarSystemOrbit() {
           </span>
         </h3>
 
-        <p className="mt-4 text-skyblue/90 text-sm sm:text-base max-w-lg leading-relaxed">
+        <p className="mt-2.5 text-skyblue/90 text-xs sm:text-sm max-w-lg leading-relaxed font-medium">
           Hover over any orbiting tech sphere on the right to examine our core domains, toolkits, and how we build your product.
         </p>
 
         {/* Selected Service Card Display with Smooth Slide/Fade transition */}
-        <div className="mt-8 relative min-h-[220px]">
+        <div className="mt-5 relative min-h-[210px]">
           <AnimatePresence mode="wait">
             {selectedTech && (
               <motion.div

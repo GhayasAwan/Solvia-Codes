@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { company, navLinks } from '../data/siteData.js';
 import logo from '../import/logo.webp';
 import { SpotlightNavbar } from './SpotlightNavbar.jsx';
@@ -9,8 +10,17 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('#home');
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isBlogPage = location.pathname === '/blog';
 
   useEffect(() => {
+    if (isBlogPage) {
+      setActive('/blog');
+      return;
+    }
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       setScrolled(prev => (prev !== isScrolled ? isScrolled : prev));
@@ -35,6 +45,7 @@ export default function Navbar() {
     }, observerOptions);
 
     const sections = navLinks
+      .filter(link => link.to.startsWith('#'))
       .map(link => document.querySelector(link.to))
       .filter(Boolean);
 
@@ -44,7 +55,49 @@ export default function Navbar() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, []);
+  }, [isBlogPage, location.pathname]);
+
+  const handleNavClick = (link, e) => {
+    if (e) e.preventDefault();
+    setOpen(false);
+
+    if (link.to === '/blog') {
+      setActive('/blog');
+      navigate('/blog');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // It is a hash link like #about, #work, #services, #faq, #contact
+    if (isBlogPage) {
+      // Go to home page with hash
+      navigate(`/${link.to}`);
+    } else {
+      setActive(link.to);
+      const targetEl = document.querySelector(link.to);
+      if (targetEl) {
+        const navbarHeight = 85;
+        const targetY = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setOpen(false);
+    if (isBlogPage) {
+      navigate('/');
+    } else {
+      setActive('#home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const isNavSolid = isBlogPage || scrolled;
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 flex justify-center p-4 transition-all duration-355">
@@ -53,27 +106,25 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`relative flex w-full max-w-6xl mx-auto items-center justify-between rounded-full px-6 py-3 transition-all duration-500 ${
-          scrolled 
+          isNavSolid 
             ? 'bg-white/90 shadow-soft backdrop-blur-xl border border-skyblue/20' 
             : 'bg-transparent'
         }`}
       >
-        {/* Glow Accent when Scrolled */}
-
         {/* Logo / Brand */}
         <a 
-          href="#home" 
-          className="flex items-center gap-3 group"
-          onClick={() => { setOpen(false); setActive('#home'); }}
+          href="/" 
+          className="flex items-center gap-3 group cursor-pointer"
+          onClick={handleLogoClick}
         >
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full overflow-hidden shadow-[0_0_15px_rgba(86,124,141,0.3)] bg-transparent">
             <img src={logo} alt="Solvia Codes - Software House, Graphic Design & SaaS Agency Peshawar" width="48" height="48" decoding="async" fetchPriority="high" className="w-full h-full object-cover scale-[1.07] origin-center" />
           </div>
           <div className="flex flex-col justify-center">
-            <span className={`text-xl font-black uppercase tracking-widest leading-none transition-colors ${scrolled ? 'text-navy group-hover:text-teal' : 'text-white group-hover:text-skyblue'}`}>
+            <span className={`text-xl font-black uppercase tracking-widest leading-none transition-colors ${isNavSolid ? 'text-navy group-hover:text-teal' : 'text-white group-hover:text-skyblue'}`}>
               {company.name}
             </span>
-            <span className={`text-[9px] font-semibold uppercase tracking-[0.18em] leading-none mt-0.5 transition-colors ${scrolled ? 'text-teal/70' : 'text-skyblue/70'}`}>
+            <span className={`text-[9px] font-semibold uppercase tracking-[0.18em] leading-none mt-0.5 transition-colors ${isNavSolid ? 'text-teal/70' : 'text-skyblue/70'}`}>
               {company.tagline}
             </span>
           </div>
@@ -85,19 +136,16 @@ export default function Navbar() {
             items={navLinks}
             defaultActiveIndex={0}
             activeIndex={Math.max(0, navLinks.findIndex(l => l.to === active))}
-            scrolled={scrolled}
+            scrolled={isNavSolid}
+            onItemClick={(item, idx, e) => handleNavClick(item, e)}
           />
         </div>
 
-        {/* Desktop Controls (CTA only — no theme toggle) */}
-        <div className="hidden md:flex items-center gap-3">
-        </div>
-
-        {/* Mobile Controls — no theme toggle */}
+        {/* Mobile Controls */}
         <div className="flex items-center gap-2 md:hidden ml-auto">
           <button
             type="button"
-            className={`flex h-11 w-11 items-center justify-center rounded-full border transition ${scrolled ? 'border-skyblue/40 text-navy bg-white/60 hover:bg-skyblue/20' : 'border-white/30 text-white bg-white/10 hover:bg-white/20'}`}
+            className={`flex h-11 w-11 items-center justify-center rounded-full border transition cursor-pointer ${isNavSolid ? 'border-skyblue/40 text-navy bg-white/60 hover:bg-skyblue/20' : 'border-white/30 text-white bg-white/10 hover:bg-white/20'}`}
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
           >
@@ -119,22 +167,21 @@ export default function Navbar() {
                 {navLinks.map((link) => {
                   const isActive = active === link.to;
                   return (
-                    <a
+                    <button
                       key={link.to}
-                      href={link.to}
-                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold tracking-wide transition-all ${
+                      type="button"
+                      onClick={(e) => handleNavClick(link, e)}
+                      className={`w-full flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold tracking-wide transition-all cursor-pointer ${
                         isActive 
                           ? 'bg-gradient-to-r from-teal/20 to-skyblue/30 text-navy font-black border border-teal/40' 
                           : 'text-navy-800 hover:bg-skyblue/10 hover:text-navy border border-transparent'
                       }`}
-                      onClick={() => { setOpen(false); setActive(link.to); }}
                     >
                       <span>{link.label}</span>
                       {isActive && <div className="h-1.5 w-1.5 rounded-full bg-teal shadow-[0_0_8px_#567C8D]" />}
-                    </a>
+                    </button>
                   );
                 })}
-
               </div>
             </motion.div>
           )}
@@ -143,3 +190,4 @@ export default function Navbar() {
     </header>
   );
 }
+

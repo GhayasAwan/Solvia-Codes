@@ -28,7 +28,7 @@ export const navLinks = [
   { label: 'Team', to: '#team' },
   { label: 'Services', to: '#services' },
   { label: 'Work', to: '#work' },
-  { label: 'Blog', to: '#blog' },
+  { label: 'Blog', to: '/blog' },
   { label: 'FAQ', to: '#faq' },
   { label: 'Contact', to: '#contact' }
 ];
@@ -84,69 +84,80 @@ export const projects = [
 export const blogs = [
   {
     id: 'ehub-aiverse-case-study',
-    title: 'Inside EHub AI Verse: Engineering a Full-Stack LMS & PWA',
-    category: 'SaaS & Cloud Architecture',
+    title: 'How We Built EHub AI Verse: Online IELTS Preparation Portal',
+    category: 'SaaS & Web App',
     readTime: '5 min read',
     date: 'Aug 23, 2026',
-    image: '/assets/ehub-aiverse.svg',
-    summary: 'How we built the EHub AI Verse student portal with secure 2-step OTP recovery, interactive IELTS practice tasks, analytics dashboards, and offline-capable PWA technology.',
+    image: '/assets/ehub-aiverse-collage.svg',
+    summary: 'How Solvia Codes developed a smart student portal and mobile app for E-Hub Institute, allowing students to practice IELTS Reading, Writing, Listening, and AI Speaking tests from home.',
     link: 'https://aiverse.ehubinstitute.com',
-    tags: ['EHub AI Verse', 'LMS', 'PWA', 'React', 'REST API'],
+    tags: ['EHub AI Verse', 'Student Portal', 'React', 'AI Speaking Evaluation', 'Mobile App'],
     sections: [
       {
-        heading: 'Project Overview & Objectives',
-        content: 'EHub AI Verse was conceived as an intelligent, high-speed learning management ecosystem tailored specifically for students preparing for IELTS and English language certifications. The primary goal was to eliminate traditional learning friction by providing a unified digital portal equipped with automated progress analytics, practice tasks, and instant device installability.'
+        heading: 'Why E-Hub Institute Needed This Portal',
+        content: 'Previously, students and teachers relied entirely on physical paper worksheets and in-person checks. Teachers faced heavy workloads checking papers manually, while students could not practice listening or speaking tasks properly from home. E-Hub Institute wanted a modern, easy-to-use digital portal and mobile app where students could practice anytime and track their preparation progress.'
       },
       {
-        heading: 'Key Architectural Modules Built',
+        heading: 'Fast 15-Day Delivery & AI Speaking Evaluation',
+        content: 'Solvia Codes built and delivered the complete platform in just 15 days. The biggest achievement was developing the AI Speaking Task Evaluation — enabling students to record cue card responses via microphone and receive an instant, accurate IELTS band score (Band 1.0 to 9.0) with detailed evaluation feedback.'
+      },
+      {
+        heading: 'Key Features Delivered',
         bullets: [
-          '2-Step OTP Authentication & Security: Implemented secure email-based OTP password recovery and encrypted session management ensuring zero account compromises.',
-          'Comprehensive IELTS Practice Modules: Dedicated interactive engines for Reading (with passage timers), Listening, Writing (timed submissions), Speaking, and 1000+ Vocabulary flashcards.',
-          'Student Analytics & Progress Streaks: Real-time visual dashboards tracking daily study streaks, module completion percentages, and personalized weakness analytics.',
-          'Progressive Web App (PWA) Integration: Engineered complete service worker caching and web manifests allowing students to install the app natively on Android, iOS, and Desktop with offline resiliency.'
+          'Personalized Student Dashboard: Daily study streak tracking, progress overview, and continuing where you left off.',
+          'Complete 4-Module IELTS Engine: Reading with countdown timers, Listening with audio tracks, Writing with word counters, and Speaking with instant AI band scores.',
+          '1,000+ IELTS Vocabulary Engine: Audio pronunciation for every word with difficulty levels and search filters.',
+          'Admin Management Panel: Student management, task assignments, activity curves, and performance leaderboards.',
+          'Installable Mobile App (PWA): Students can install the portal directly onto Android, iOS, and PC without any app store setup.',
+          'Secure 2-Step OTP Login: Email-based password recovery and secure student accounts.'
         ]
       },
       {
-        heading: 'Technical Stack & Engineering Decisions',
-        content: 'We utilized React 18 for component modularity, Tailwind CSS for high-performance visual design, and structured REST API bridges for real-time authentication and dashboard data fetching. By optimizing initial bundle sizes and implementing lazy routing, the portal achieves near-instant interaction speeds.'
+        heading: 'Technology Used',
+        content: 'We used React and Tailwind CSS for a fast, responsive interface, combined with Progressive Web App (PWA) technology for mobile installation. The backend uses secure Node.js APIs and cloud databases, integrated with speech recognition for real-time speaking test analysis.'
       },
       {
-        heading: 'Outcome & Measurable Impact',
-        content: 'Following the launch, EHub AI Verse successfully onboarded over 1,000+ active students in its initial cycle, drastically reducing manual administration overhead and boosting daily student test practice by over 60%.'
+        heading: 'Results & Success',
+        content: 'All active IELTS students of E-Hub Institute now use the portal daily. Teachers save over 70% of their manual checking time, and the institute successfully transitioned to a modern, fully digital ed-tech learning environment.'
       }
     ]
   },
   {
     id: 'ehub-institute-web-design',
-    title: 'Designing for Education: The UI/UX Behind E-Hub Institute',
-    category: 'UI/UX & Web Design',
+    title: 'How We Rebuilt E-Hub Institute\'s Official Website & AI Chatbot in 1 Week',
+    category: 'Website & AI Assistant',
     readTime: '4 min read',
     date: 'Aug 19, 2026',
     image: '/assets/ehub-institute.svg',
-    summary: 'Crafting a high-converting web platform for Peshawar\'s premier English training institute — featuring royal maroon branding, dynamic course catalogs, and interactive student success showcases.',
+    summary: 'How Solvia Codes restored E-Hub Institute\'s lost online presence after a website suspension by designing, building, and deploying a new high-speed website with an AI assistant in just 7 days.',
     link: 'https://www.ehubinstitute.com',
-    tags: ['E-Hub Institute', 'UI/UX Design', 'Branding', 'Design System', 'SEO'],
+    tags: ['E-Hub Institute', 'Web Development', 'AI Chatbot', 'React', 'SEO Recovery', '1-Week Delivery'],
     sections: [
       {
-        heading: 'The Vision & Brand Strategy',
-        content: 'As the leading English language and IELTS training institute in Peshawar, E-Hub Institute required a digital flagship that conveyed academic prestige, trust, and modern accessibility. We developed a distinct visual identity anchored in deep royal maroon (#660033) and elegant gold accents (#C5A059), paired with editorial typography.'
+        heading: 'The Crisis: Website Suspension & Lost Online Presence',
+        content: 'E-Hub Institute faced a critical situation when their previous website was suspended due to technical strikes, completely removing them from Google search results. This wiped out their digital presence in Peshawar, leaving students unable to find courses, contact administration, or verify credentials online. They needed an urgent, modern website built from scratch to restore their reputation.'
       },
       {
-        heading: 'Key Platform Highlights',
+        heading: 'Fast 1-Week Turnaround: Design to Deployment',
+        content: 'Solvia Codes mobilized immediately to design, develop, and deploy a brand new official web platform in just 7 days. We crafted a premium royal maroon visual identity, engineered lightning-fast page loading speeds under 0.4 seconds, and structured localized SEO data to rapidly rebuild Google search authority.'
+      },
+      {
+        heading: 'Key Features & Interactive AI Chatbot',
         bullets: [
-          'High-Conversion Course Catalog: Clean, filterable course pathways for IELTS Academic & General, Spoken English, and international TEFL/TESOL teacher certifications.',
-          'Student Wall of Fame & Social Proof: Highlighting real student test scores, university admissions, and verified video testimonials to build immediate applicant trust.',
-          'Sub-Second Core Web Vitals: Engineered critical inline CSS and parallel font preloading to achieve an initial paint time of under 0.4 seconds on mobile networks.',
-          'Interactive Campus & Event Showcases: Fluid multimedia galleries documenting British Council partnership meets, student graduations, and masterclasses.'
+          '24/7 AI Student Chatbot: An intelligent virtual assistant built into the website to automatically answer student questions regarding course details, timings, and fee structures.',
+          'Comprehensive Course Catalog: Clean, filterable sections for IELTS Academic & General, Spoken English, and International Teacher Certifications.',
+          'Student Wall of Fame: Highlighting real student scorecards (Band 7.5+ and 8.0+) to establish instant trust and social proof.',
+          'British Council Partner Showcase: Highlighting official certifications and partnership credentials.',
+          'Quick Admission Inquiry Forms: Streamlined mobile-friendly contact forms delivering instant student leads to management.'
         ]
       },
       {
-        heading: 'Local SEO & Discoverability',
-        content: 'Integrated comprehensive Schema.org JSON-LD structured data (Organization, LocalBusiness, Service ItemLists, and FAQPage schemas) with localized geo-coordinates (Peshawar, PK-KP) to secure top-tier organic search rankings.'
+        heading: 'Modern Tech Stack & SEO Recovery',
+        content: 'Built using React, Vite, and Tailwind CSS for exceptional responsiveness on mobile devices. We implemented comprehensive Schema.org JSON-LD structured data and geo-targeted meta profiling to ensure Google immediately re-indexed the institute\'s official domain.'
       },
       {
-        heading: 'Business Results',
-        content: 'The new digital platform resulted in a 45% increase in online student enrollment inquiries within the first month and delivered a seamless gateway into the EHub AI Verse student portal.'
+        heading: 'Results & Restored Digital Authority',
+        content: 'The launch completely solved the institute\'s digital absence. E-Hub Institute re-established strong Google profiling for IELTS and English training in Peshawar, while the integrated AI chatbot automated student inquiries round the clock.'
       }
     ]
   }
