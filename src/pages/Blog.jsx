@@ -56,7 +56,7 @@ export default function Blog() {
           {blogs.map((blog) => (
             <article
               key={blog.id}
-              className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-4 sm:p-5 shadow-soft hover:shadow-lift transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 overflow-hidden"
+              className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-4 sm:p-5 shadow-soft flex flex-col justify-between overflow-hidden"
             >
               <div>
                 {/* Thumbnail container (Fills card frame edge-to-edge) */}
@@ -64,7 +64,7 @@ export default function Blog() {
                   <img
                     src={blog.image}
                     alt={blog.title}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                   />
                 </div>
@@ -81,7 +81,7 @@ export default function Blog() {
                 </div>
 
                 {/* Title & Description */}
-                <h2 className="text-base sm:text-lg font-bold text-navy font-display group-hover:text-teal transition-colors leading-snug">
+                <h2 className="text-base sm:text-lg font-bold text-navy font-display leading-snug">
                   {blog.title}
                 </h2>
                 <p className="mt-1.5 text-navy-800 text-xs leading-relaxed font-medium line-clamp-2">
