@@ -62,6 +62,7 @@ export const services = [
 
 export const projects = [
   {
+    id: 1,
     title: 'EHub AI Verse - Student Portal & LMS',
     category: 'SaaS Development',
     tags: ['React', 'REST API', 'PWA', 'Tailwind CSS'],
@@ -71,6 +72,7 @@ export const projects = [
     featured: true
   },
   {
+    id: 2,
     title: 'E-Hub Institute - Official Web Platform',
     category: 'Web & UI/UX Design',
     tags: ['React', 'Vite', 'UI/UX Design', 'Performance SEO'],

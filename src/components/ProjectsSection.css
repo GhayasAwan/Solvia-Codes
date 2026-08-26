@@ -1,0 +1,170 @@
+/* Stacking Cards Container */
+.stacking-cards-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual Sticky Card */
+.sticky-card {
+  position: sticky;
+  margin-bottom: 45vh; /* Large bottom margin for scrolling distance */
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 -15px 20px rgba(0, 0, 0, 0.08), 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(86, 124, 141, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sticky-card:hover {
+  box-shadow: 0 -15px 25px rgba(0, 0, 0, 0.12), 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  .sticky-card {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 320px;
+  }
+}
+
+/* Left Column (Content & Description) */
+.card-left-column {
+  flex: 1;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.badge-category {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #0b192c;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.badge-featured {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #1e3e62;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0b192c;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.tag-pill {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0b192c;
+  background-color: rgba(86, 124, 141, 0.15);
+  border: 1px solid rgba(86, 124, 141, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: #2b394a;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.card-action-row {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(86, 124, 141, 0.15);
+}
+
+.btn-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #0b192c;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-read-more:hover {
+  background-color: #1e3e62;
+  transform: translateY(-1px);
+}
+
+/* Right Column (Image Placeholder / Distinct BG) */
+.card-right-column {
+  flex: 1;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  min-height: 220px;
+}
+
+@media (min-width: 768px) {
+  .card-right-column {
+    min-height: auto;
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.sticky-card:hover .card-image {
+  transform: scale(1.02);
+}

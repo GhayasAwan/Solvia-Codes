@@ -7,6 +7,7 @@ import {
 import { company, faqs, projects } from '../data/siteData.js';
 import MorphWord from '../components/MorphWord.jsx';
 import TeamCard from '../components/TeamCard.jsx';
+import ProjectsSection from '../components/ProjectsSection.jsx';
 import wardaImg from '../import/warda.webp';
 import MuhammadhamzaImg from '../import/hamza.webp';
 import ghayasImg from '../import/ghayas.webp';
@@ -320,7 +321,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-hidden selection:bg-teal selection:text-white">
+    <div ref={containerRef} className="bg-beige text-navy min-h-screen relative overflow-x-clip selection:bg-teal selection:text-white">
 
       {/* GLOBAL BACKGROUND GLOWS */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-skyblue/25 to-transparent rounded-full blur-[120px] pointer-events-none" />
@@ -467,101 +468,7 @@ export default function Home() {
       {/* ========================================== */}
       {/* PROJECTS SECTION                           */}
       {/* ========================================== */}
-      <section id="work" className="pt-14 pb-16 sm:pt-16 sm:pb-20 scroll-mt-20 relative bg-beige text-navy border-t border-skyblue/30 overflow-hidden w-full">
-        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-5 sm:mb-6">
-            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-2.5 py-0.5 rounded-full">
-              Our Work
-            </span>
-            <h3 className="text-2xl sm:text-4xl font-extrabold text-navy mt-1.5 font-display">
-              Featured Projects
-            </h3>
-            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
-              Explore our real-world client platforms, full-stack SaaS portals, and high-performance web systems.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full">
-            {projects.map((project, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 p-3.5 sm:p-4.5 shadow-soft hover:shadow-lift transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 overflow-hidden"
-              >
-                <div>
-                  {/* Top Badges Row */}
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[9px] font-black uppercase tracking-wider bg-navy text-white px-2.5 py-0.5 rounded-full shadow-sm">
-                      {project.category}
-                    </span>
-                    {project.featured && (
-                      <span className="text-[9px] font-black uppercase tracking-wider bg-teal text-white px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                        Live Project
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Thumbnail / Image - 100% Full Uncropped View */}
-                  <div className="relative w-full rounded-xl overflow-hidden mb-2.5 bg-slate-50/80 border border-skyblue/30 shadow-inner flex items-center justify-center aspect-[16/9] max-h-[175px]">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} - Solvia Codes Project`}
-                      className="w-full h-full object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-500 ease-out p-1"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Tech stack tags */}
-                  {project.tags && (
-                    <div className="flex flex-wrap gap-1.5 mb-1.5">
-                      {project.tags.map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[9px] font-bold text-navy-700 bg-skyblue/30 border border-skyblue/40 px-2 py-0.5 rounded-md"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Title & Description */}
-                  <h4 className="text-base sm:text-lg font-bold text-navy font-display group-hover:text-teal transition-colors leading-snug">
-                    {project.title}
-                  </h4>
-                  <p className="mt-1 text-navy-800 text-xs leading-relaxed font-medium line-clamp-2">
-                    {project.summary}
-                  </p>
-                </div>
-
-                {/* Footer Action / Live Preview Button */}
-                <div className="pt-3 mt-3 border-t border-skyblue/20 flex items-center justify-between">
-                  {project.link && project.link !== '#' ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy text-white hover:bg-teal transition-all text-[11px] font-bold tracking-wide group/btn shadow-sm hover:shadow-md"
-                    >
-                      <Globe size={13} className="text-skyblue group-hover/btn:rotate-12 transition-transform" />
-                      <span>Visit Live Website</span>
-                      <ArrowUpRight size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                    </a>
-                  ) : (
-                    <span className="text-xs font-bold text-navy/50 italic">
-                      Private Client Platform
-                    </span>
-                  )}
-
-                  <span className="text-[10px] font-bold text-teal/80">
-                    Solvia Engineered
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProjectsSection />
 
       {/* ========================================== */}
       {/* FAQ SECTION (Interactive Accordion & SEO)  */}
