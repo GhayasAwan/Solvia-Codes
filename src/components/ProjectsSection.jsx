@@ -89,7 +89,7 @@ export default function ProjectsSection() {
                       <div />
                     )}
 
-                    <span className="text-[10px] font-bold text-teal/80 uppercase tracking-widest">
+                    <span className="text-[10px] font-extrabold text-navy/85 uppercase tracking-widest">
                       Solvia Engineered
                     </span>
                   </div>

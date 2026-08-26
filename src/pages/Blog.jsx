@@ -105,7 +105,7 @@ export default function Blog() {
 
               {/* Footer Action */}
               <div className="pt-3.5 mt-3.5 border-t border-skyblue/20 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-teal/80">
+                <span className="text-[10px] font-bold text-navy/85">
                   Full Case Study
                 </span>
 
