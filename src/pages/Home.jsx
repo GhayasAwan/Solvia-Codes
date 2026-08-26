@@ -230,7 +230,7 @@ function FaqSection() {
 
   return (
     <section id="faq" className="py-12 sm:py-16 relative bg-white overflow-hidden border-t border-skyblue/20 scroll-mt-20">
-      <div className="container-page max-w-2xl px-4 relative z-10 mx-auto">
+      <div className="w-full max-w-[850px] px-4 sm:px-6 relative z-10 mx-auto">
         <div className="text-center mb-6 sm:mb-8">
           <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-skyblue/30 border border-skyblue/40 px-3 py-0.5 rounded-full">
             Frequently Asked Questions
@@ -478,25 +478,25 @@ export default function Home() {
       {/* ========================================== */}
       {/* CONTACT SECTION (Form & Glass Dock)        */}
       {/* ========================================== */}
-      <section id="contact" className="pt-12 pb-16 sm:pt-14 sm:pb-20 scroll-mt-16 relative bg-beige text-navy border-t border-skyblue/30 overflow-hidden w-full">
+      <section id="contact" className="pt-16 pb-16 sm:pt-20 sm:pb-20 scroll-mt-28 relative bg-beige text-navy border-t border-skyblue/30 overflow-hidden w-full">
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-4 sm:mb-5">
-            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-2.5 py-0.5 rounded-full">
+          <div className="text-center mb-6 sm:mb-8">
+            <span className="text-[9px] font-black uppercase tracking-widest text-navy bg-teal/20 border border-teal/30 px-3 py-1 rounded-full">
               Start a Project
             </span>
-            <h3 className="text-2xl sm:text-4xl font-black text-navy mt-1.5 font-display">
+            <h3 className="text-2xl sm:text-4xl font-black text-navy mt-2 font-display">
               Let's Build Together
             </h3>
-            <p className="mt-1 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
+            <p className="mt-1.5 text-navy-800 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-medium">
               Have a product idea or system that needs premium full-stack engineering? Shoot us a message!
             </p>
           </div>
 
           {/* Form & Info Split */}
-          <div className="grid md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-stretch max-w-4xl mx-auto">
 
             {/* Contact Details Card */}
-            <div className="p-4.5 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl flex flex-col justify-between shadow-soft relative overflow-hidden gap-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white shadow-soft flex flex-col justify-between relative overflow-hidden gap-4">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
 
               <div>
@@ -529,7 +529,7 @@ export default function Home() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <span className="block text-[9px] text-teal uppercase tracking-wider font-extrabold">HQ Location</span>
-                      <span className="text-navy font-bold text-xs sm:text-sm">{company.location}</span>
+                      <span className="text-navy font-bold text-xs sm:text-sm break-words">{company.location}</span>
                     </div>
                   </div>
                 </div>
@@ -546,7 +546,7 @@ export default function Home() {
             {/* Simple Form card */}
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="p-4.5 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white/95 backdrop-blur-xl flex flex-col justify-between shadow-soft gap-3"
+              className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-skyblue/40 bg-white shadow-soft flex flex-col justify-between gap-3.5"
             >
               <div>
                 <label htmlFor="contact_name" className="block text-[11px] font-extrabold uppercase tracking-wider text-navy-700 mb-1">Your Name</label>
@@ -555,7 +555,7 @@ export default function Home() {
                   name="name"
                   aria-label="Your Name"
                   type="text"
-                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
+                  className="w-full bg-slate-50 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
                 />
               </div>
 
@@ -566,7 +566,7 @@ export default function Home() {
                   name="email"
                   aria-label="Email Address"
                   type="email"
-                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
+                  className="w-full bg-slate-50 border border-skyblue/40 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all font-medium"
                 />
               </div>
 
@@ -577,7 +577,7 @@ export default function Home() {
                   name="message"
                   aria-label="Message"
                   rows={3}
-                  className="w-full bg-slate-50/70 border border-skyblue/40 rounded-xl px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all resize-none font-medium"
+                  className="w-full bg-slate-50 border border-skyblue/40 rounded-xl px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-teal focus:ring-2 focus:ring-teal/20 text-navy transition-all resize-none font-medium"
                 />
               </div>
 

@@ -68,7 +68,7 @@ export const projects = [
     tags: ['React', 'REST API', 'PWA', 'Tailwind CSS'],
     image: '/assets/ehub-aiverse.svg',
     summary: 'Full-stack cloud LMS & student dashboard featuring secure authentication, 2-step OTP password recovery, test preparation analytics, and PWA capabilities.',
-    link: 'https://aiverse.ehubinstitute.com',
+    link: '#',
     featured: true
   },
   {

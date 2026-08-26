@@ -32,29 +32,21 @@ export default function Blog() {
     <div className="min-h-screen bg-beige text-navy pt-32 pb-24 sm:pt-36 sm:pb-28">
       <div className="container-page max-w-4xl mx-auto px-4 sm:px-6">
 
-        {/* Navigation Breadcrumb (Shifted down below navbar) */}
-        <div className="mb-6 sm:mb-8">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-xs font-bold text-navy-700 hover:text-teal transition-all px-4 py-2 rounded-full bg-white/90 border border-skyblue/40 shadow-soft hover:shadow-lift"
-          >
-            <ArrowLeft size={14} />
-            <span>Back to Home</span>
-          </Link>
-        </div>
 
-        {/* Page Hero Header (Clean without card frame) */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <span className="inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] text-teal bg-teal/15 border border-teal/30 px-3.5 py-1 rounded-full shadow-xs mb-3">
-            <BookOpen size={11} className="text-teal" />
-            <span>INSIGHTS, CASE STUDIES & TECH BREAKDOWNS</span>
+        {/* Page Hero Header Card Box */}
+        <div className="w-full rounded-[28px] sm:rounded-[32px] border border-skyblue/40 bg-white/95 backdrop-blur-xl shadow-soft p-7 sm:p-10 text-center max-w-4xl mx-auto mb-10 sm:mb-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-teal/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-teal bg-teal/15 border border-teal/30 px-3.5 py-1 rounded-full shadow-xs mb-3">
+            <BookOpen size={12} className="text-teal" />
+            <span>INSIGHTS & ARTICLES</span>
           </span>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-navy font-display tracking-tight leading-tight">
-            Solvia Codes's <span className="text-teal">Blog</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-navy font-display tracking-tight leading-tight mt-1">
+            Solvia Codes's <span className="text-teal">Case Studies</span>
           </h1>
 
-          <p className="mt-2.5 text-navy-800 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-medium">
+          <p className="mt-3 text-navy-800 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-medium">
             Explore in-depth architectural analyses, design systems, and full-stack engineering breakdowns from our live client deployments.
           </p>
         </div>

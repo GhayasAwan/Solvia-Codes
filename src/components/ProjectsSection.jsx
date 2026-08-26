@@ -40,19 +40,16 @@ export default function ProjectsSection() {
                 }}
               >
                 {/* Left Column: Details, Description, Action Button */}
-                <div className="w-full md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-white z-10 min-h-[300px] sm:min-h-[340px]">
+                <div className="w-full md:w-[42%] p-5 sm:p-6 flex flex-col justify-between bg-white z-10 min-h-[300px] sm:min-h-[340px]">
                   <div>
-                    <div className="flex items-center gap-2 mb-2.5">
-                      <span className="text-[10px] font-black uppercase tracking-wider bg-navy text-white px-3 py-1 rounded-full shadow-sm">
-                        {project.category}
-                      </span>
-                      {project.featured && (
+                    {project.featured && (
+                      <div className="flex items-center gap-2 mb-2.5">
                         <span className="text-[10px] font-black uppercase tracking-wider bg-teal text-white px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                           Live Project
                         </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     <h4 className="text-xl sm:text-2xl font-extrabold text-navy font-display leading-snug mb-2">
                       {project.title}
@@ -89,10 +86,7 @@ export default function ProjectsSection() {
                         <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </a>
                     ) : (
-                      <button className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-navy/10 text-navy hover:bg-navy hover:text-white transition-all text-xs font-bold tracking-wide">
-                        <span>Read Case Study</span>
-                        <ChevronRight size={14} />
-                      </button>
+                      <div />
                     )}
 
                     <span className="text-[10px] font-bold text-teal/80 uppercase tracking-widest">
@@ -101,13 +95,13 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Right Column: Project Image Placeholder Container */}
-                <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-100 to-slate-200/90 p-5 sm:p-7 flex items-center justify-center border-t md:border-t-0 md:border-l border-skyblue/20 min-h-[200px] md:min-h-auto relative overflow-hidden">
+                {/* Right Column: Complete 100% Uncropped Project Preview */}
+                <div className="w-full md:w-[58%] bg-slate-100/90 border-t md:border-t-0 md:border-l border-skyblue/20 p-4 sm:p-6 flex items-center justify-center min-h-[260px] md:min-h-[340px] relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(#567C8D15_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
                   <img
                     src={project.image}
                     alt={`${project.title} - Solvia Codes Project`}
-                    className="w-full h-full object-contain rounded-xl shadow-sm transition-transform duration-700 hover:scale-105 relative z-10 max-h-[240px] sm:max-h-[260px]"
+                    className="w-full h-full object-contain rounded-xl shadow-md relative z-10"
                     loading="lazy"
                   />
                 </div>
