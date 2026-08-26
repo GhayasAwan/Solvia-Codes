@@ -264,7 +264,7 @@ export default function Blog() {
                 <span className="text-xs font-bold text-navy/60">
                   Engineered by Solvia Codes
                 </span>
-                {selectedArticle.link && (
+                {selectedArticle.link && selectedArticle.link !== '#' && (
                   <a
                     href={selectedArticle.link}
                     target="_blank"

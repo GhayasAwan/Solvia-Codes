@@ -1,8 +1,26 @@
-import React from 'react';
-import { Globe, ArrowUpRight, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Globe, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { projects } from '../data/siteData.js';
 
 export default function ProjectsSection() {
+  const [activeImageIndex, setActiveImageIndex] = useState({});
+
+  const handlePrevImage = (e, projectId, totalImages) => {
+    e.stopPropagation();
+    setActiveImageIndex((prev) => {
+      const current = prev[projectId] || 0;
+      return { ...prev, [projectId]: (current - 1 + totalImages) % totalImages };
+    });
+  };
+
+  const handleNextImage = (e, projectId, totalImages) => {
+    e.stopPropagation();
+    setActiveImageIndex((prev) => {
+      const current = prev[projectId] || 0;
+      return { ...prev, [projectId]: (current + 1) % totalImages };
+    });
+  };
+
   return (
     <section
       id="work"
@@ -28,6 +46,10 @@ export default function ProjectsSection() {
             const isLast = index === projects.length - 1;
             // Incremental sticky top offset: Card 0 @ 75px, Card 1 @ 100px, Card 2 @ 125px, Card 3 @ 150px...
             const stickyTop = 75 + index * 25;
+
+            const imgList = project.images && project.images.length > 0 ? project.images : [project.image];
+            const currIdx = activeImageIndex[project.id || index] || 0;
+            const currentImg = imgList[currIdx] || imgList[0];
 
             return (
               <div
@@ -95,15 +117,68 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Right Column: Complete 100% Uncropped Project Preview */}
-                <div className="w-full md:w-[58%] bg-slate-100/90 border-t md:border-t-0 md:border-l border-skyblue/20 p-4 sm:p-6 flex items-center justify-center min-h-[260px] md:min-h-[340px] relative overflow-hidden">
+                {/* Right Column: Complete 100% Uncropped Project Preview with Navigation Arrows */}
+                <div className="w-full md:w-[58%] bg-slate-100/90 border-t md:border-t-0 md:border-l border-skyblue/20 p-4 sm:p-6 flex items-center justify-center min-h-[260px] md:min-h-[340px] relative overflow-hidden group/img">
                   <div className="absolute inset-0 bg-[radial-gradient(#567C8D15_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-                  <img
-                    src={project.image}
-                    alt={`${project.title} - Solvia Codes Project`}
-                    className="w-full h-full object-contain rounded-xl shadow-md relative z-10"
-                    loading="lazy"
-                  />
+
+                  {/* Left Navigation Arrow */}
+                  {imgList.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={(e) => handlePrevImage(e, project.id || index, imgList.length)}
+                      className="absolute left-3 z-20 w-8 h-8 rounded-full bg-navy/85 hover:bg-teal text-white flex items-center justify-center shadow-md transition-all active:scale-90 cursor-pointer backdrop-blur-xs border border-white/20"
+                      aria-label="Previous picture"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                  )}
+
+                  {/* Main Project Image */}
+                  {currentImg ? (
+                    <img
+                      key={currentImg}
+                      src={currentImg}
+                      alt={`${project.title} - Screenshot ${currIdx + 1}`}
+                      className="w-full h-full object-contain rounded-xl shadow-md relative z-10 transition-opacity duration-300"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full min-h-[260px] md:min-h-[320px] flex items-center justify-center text-navy/40 font-bold text-xs border border-dashed border-skyblue/40 rounded-xl relative z-10">
+                      <span>Awaiting Image</span>
+                    </div>
+                  )}
+
+                  {/* Right Navigation Arrow */}
+                  {imgList.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={(e) => handleNextImage(e, project.id || index, imgList.length)}
+                      className="absolute right-3 z-20 w-8 h-8 rounded-full bg-navy/85 hover:bg-teal text-white flex items-center justify-center shadow-md transition-all active:scale-90 cursor-pointer backdrop-blur-xs border border-white/20"
+                      aria-label="Next picture"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  )}
+
+                  {/* Dot Indicators */}
+                  {imgList.length > 1 && (
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-navy/60 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20">
+                      {imgList.map((_, dotIdx) => (
+                        <button
+                          key={dotIdx}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImageIndex(prev => ({ ...prev, [project.id || index]: dotIdx }));
+                          }}
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            currIdx === dotIdx ? 'bg-teal w-4' : 'bg-white/50 hover:bg-white w-2'
+                          }`}
+                          aria-label={`Go to slide ${dotIdx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );

@@ -66,7 +66,13 @@ export const projects = [
     title: 'EHub AI Verse - Student Portal & LMS',
     category: 'SaaS Development',
     tags: ['React', 'REST API', 'PWA', 'Tailwind CSS'],
-    image: '/assets/ehub-aiverse.svg',
+    image: '/assets/ehub-aiverse-1-login.svg',
+    images: [
+      '/assets/ehub-aiverse-1-login.svg',
+      '/assets/ehub-aiverse-2-dashboard.svg',
+      '/assets/ehub-aiverse-3-vocab.svg',
+      '/assets/ehub-aiverse-4-band.svg'
+    ],
     summary: 'Full-stack cloud LMS & student dashboard featuring secure authentication, 2-step OTP password recovery, test preparation analytics, and PWA capabilities.',
     link: '#',
     featured: true
@@ -92,7 +98,7 @@ export const blogs = [
     date: 'Aug 23, 2026',
     image: '/assets/ehub-aiverse-collage.svg',
     summary: 'How Solvia Codes developed a smart student portal and mobile app for E-Hub Institute, allowing students to practice IELTS Reading, Writing, Listening, and AI Speaking tests from home.',
-    link: 'https://aiverse.ehubinstitute.com',
+    link: '#',
     tags: ['EHub AI Verse', 'Student Portal', 'React', 'AI Speaking Evaluation', 'Mobile App'],
     sections: [
       {
